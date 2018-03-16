@@ -2,55 +2,153 @@
 <html app="myApp" lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Immersive Session Testing</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="description" content="A cli for Angular 1.5">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Dependencies -->
-    <script src="..\node_modules\angular\angular.js"></script>
-    <script src="..\node_modules\konva\konva.js"></script>
-    <!-- Google Font Roboto -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font awesome mian css-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <!--custom css-->
-    <link rel="stylesheet" href="assets/css/custom-main.css">
-    <!-- CSS -->
-    <link href="..\client\assets\css\style.css" rel="stylesheet">
-    <!-- <link rel="icon" href="favicon.jpg"> -->
+  <meta charset="utf-8">
+  <title>Immersive Session Testing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Immersive Session Testing Website">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+
+  <script src="https://cdn.rawgit.com/konvajs/konva/2.0.2/konva.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+
+  <link href="..\client\assets\css\main.css" rel="stylesheet">
+  <link href="..\client\assets\css\footer.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- <div class="col-sm-12 col-md-12 col-lg-12 bg-white">
-        <h3 style="display:inline-block;"> Reconnaissance workspace </h3>
-    </div>
-    <br> -->
-    <div>
-        <div id="note" style="width:500px;height:200px;background:#ccc;position: absolute; z-index: 100;left: 15%;top:28%;display: none;"></div>
+  <div>
+    <div id="note"></div>
+    <div id="container"></div>
 
-        <div id="container"></div>
+    <div ng-app="todoApp" class="footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="dropup col-md-4 col-style hoverHeader">
+            <span id="jottingsDropDown" class="dropdown-toggle col-text-style" data-toggle="dropdown">Jottings
+              <span class="fa fa-angle-up" style="font-size:19px"></span>
+            </span>
+            <ul id="jottingsMenu" class="dropdown-menu col-md-12 menu-style" role="menu" aria-labelledby="menu1">
+              <li class="dropdown-header menu-header-style" id="jottingsDropUp">Jottings
+                <span class="fa fa-angle-down" style="font-size:19px"></span>
+              </li>
+              <div ng-controller="TodoListController as todoList2" class="menu-dimension-style">
+                <form id="jottingsForm" ng-submit="todoList2.addTodo2()" class="menu-form-style">
+                  <input class="menu-form-input-style" type="text" ng-model="todoList2.todoText2" size="38">
+                  <input class="btn btn-info" type="submit" value="Add">
+                </form>
+                <ul class="menu-list-style">
+                  <li ng-repeat="todo in todoList2.todos2" class="menu-sub-style">
+
+                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+
+                  </li>
+                </ul>
+
+              </div>
+            </ul>
+          </div>
+
+          <div class="dropup col-md-4 col-style hoverHeader">
+            <span id="notesDropDown" class="dropdown-toggle col-text-style" data-toggle="dropdown">Notes
+              <span class="fa fa-angle-up" style="font-size:19px"></span>
+            </span>
+            <ul id="notesMenu" class="dropdown-menu col-md-12 menu-style" role="menu" aria-labelledby="menu1">
+              <li class="dropdown-header menu-header-style" id="notesDropUp">Notes
+                <span class="fa fa-angle-down" style="font-size:19px"></span>
+              </li>
+              <div ng-controller="TodoListController as todoList1" class="menu-dimension-style">
+
+                <form id="notesForm" ng-submit="todoList1.addTodo1()" class="menu-form-style">
+                  <input class="menu-form-input-style" type="text" ng-model="todoList1.todoText1" size="38">
+                  <input class="btn btn-info" type="submit" value="add">
+                </form>
+
+                <ul class="menu-list-style">
+                  <li ng-repeat="todo in todoList1.todos1" class="menu-sub-style">
+
+                    {{todo.counter}}.
+                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+
+                  </li>
+                </ul>
+
+              </div>
+            </ul>
+          </div>
+          <div class="dropup col-md-4 col-style hoverHeader">
+            <span id="questionsDropDown" class="dropdown-toggle col-text-style" data-toggle="dropdown">Questions
+              <span class="fa fa-angle-up" style="font-size:19px"></span>
+            </span>
+            <ul id="questionsMenu" class="dropdown-menu col-md-12 menu-style" role="menu" aria-labelledby="menu1">
+              <li class="dropdown-header menu-header-style" id="questionsDropUp" style="text-align:left;background-color:black;color:white;font-family:Verdana;font-size:12px;cursor:pointer;">Questions
+                <span class="fa fa-angle-down" style="font-size:19px"></span>
+              </li>
+
+              <div ng-controller="TodoListController as todoList" class="menu-dimension-style">
+                <form id="questionsForm" ng-submit="todoList.addTodo()" class="menu-form-style">
+                  <input class="menu-form-input-style" type="text" ng-model="todoList.todoText" size="43" placeholder="add your questions here">
+                  <input class="btn btn-info" type="submit" value="add">
+                </form>
+
+                <ul class="unstyled menu-list-style">
+                  <li ng-repeat="todo in todoList.todos" class="menu-sub-style">
+
+                    <input id="checkBox" style="font-family:Verdana;" type="checkbox" ng-model="todo.done">{{todo.counter}}.
+                    <span id="text_display" class="done-{{todo.done}}">{{todo.text}}</span>
+
+                  </li>
+                </ul>
+
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- JS files -->
-    <script src="..\client\app\config.settings.js"></script>
-    <script src="..\client\app\level.js"></script> 
-    <script src="..\client\app\level.model.js"></script>
-    <script src="..\client\app\level.view.js"></script> 
-    <script src="..\client\app\level.controller.js"></script>
-    <script src="..\client\app\section.js"></script> 
-    <script src="..\client\app\section.model.js"></script>
-    <script src="..\client\app\section.view.js"></script>
-    <script src="..\client\app\header.view.js"></script>
-    <script src="..\client\app\board.view.js"></script>
-    <script src="..\client\app\board.js"></script>
-    <script src="..\client\app\note.form.js"></script> 
-    <script src="..\client\app\section.controller.js"></script>
-    <script src="..\client\app\app.js"></script>
+
+  </div>
+
+  <!-- JS files -->
+  <script src="..\client\app\config.settings.js"></script>
+
+  <script src="..\client\app\project.js"></script>
+
+  <script src="..\client\app\session.js"></script>
+  <script src="..\client\app\session.view.js"></script>
+  <script src="..\client\app\session.header.view.js"></script>
+  <script src="..\client\app\session.board.view.js"></script>
+  <script src="..\client\app\session.controller.js"></script>
+
+  <script src="..\client\app\workspace.js"></script>
+
+  <script src="..\client\app\level.js"></script>
+  <script src="..\client\app\level.model.js"></script>
+  <script src="..\client\app\level.view.js"></script>
+  <script src="..\client\app\level.header.view.js"></script>
+  <script src="..\client\app\level.board.view.js"></script>
+  <script src="..\client\app\section.area.js"></script>
+  <script src="..\client\app\level.controller.js"></script>
+
+  <script src="..\client\app\section.js"></script>
+  <script src="..\client\app\section.model.js"></script>
+  <script src="..\client\app\section.view.js"></script>
+  <script src="..\client\app\section.header.view.js"></script>
+  <script src="..\client\app\section.board.view.js"></script>
+  <script src="..\client\app\board.js"></script>
+  <script src="..\client\app\note.form.js"></script>
+  <script src="..\client\app\section.controller.js"></script>
+
+  <script src="..\client\app\app.js"></script>
+
+  <script src="..\client\app\footer.js"></script>
 </body>
 
 </html>

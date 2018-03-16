@@ -15,14 +15,14 @@ class Section {
         this.noteCollection;
     }
 
-    init(layer, x, y, templateJSON, valueJSON) {
+    init(layer, x, y, templateJSON, valueJSON, isVisible) {
 
         this.layer = layer;
         this.x = x;
         this.y = y;
 
-        this.secName = templateJSON.secName;
-        this.noteTemplate = templateJSON.noteTemplate;
+        this.secName = templateJSON.name;
+        this.noteTemplate = templateJSON.lines;
         this.noteCollection = valueJSON.value;
 
         // 1. Create section model and load it up
@@ -49,6 +49,6 @@ class Section {
         }
 
         // 5. Display the view
-        this.view.makeVisible(true);
+        this.view.makeVisible(isVisible);
     }
 }

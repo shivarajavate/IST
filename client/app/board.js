@@ -25,7 +25,7 @@ class Board {
             width: SectionSettings.board.w,
             height: SectionSettings.board.h
         };
-        var config = configSettings.getSectionUIConfig(manualConfig, "konvaRect");
+        var config = UISettings.getSectionConfig(manualConfig, "konvaRect");
         this.konvaRect = new Konva.Rect(config);
 
         var manualConfig = {
@@ -34,7 +34,7 @@ class Board {
             width: SectionSettings.board.w,
             height: SectionSettings.board.h
         };
-        var config = configSettings.getSectionUIConfig(manualConfig, "konvaText");
+        var config = UISettings.getSectionConfig(manualConfig, "konvaText");
         this.konvaText = new Konva.Text(config);
 
         this.layer.add(this.konvaRect);
@@ -66,7 +66,7 @@ class Board {
             this.konvaRect.hide();
             this.konvaText.hide();
         }
-        this.layer.draw();
+        this.layer.batchDraw();
         this.isVisible = isVisible;
     }
 }

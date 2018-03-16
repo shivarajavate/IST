@@ -1,0 +1,77 @@
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.hoverHeader:hover {
+  opacity: 0.8;
+}
+
+#jottingsMenu, #questionsMenu, #notesMenu {
+  padding: 0;
+  margin: 0;
+  height: 300px;
+}
+
+#jottingsForm, #notesForm, #questionsForm {
+  padding: 5px 5px 5px 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.col-style {
+  background-color: black;
+  color: white;
+  border-right: 1px solid grey;
+  height: 30px;
+}
+
+.col-text-style {
+  font-family: Verdana;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-style {
+  background-color: #ffffcc;
+}
+
+.menu-header-style {
+  background-color: black;
+  color: white;
+  text-align: left;
+  font-family: Verdana;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.menu-dimension-style {
+  height: 273px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.menu-form-style {
+  color: black;
+}
+
+.menu-form-input-style {
+  font-family: Verdana;
+}
+
+.menu-list-style {
+  color: black;
+  word-wrap: break-word;
+  padding: 0px 8px;
+}
+
+.menu-sub-style {
+  word-wrap: break-word;
+  list-style-type: none;
+}

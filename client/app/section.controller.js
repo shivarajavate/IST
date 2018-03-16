@@ -19,12 +19,6 @@ class SectionController {
 
         this.secName = secName;
         this.noteTemplate = noteTemplate;
-        // // Guess we should setup up a noteForm for this section and keep it handy.
-        // // i.e. Lookup the templateJSON for this section's HTML, parse it and construct
-        // // the note form, setup up the display coordinates of where to display,
-        // // keep it hidden!
-        // this.noteForm = new NoteForm();
-        // this.noteForm.init(templateJSON, this.updateHandler.bind(this));
 
         // If (model.noteCollection) != EMPTY, populate the boards with 'notes', and 
         // store #loaded notes into 'noOfNotes'

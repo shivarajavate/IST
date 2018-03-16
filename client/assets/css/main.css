@@ -1,0 +1,11 @@
+
+#note {
+    width:500px;
+    height:200px;
+    background:#ccc;
+    position: absolute;
+    z-index: 100;
+    left: 15%;
+    top:28%;
+    display: none;
+}
