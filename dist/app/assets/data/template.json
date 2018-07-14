@@ -1,0 +1,3661 @@
+[
+  {
+    "name": "default",
+    "version": "1.0",
+    "levels": [
+      {
+        "number": "L9",
+        "name": "User",
+        "sections": []
+      },
+      {
+        "number": "L8",
+        "name": "Deployment",
+        "sections": [
+          {
+            "name": "User Type",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Other Systems",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Migration",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Installation",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Setup",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "number": "L7",
+        "name": "Attributes",
+        "sections": [
+          {
+            "name": "Performance",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Volume",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Security",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Load/Stress",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Reliability",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Usability",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "number": "L6",
+        "name": "Environment",
+        "sections": [
+          {
+            "name": "HW/Devices",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "OS Browsers",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Comm Interface",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "number": "L5",
+        "name": "Flow",
+        "sections": [
+          {
+            "name": "Requirements",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Behaviour Settings",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "number": "L4",
+        "name": "Behaviour",
+        "sections": [
+          {
+            "name": "Features",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Access Control",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "number": "L3",
+        "name": "Structure",
+        "sections": [
+          {
+            "name": "Architecture",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Interface",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "number": "L2",
+        "name": "Interface",
+        "sections": [
+          {
+            "name": "Architecture",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Interface",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "number": "L1",
+        "name": "Input",
+        "sections": [
+          {
+            "name": "Architecture",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Interface",
+            "notes": [
+              {
+                "name": "default",
+                "lines": [
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "My name is ",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-CHARSTRING",
+                        "value": "Enter your name",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Time not gt than:",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-NUMSTRING",
+                        "value": "10",
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "RECON",
+                    "elements": [
+                      {
+                        "type": "LABEL",
+                        "value": "Choose city",
+                        "class": "col-sm-6"
+                      },
+                      {
+                        "type": "VALUE-LIST",
+                        "value": [
+                          "BLR",
+                          "CEN",
+                          "DEL"
+                        ],
+                        "class": "col-sm-6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetConditions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Conditions (BC)",
+                        "placeholder": "enter behavior conditions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetCriteria",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Criteria (W2S)",
+                        "placeholder": "enter what to satisfy",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetIssues",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Issues (W2F)",
+                        "placeholder": "enter what to find",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetHeuristics",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Heuristics (PI)",
+                        "placeholder": "enter heuristics",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetActions",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Actions (PI)",
+                        "placeholder": "enter actions",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetData",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Data (PI)",
+                        "placeholder": "enter data",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEARCH",
+                    "elements": [
+                      {
+                        "id": "widgetScenarios",
+                        "type": "VALUE-ACCORDION",
+                        "label": "Scenarios",
+                        "placeholder": "enter scenarios",
+                        "value": "",
+                        "class": "col-sm-12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

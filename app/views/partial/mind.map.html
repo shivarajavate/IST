@@ -1,0 +1,64 @@
+<div id="mindMap" oncontextmenu="return false;">
+
+    <div id="addToNodePopup" class="modal" data-backdrop="true" data-keyboard="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row strict">
+                        <div class="col-sm-12">
+                            <input class="form-control" placeholder="note name" />
+                        </div>
+                    </div>
+                    <div class="row strict">
+                        <div class="col-sm-12" ng-show="project.views['mindMap'].hasError">
+                            <label class="form-control" ng-bind="project.views['mindMap'].errorMessage"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editNodePopup" class="modal" data-backdrop="true" data-keyboard="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row strict">
+                        <div class="col-sm-12">
+                            <input class="form-control" placeholder="note name" />
+                        </div>
+                    </div>
+                    <div class="row strict">
+                        <div class="col-sm-12" ng-show="project.views['mindMap'].hasError">
+                            <label class="form-control" ng-bind="project.views['mindMap'].errorMessage"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editEdgePopup" class="modal" data-backdrop="true" data-keyboard="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row strict">
+                        <div class="col-sm-12">
+                            <input class="form-control" placeholder="links to" />
+                        </div>
+                    </div>
+                    <div class="row strict">
+                        <div class="col-sm-12" ng-show="project.views['mindMap'].hasError">
+                            <label class="form-control" ng-bind="project.views['mindMap'].errorMessage"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mindMapNetwork" tabindex="1"></div>
+
+    <!-- <img id="mindMapNetworkPreview"> -->
+
+</div>

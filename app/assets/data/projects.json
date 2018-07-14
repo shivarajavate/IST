@@ -1,0 +1,324 @@
+[
+  {
+    "_id": 0,
+    "name": "new project 1",
+    "description": "sample new project 1",
+    "details": {
+      "levels": [
+        {
+          "name": "User",
+          "sections": []
+        },
+        {
+          "name": "Deployment",
+          "sections": [
+            {
+              "name": "User Type",
+              "notes": []
+            },
+            {
+              "name": "Other Systems",
+              "notes": []
+            },
+            {
+              "name": "Migration",
+              "notes": []
+            },
+            {
+              "name": "Installation",
+              "notes": []
+            },
+            {
+              "name": "Setup",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Attributes",
+          "sections": [
+            {
+              "name": "Performance",
+              "notes": []
+            },
+            {
+              "name": "Volume",
+              "notes": []
+            },
+            {
+              "name": "Security",
+              "notes": []
+            },
+            {
+              "name": "Load/Stress",
+              "notes": []
+            },
+            {
+              "name": "Reliability",
+              "notes": []
+            },
+            {
+              "name": "Usability",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Environment",
+          "sections": [
+            {
+              "name": "HW/Devices",
+              "notes": []
+            },
+            {
+              "name": "OS Browsers",
+              "notes": []
+            },
+            {
+              "name": "Comm Interface",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Flow",
+          "sections": [
+            {
+              "name": "Requirements",
+              "notes": []
+            },
+            {
+              "name": "Behaviour Settings",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Behaviour",
+          "sections": [
+            {
+              "name": "Features",
+              "notes": []
+            },
+            {
+              "name": "Access Control",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Structure",
+          "sections": [
+            {
+              "name": "Architecture",
+              "notes": []
+            },
+            {
+              "name": "Interface",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Interface",
+          "sections": [
+            {
+              "name": "Architecture",
+              "notes": []
+            },
+            {
+              "name": "Interface",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Input",
+          "sections": [
+            {
+              "name": "Architecture",
+              "notes": []
+            },
+            {
+              "name": "Interface",
+              "notes": []
+            }
+          ]
+        }
+      ],
+      "jottings": [
+        "jottings"
+      ],
+      "notes": [
+        "note 1",
+        "note 2"
+      ],
+      "questions": [
+        "any questions ?"
+      ]
+    },
+    "templateName": "default",
+    "uisettingName": "default"
+  },
+  {
+    "_id": 1,
+    "name": "project 2",
+    "description": "sample project 2",
+    "details": {
+      "levels": [
+        {
+          "name": "User",
+          "sections": []
+        },
+        {
+          "name": "Deployment",
+          "sections": [
+            {
+              "name": "User Type",
+              "notes": []
+            },
+            {
+              "name": "Other Systems",
+              "notes": []
+            },
+            {
+              "name": "Migration",
+              "notes": []
+            },
+            {
+              "name": "Installation",
+              "notes": []
+            },
+            {
+              "name": "Setup",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Attributes",
+          "sections": [
+            {
+              "name": "Performance",
+              "notes": []
+            },
+            {
+              "name": "Volume",
+              "notes": []
+            },
+            {
+              "name": "Security",
+              "notes": []
+            },
+            {
+              "name": "Load/Stress",
+              "notes": []
+            },
+            {
+              "name": "Reliability",
+              "notes": []
+            },
+            {
+              "name": "Usability",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Environment",
+          "sections": [
+            {
+              "name": "HW/Devices",
+              "notes": []
+            },
+            {
+              "name": "OS Browsers",
+              "notes": []
+            },
+            {
+              "name": "Comm Interface",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Flow",
+          "sections": [
+            {
+              "name": "Requirements",
+              "notes": []
+            },
+            {
+              "name": "Behaviour Settings",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Behaviour",
+          "sections": [
+            {
+              "name": "Features",
+              "notes": []
+            },
+            {
+              "name": "Access Control",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Structure",
+          "sections": [
+            {
+              "name": "Architecture",
+              "notes": []
+            },
+            {
+              "name": "Interface",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Interface",
+          "sections": [
+            {
+              "name": "Architecture",
+              "notes": []
+            },
+            {
+              "name": "Interface",
+              "notes": []
+            }
+          ]
+        },
+        {
+          "name": "Input",
+          "sections": [
+            {
+              "name": "Architecture",
+              "notes": []
+            },
+            {
+              "name": "Interface",
+              "notes": []
+            }
+          ]
+        }
+      ],
+      "jottings": [
+        "jottings"
+      ],
+      "notes": [
+        "note 1",
+        "note 2"
+      ],
+      "questions": [
+        "any questions ?"
+      ]
+    },
+    "templateName": "default",
+    "uisettingName": "default"
+  }
+]

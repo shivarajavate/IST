@@ -1,0 +1,105 @@
+<section class="mind-map" ui-view="mind-map"></section>
+
+<section class="konva-canvas" ui-view="workspace-view"></section>
+
+<section ui-view="note-form"></section>
+
+<footer>
+    <div class="jottings-dropup dropup col-md-4">
+
+        <div class="jottings-dropup-header">
+            <span>Jottings</span>
+            <i class="fa fa-caret-up icon right-corner"></i>
+        </div>
+
+        <div class="footer-menu dropdown-menu col-md-12">
+
+            <div class="jottings-dropdown-header">
+                <span>Jottings</span>
+                <i class="fa fa-caret-down icon right-corner"></i>
+            </div>
+
+            <div class="footer-menu-content">
+                <ul>
+                    <li ng-repeat="jotting in project.model.details.jottings track by $index">
+                        <textarea class="form-control" rows="1" autosize="true" auto-crud="true" on-create="project.model.addJotting('', $index)"
+                            on-delete="project.model.deleteJotting($index)" ng-model="project.model.details.jottings[$index]"></textarea>
+                    </li>
+                </ul>
+                <div ng-if="project.model.details.jottings.length === 0">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addJotting('', -1)">
+                        <i class="fa fa-plus icon"></i>
+                        <label>add jottings</label>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="notes-dropup dropup col-md-4">
+
+        <div class="notes-dropup-header">
+            <span>Notes</span>
+            <i class="fa fa-caret-up icon right-corner"></i>
+        </div>
+
+        <div class="footer-menu dropdown-menu col-md-12">
+
+            <div class="notes-dropdown-header">
+                <span>Notes</span>
+                <i class="fa fa-caret-down icon right-corner"></i>
+            </div>
+
+            <div class="footer-menu-content">
+                <ol>
+                    <li ng-repeat="note in project.model.details.notes track by $index">
+                        <textarea class="form-control" rows="1" autosize="true" auto-crud="true" on-create="project.model.addNote('', $index)" on-delete="project.model.deleteNote($index)"
+                            ng-model="project.model.details.notes[$index]"></textarea>
+                    </li>
+                </ol>
+                <div ng-if="project.model.details.notes.length === 0">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addNote('', -1)">
+                        <i class="fa fa-plus icon"></i>
+                        <label>add notes</label>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="questions-dropup dropup col-md-4">
+
+        <div class="questions-dropup-header">
+            <span>Questions</span>
+            <i class="fa fa-caret-up icon right-corner"></i>
+        </div>
+
+        <div class="footer-menu dropdown-menu col-md-12">
+
+            <div class="questions-dropdown-header">
+                <span>Questions</span>
+                <i class="fa fa-caret-down icon right-corner"></i>
+            </div>
+
+            <div class="footer-menu-content">
+                <ol>
+                    <li ng-repeat="question in project.model.details.questions track by $index">
+                        <textarea class="form-control" rows="1" autosize="true" auto-crud="true" on-create="project.model.addQuestion('', $index)"
+                            on-delete="project.model.deleteQuestion($index)" ng-model="project.model.details.questions[$index]"></textarea>
+                    </li>
+                </ol>
+                <div ng-if="project.model.details.questions.length === 0">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addQuestion('', -1)">
+                        <i class="fa fa-plus icon"></i>
+                        <label>add questions</label>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</footer>

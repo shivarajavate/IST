@@ -1,0 +1,100 @@
+[
+    {
+        "name": "default",
+        "value": {
+            "Styles": {
+                "Level": {
+                    "boardViewRect": {
+                        "fill": "white",
+                        "stroke": "lightgrey",
+                        "shadowColor": "black"
+                    },
+                    "scrollLeftButtonRect": {
+                        "fill": "hsl(4, 3%, 76%)",
+                        "stroke": "hsl(165, 53%, 81%)",
+                        "shadowColor": "black"
+                    },
+                    "scrollLeftButtonText": {
+                        "fontFamily": "FontAwesome",
+                        "fill": "#555"
+                    },
+                    "scrollRightButtonRect": {
+                        "fill": "hsl(4, 3%, 76%)",
+                        "stroke": "hsl(165, 53%, 81%)",
+                        "shadowColor": "black"
+                    },
+                    "scrollRightButtonText": {
+                        "fontFamily": "FontAwesome",
+                        "fill": "#555"
+                    },
+                    "levelIDRect": {
+                        "fill": "black",
+                        "stroke": "lightgrey",
+                        "shadowColor": "black"
+                    },
+                    "levelIDText": {
+                        "fontFamily": "Roboto",
+                        "fill": "white"
+                    },
+                    "levelNameRect": {
+                        "fill": "black",
+                        "stroke": "lightgrey",
+                        "shadowColor": "black"
+                    },
+                    "levelNameText": {
+                        "fontFamily": "Roboto",
+                        "fill": "white"
+                    }
+                },
+                "Section": {
+                    "secNameRect": {
+                        "fill": "#eb807b",
+                        "stroke": "#e4554f",
+                        "shadowColor": "black"
+                    },
+                    "secNameText": {
+                        "fontFamily": "Roboto",
+                        "fill": "#555"
+                    },
+                    "scrollLeftButtonRect": {
+                        "fill": "hsl(4, 3%, 76%)",
+                        "stroke": "hsl(165, 53%, 81%)",
+                        "shadowColor": "black"
+                    },
+                    "scrollLeftButtonText": {
+                        "fontFamily": "FontAwesome",
+                        "fill": "#555"
+                    },
+                    "scrollRightButtonRect": {
+                        "fill": "hsl(4, 3%, 76%)",
+                        "stroke": "hsl(165, 53%, 81%)",
+                        "shadowColor": "black"
+                    },
+                    "scrollRightButtonText": {
+                        "fontFamily": "FontAwesome",
+                        "fill": "#555"
+                    },
+                    "boardViewRect": {
+                        "fill": "antiquewhite",
+                        "stroke": "lightgrey",
+                        "shadowColor": "black"
+                    },
+                    "konvaRect": {
+                        "fill": "hsl(29, 95%, 76%)",
+                        "stroke": "hsl(29, 95%, 76%)",
+                        "shadowColor": "black"
+                    },
+                    "konvaText": {
+                        "fontFamily": "Roboto",
+                        "fill": "#555"
+                    },
+                    "selectedKonvaRect": {
+                        "fill": "hsl(9, 1%, 69%)",
+                        "stroke": "hsl(165, 53%, 81%)",
+                        "shadowColor": "black"
+                    }
+                }
+            }
+        }
+    }
+]

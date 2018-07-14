@@ -1,0 +1,372 @@
+[
+  {
+    "name": "default",
+    "value": {
+      "styles": {
+        "workspace": {},
+        "level": {
+          "boardViewRect": {
+            "fill": "white",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "scrollLeftButtonRect": {
+            "fill": "hsl(4, 3%, 76%)",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "scrollLeftButtonText": {
+            "fontSize": 16,
+            "fontFamily": "FontAwesome",
+            "fill": "#555",
+            "text": "\uf0d9",
+            "align": "center",
+            "verticalAlign": "bottom"
+          },
+          "scrollRightButtonRect": {
+            "fill": "hsl(4, 3%, 76%)",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "scrollRightButtonText": {
+            "fontSize": 16,
+            "fontFamily": "FontAwesome",
+            "fill": "#555",
+            "text": "\uf0da",
+            "align": "center",
+            "verticalAlign": "top"
+          },
+          "levelIDRect": {
+            "fill": "black",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "levelIDText": {
+            "fontSize": 16,
+            "fontStyle": "bold",
+            "fontFamily": "Roboto",
+            "fill": "white",
+            "align": "center",
+            "verticalAlign": "center"
+          },
+          "levelNameRect": {
+            "fill": "black",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "levelNameText": {
+            "fontSize": 16,
+            "fontStyle": "bold",
+            "fontFamily": "Roboto",
+            "fill": "white",
+            "align": "center",
+            "verticalAlign": "top"
+          }
+        },
+        "section": {
+          "secNameRect": {
+            "fill": "#E4F4D8",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "secNameText": {
+            "fontSize": 12,
+            "fontStyle": "bold",
+            "fontFamily": "Roboto",
+            "fill": "#555",
+            "align": "center",
+            "verticalAlign": "center"
+          },
+          "scrollLeftButtonRect": {
+            "fill": "hsl(4, 3%, 76%)",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "scrollLeftButtonText": {
+            "fontSize": 14,
+            "fontFamily": "FontAwesome",
+            "fill": "#555",
+            "text": "\uf0d9",
+            "align": "center",
+            "verticalAlign": "center"
+          },
+          "scrollRightButtonRect": {
+            "fill": "hsl(4, 3%, 76%)",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "scrollRightButtonText": {
+            "fontSize": 14,
+            "fontFamily": "FontAwesome",
+            "fill": "#555",
+            "text": "\uf0da",
+            "align": "center",
+            "verticalAlign": "center"
+          },
+          "boardViewRect": {
+            "fill": "rgb(240, 240, 240)",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          }
+        },
+        "board": {
+          "konvaRect": {
+            "fill": "hsl(29, 95%, 76%)",
+            "stroke": "hsl(29, 95%, 76%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          },
+          "konvaText": {
+            "fontSize": 12,
+            "fontFamily": "Roboto",
+            "fill": "#555",
+            "align": "center",
+            "verticalAlign": "center"
+          },
+          "selectedKonvaRect": {
+            "fill": "hsl(9, 1%, 69%)",
+            "stroke": "hsl(165, 53%, 81%)",
+            "strokeWidth": 0,
+            "strokeEnabled": false,
+            "shadowColor": "black",
+            "shadowBlur": 0,
+            "shadowEnabled": false
+          }
+        }
+      },
+      "properties": {
+        "workspace": {
+          "RECON": [
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            }
+          ],
+          "SEARCH": [
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            },
+            {
+              "noOfSectionAreas": 4,
+              "wPct": 25,
+              "hPct": 100,
+              "margin": 2
+            }
+          ]
+        },
+        "level": {
+          "skeleton": {
+            "wPct": 100,
+            "hPct": 11.11
+          },
+          "boardViewRect": {
+            "wPct": 90,
+            "hPct": 100
+          },
+          "scrollLeftButtonRect": {
+            "wPct": 2,
+            "hPct": 50
+          },
+          "scrollLeftButtonText": {
+            "wPct": 2,
+            "hPct": 50
+          },
+          "scrollRightButtonRect": {
+            "wPct": 2,
+            "hPct": 50
+          },
+          "scrollRightButtonText": {
+            "wPct": 2,
+            "hPct": 50
+          },
+          "levelIDRect": {
+            "wPct": 8,
+            "hPct": 30
+          },
+          "levelIDText": {
+            "wPct": 8,
+            "hPct": 30
+          },
+          "levelNameRect": {
+            "wPct": 8,
+            "hPct": 70
+          },
+          "levelNameText": {
+            "wPct": 8,
+            "hPct": 70
+          }
+        },
+        "section": {
+          "secNameRect": {
+            "wPct": 100,
+            "hPct": 20
+          },
+          "secNameText": {
+            "wPct": 100,
+            "hPct": 20
+          },
+          "scrollLeftButtonRect": {
+            "wPct": 20,
+            "hPct": 20
+          },
+          "scrollLeftButtonText": {
+            "wPct": 20,
+            "hPct": 20
+          },
+          "scrollRightButtonRect": {
+            "wPct": 20,
+            "hPct": 20
+          },
+          "scrollRightButtonText": {
+            "wPct": 20,
+            "hPct": 20
+          },
+          "boardViewRect": {
+            "wPct": 100,
+            "hPct": 80
+          }
+        },
+        "board": {
+          "w": 120,
+          "h": 20,
+          "minGapW": 5,
+          "minGapH": 5
+        }
+      }
+    }
+  }
+]

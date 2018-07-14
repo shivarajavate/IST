@@ -1,0 +1,53 @@
+[
+    {
+        "name": "resources",
+        "value": {
+            "en": {
+                "R001": {
+                    "text": "Enter your project name and template name",
+                    "description": "project menu required project and template error message"
+                },
+                "R002": {
+                    "text": "This project already exists!",
+                    "description": "already existing project error message"
+                },
+                "R003": {
+                    "text": "Confirm delete?",
+                    "description": "confirm message for project deletion"
+                },
+                "R004": {
+                    "text": "Incorrect username or password!",
+                    "description": "login error message for wrong credentials"
+                },
+                "R005": {
+                    "text": "Project successfully created",
+                    "description": "confirmation message after creating a project successfully"
+                },
+                "R006": {
+                    "text": "Project successfully cloned",
+                    "description": "message after clonning a project successfully"
+                },
+                "R007": {
+                    "text": "Project successfully modified",
+                    "description": "confirmation message after modifying a project successfully"
+                },
+                "R008": {
+                    "text": "Project successfully deleted",
+                    "description": "confirmation message after deleting a project successfully"
+                },
+                "R009": {
+                    "text": "Duplicate conditions exists",
+                    "description": "error message for duplicate conditions in conditions table"
+                },
+                "R010": {
+                    "text": "Note already exists",
+                    "description": "error message for duplicate descendent node with same name"
+                },
+                "R011": {
+                    "text": "Enter note name",
+                    "description": "node textbox required note name error message"
+                }
+            }
+        }
+    }
+]

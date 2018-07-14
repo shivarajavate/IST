@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "es6": true,
+    "node": true,
+    "amd": true,
+    "mongo": true
+  },
+  "globals": {
+    "angular": true
+  },
+  // "extends": "eslint:all",
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-console": "off"
+  }
+}
