@@ -9,7 +9,7 @@ class ProjectTemplateModel {
         model.levels = template.levels;
     }
 
-    noteTemplate(secName, levelName, wsName = "") {
+    noteTemplate(secName = "", levelName = "", wsName = "") {
 
         var model = this;
 

@@ -43,10 +43,22 @@ class Project {
         var viewIndex = 0;
 
         for (var viewParam in viewParams) {
+
+            var params = {
+                data: {
+                    canvasName: viewParams[viewParam],
+                    name: viewParam,
+                    template: project.template,
+                    uiSettings: project.uiSettings
+                },
+                callbacks: {
+
+                }
+            };
+
             workspaceView[viewIndex] = new Workspace();
-            workspaceView[viewIndex].init(viewParams[viewParam], viewParam, project.template, project.uiSettings);
-            workspaceView[viewIndex].set(project.model.details.levels);
-            workspaceView[viewIndex].makeVisible(false);
+            workspaceView[viewIndex].init(params);
+
             ++viewIndex;
         }
 
@@ -58,7 +70,9 @@ class Project {
         var project = this;
 
         var params = {
-            data: project.model,
+            data: Object.assign({}, {
+                options: project.uiSettings.mindMapProperties
+            }, project.model.defaultMindMapData(project.template)),
             callbacks: {
                 add: project.addNodeAction.bind(project),
                 update: project.updateNodeAction.bind(project),
@@ -77,10 +91,7 @@ class Project {
 
         var project = this;
 
-        project.views["workspace"].forEach(workspace => workspace.makeVisible(false));
-
         project.selectedWorkspaceIndex = project.views["workspace"].findIndex(workspace => workspace.name === currSession);
-        project.views["workspace"][project.selectedWorkspaceIndex].makeVisible(true);
 
         project.views["workspace"][project.selectedWorkspaceIndex].set(project.model.details.levels);
         project.views["mindMap"].set(project.model.details.levels);
@@ -94,11 +105,11 @@ class Project {
 
         var project = this;
 
-        project.views["workspace"].forEach(workspace => workspace.makeVisible(false));
         project.selectedWorkspaceIndex = -1;
     }
 
     openNoteForm(data) {
+
         var project = this;
 
         var callbacks = {
@@ -109,16 +120,14 @@ class Project {
             close: project.unselectNoteAction.bind(project)
         };
 
-        if (!data.noteExists) {
-            data.note = project.model.newNote({
-                name: "new",
-                secName: data.secName,
-                levelName: data.levelName
-            }, project.template);
-        }
+        data.note = (data.noteExists) ? data.note : project.model.newNote({
+            name: "new",
+            secName: data.secName,
+            levelName: data.levelName
+        }, project.template);
 
         data.template = project.template.noteTemplate(data.secName, data.levelName, data.wsName);
-        data.tags = project.getSuggestTags(data.wsName);
+        data.tags = project.model.suggestTags(data.wsName);
 
         project.noteForm = new NoteForm();
         project.noteForm.init(data, callbacks);
@@ -243,31 +252,12 @@ class Project {
     applyTheme() {
         var project = this;
 
-        var style = getComputedStyle(document.getElementById('ist'));
-        var themeColors = {
-            color: style.getPropertyValue('--theme-color').trim(),
-            backgroundColor: style.getPropertyValue('--theme-background-color').trim(),
-            borderColor: style.getPropertyValue('--theme-border-color').trim(),
-            activeColor: style.getPropertyValue('--theme-active-color').trim(),
-            activeBackgroundColor: style.getPropertyValue('--theme-active-background-color').trim(),
-            activeBorderColor: style.getPropertyValue('--theme-active-border-color').trim(),
-            disabledColor: style.getPropertyValue('--theme-disabled-color').trim(),
-            disabledBackgroundColor: style.getPropertyValue('--theme-disabled-background-color').trim(),
-            borderLineColor: style.getPropertyValue('--theme-border-line-color').trim(),
-            footerColor: style.getPropertyValue('--theme-footer-color').trim(),
-            footerBackgroundColor: style.getPropertyValue('--theme-footer-background-color').trim(),
-            footerMenuBackgroundColor: style.getPropertyValue('--theme-footer-menu-background-color').trim(),
-            scrollbarColor: style.getPropertyValue('--theme-scrollbar-color').trim(),
-            scrollbarBackgroundColor: style.getPropertyValue('--theme-scrollbar-background-color').trim(),
-            activeScrollbarColor: style.getPropertyValue('--theme-active-scrollbar-color').trim()
-        };
-
-        project.uiSettings.update(themeColors);
+        project.uiSettings.update();
 
         project.views["workspace"].forEach(function (workspace) {
             workspace.applyTheme(project.uiSettings.styles);
         });
-        project.views["mindMap"].applyTheme(themeColors);
+        project.views["mindMap"].applyTheme(project.uiSettings.mindMapStyles);
     }
 
     download() {
@@ -389,21 +379,6 @@ class Project {
         }
 
         return data;
-    }
-
-    getSuggestTags(wsName) {
-
-        var project = this;
-
-        var levels = project.model.details.levels;
-        var sections = [].concat(...levels.map(level => level.sections));
-        var secWithNotes = sections.filter(section => section.notes.length);
-
-        var secNoteTagCollection = secWithNotes.map(sec => sec.notes.map(note => sec.name + " : " + note.name));
-        var secNoteTags = [].concat(...secNoteTagCollection);
-        var tags = secNoteTags;
-
-        return tags;
     }
 
 }

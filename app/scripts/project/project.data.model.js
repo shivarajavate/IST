@@ -1,7 +1,7 @@
 
 class ProjectDataModel {
 
-    constructor(data = { _id: -1, name: "", description: "", details: { levels: [], jottings: [], notes: [], questions: [] }, templateName: "" }) {
+    constructor(data = { _id: -1, name: "", description: "", details: { levels: [], jottings: [], notes: [], questions: [] }, templateName: "", uisettingName: "" }) {
 
         var model = this;
 
@@ -10,6 +10,7 @@ class ProjectDataModel {
         model.description = data.description;
         model.details = data.details;
         model.templateName = data.templateName;
+        model.uisettingName = data.uisettingName;
     }
 
     uniqueId() {
@@ -71,6 +72,76 @@ class ProjectDataModel {
         });
 
         return node;
+    }
+
+    defaultMindMapData(template = new ProjectTemplateModel()) {
+
+        var model = this;
+
+        var data = {
+            nodes: [],
+            edges: []
+        };
+
+        var mainNode = new NodeModel({
+            id: model.uniqueId(),
+            x: 0,
+            y: 0,
+            level: 0,
+            label: model.name,
+            name: model.name,
+            secName: null,
+            levelName: null,
+            shape: "box",
+            fixed: true,
+            isNote: false,
+            default: true
+        });
+
+        data.nodes.push(mainNode);
+
+        template.levels.forEach(function (level) {
+            level.sections.forEach(function (section) {
+
+                var newNode = new NodeModel({
+                    id: model.uniqueId(),
+                    level: 1,
+                    label: section.name,
+                    name: section.name,
+                    secName: section.name,
+                    levelName: level.name,
+                    isNote: false,
+                    default: true
+                });
+
+                data.nodes.push(newNode);    
+        
+                var newEdge = new EdgeModel({
+                    id: model.uniqueId(),
+                    from: mainNode.id,
+                    to: newNode.id
+                });
+        
+                data.edges.push(newEdge);
+            });
+        });
+
+        return data;
+    }
+
+    suggestTags(wsName) {
+
+        var model = this;
+
+        var levels = model.details.levels;
+        var sections = [].concat(...levels.map(level => level.sections));
+        var secWithNotes = sections.filter(section => section.notes.length > 0);
+
+        var secNoteTagCollection = secWithNotes.map(sec => sec.notes.map(note => sec.name + " : " + note.name));
+        var secNoteTags = [].concat(...secNoteTagCollection);
+        var tags = secNoteTags;
+
+        return tags;
     }
 
     addJotting(newJotting, position) {

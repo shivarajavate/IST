@@ -16,21 +16,21 @@ class Level {
         this.sectionTemplates;
     }
 
-    init(layer, x, y, w, h, wsName, template, uiSettings, sectionAreaSettings) {
+    init(params) {
 
-        this.layer = layer;
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
+        this.layer = params.data.layer;
+        this.x = params.data.x;
+        this.y = params.data.y;
+        this.w = params.data.w;
+        this.h = params.data.h;
 
-        this.levelNumber = template.number;
-        this.levelName = template.name;
-        this.sectionTemplates = template.sections;
+        this.levelNumber = params.data.template.number;
+        this.levelName = params.data.template.name;
+        this.sectionTemplates = params.data.template.sections;
 
         // 2. Create the view and populate sectionCollection
         this.view = new LevelView();
-        this.view.init(layer, x, y, w, h, wsName, this.levelNumber, this.levelName, this.sectionTemplates, uiSettings, sectionAreaSettings);
+        this.view.init(params.data.layer, params.data.x, params.data.y, params.data.w, params.data.h, params.data.wsName, this.levelNumber, this.levelName, this.sectionTemplates, params.data.uiSettings, params.data.sectionAreaSettings);
 
         // 3. Setup the controller to mediate between 'model' and 'view'
         this.controller = new LevelController();

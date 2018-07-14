@@ -18,12 +18,11 @@ class Workspace {
         workspace.template;
 
         workspace.levels;
-        workspace.noOfLevels;
 
-        workspace.isVisible = false;
+        workspace.isVisible;
     }
 
-    init(canvasName, name, template, uiSettings) {
+    init(params) {
 
         var workspace = this;
 
@@ -33,7 +32,7 @@ class Workspace {
         workspace.h = window.screen.availHeight - (window.outerHeight - window.innerHeight) - ($('header').outerHeight() + $('footer').outerHeight());
 
         workspace.stage = new Konva.Stage({
-            container: canvasName,
+            container: params.data.canvasName,
             width: workspace.w,
             height: workspace.h
         });
@@ -42,31 +41,39 @@ class Workspace {
         workspace.stage.add(workspace.defaultLayer);
 
         workspace.uiSettings = {
-            styles: uiSettings.styles["workspace"],
-            properties: uiSettings.properties["workspace"],
-            getConfig: uiSettings.getConfig["workspace"]
+            styles: params.data.uiSettings.styles["workspace"],
+            properties: params.data.uiSettings.properties["workspace"],
+            getConfig: params.data.uiSettings.getConfig["workspace"]
         };
 
-        workspace.name = name;
-        workspace.template = template;
+        workspace.name = params.data.name;
+        workspace.template = params.data.template;
 
         workspace.levels = [];
-        workspace.noOfLevels = 0;
 
         workspace.template.levels.forEach(function (template, i) {
 
-            var x = workspace.x;
-            var y = workspace.y + (i * (workspace.h * (uiSettings.properties.level.skeleton.hPct / 100)));
-            var w = (workspace.w * (uiSettings.properties.level.skeleton.wPct / 100));
-            var h = (workspace.h * (uiSettings.properties.level.skeleton.hPct / 100));
-            var layer = workspace.defaultLayer;
-            var name = workspace.name;
-            var sectionAreaSettings = workspace.uiSettings.properties[name][i];
-
+            var levelParams = {
+                data: {
+                    layer: workspace.defaultLayer,
+                    x: workspace.x,
+                    y: workspace.y + (i * (workspace.h * (params.data.uiSettings.properties.level.skeleton.hPct / 100))),
+                    w: (workspace.w * (params.data.uiSettings.properties.level.skeleton.wPct / 100)),
+                    h: (workspace.h * (params.data.uiSettings.properties.level.skeleton.hPct / 100)),
+                    wsName: workspace.name,
+                    template: template,
+                    uiSettings: params.data.uiSettings,
+                    sectionAreaSettings: workspace.uiSettings.properties[workspace.name][i]
+                },
+                callbacks: {
+                    
+                }
+            };
             workspace.levels[i] = new Level();
-            workspace.levels[i].init(layer, x, y, w, h, name, template, uiSettings, sectionAreaSettings);
-            ++workspace.noOfLevels;
+            workspace.levels[i].init(levelParams);
         });
+
+        workspace.isVisible = true;
     }
 
     get() {
@@ -186,10 +193,13 @@ class Workspace {
 
     makeVisible(isVisible) {
 
-        for (var i = 0; i < this.noOfLevels; ++i) {
-            this.levels[i].view.makeVisible(isVisible);
-        }
-        this.isVisible = isVisible;
+        var workspace = this;
+
+        workspace.levels.forEach(function (level) {
+            level.view.makeVisible(isVisible);
+        });
+
+        workspace.isVisible = isVisible;
     }
 
 }

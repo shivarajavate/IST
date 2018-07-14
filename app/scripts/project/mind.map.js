@@ -30,58 +30,7 @@ class MindMap {
             edges: new vis.DataSet()
         };
 
-        var defaultNode = new NodeModel({
-            x: 0,
-            y: 0,
-            level: 0,
-            label: params.data.name,
-            name: params.data.name,
-            secName: null,
-            levelName: null,
-            shape: "box",
-            fixed: true,
-            default: true
-        });
-        data.nodes.add(defaultNode);
-
-        var options = {
-            locale: appConst.lang,
-            layout: {
-                randomSeed: 1,
-                hierarchical: {
-                    enabled: true,
-                    levelSeparation: 250,
-                    nodeSpacing: 50,
-                    blockShifting: false,
-                    edgeMinimization: false,
-                    direction: 'LR',
-                    sortMethod: 'directed'
-                }
-            },
-            nodes: {
-                font: {
-                    // align: "left",
-                    multi: 'html'
-                },
-                borderWidth: 0,
-                borderWidthSelected: 0,
-                widthConstraint: {
-                    minimum: 75,
-                    maximum: 75
-                }
-            },
-            edges: {
-                smooth: {
-                    enabled: true,
-                    type: "cubicBezier",
-                    forceDirection: 'horizontal',
-                    roundness: 0.5
-                }
-            },
-            physics: {
-                enabled: false
-            }
-        };
+        var options = params.data.options;
 
         mindMap.callbacks = params.callbacks;
 
@@ -97,6 +46,9 @@ class MindMap {
         mindMap.network.addEventListener("zoom", mindMap.onZoom.bind(mindMap));
 
         mindMap.network.body.container.addEventListener("keydown", mindMap.onKeydown.bind(mindMap));
+
+        mindMap.network.body.data.nodes.add(params.data.nodes);
+        mindMap.network.body.data.edges.add(params.data.edges);
 
         mindMap.setZoomInLimit();
 
@@ -262,54 +214,66 @@ class MindMap {
             edges: mindMap.network.body.data.edges.getDataSet()
         };
 
-        var defaultNodes = data.nodes.get({ default: true });
-        data.nodes.clear();
-        data.edges.clear();
-        defaultNodes.forEach(function (defaultNode, index) {
-            if (index === 0) {
-                data.nodes.add(defaultNode);
+        var nonDefaultNodes = data.nodes.get({
+            filter: function (node) {
+                return (node.default !== true);
+            }
+        });
 
-                levels.forEach(function (level) {
-                    level.sections.forEach(function (section) {
-
-                        var newNode = new NodeModel({
-                            label: section.name,
-                            name: section.name,
-                            secName: section.name,
-                            levelName: level.name,
-                            isNote: false
-                        });
-                        var sectionNode = mindMap.addTo(defaultNode, newNode);
-
-                        section.notes.forEach(function (note) {
-
-                            var newNode = new NodeModel({
-                                id: note.id,
-                                label: note.name,
-                                name: note.name,
-                                secName: section.name,
-                                levelName: level.name,
-                                isNote: true
-                            });
-                            mindMap.addTo(sectionNode, newNode);
-                        });
-                    });
+        var nonDefaultEdges = data.edges.get({
+            filter: function (edge) {
+                return nonDefaultNodes.find(function (nonDefaultNode) {
+                    return (nonDefaultNode.id === edge.from) || (nonDefaultNode.id === edge.to);
                 });
             }
         });
 
-        mindMap.setZoomInLimit();
-    }
+        data.nodes.remove(nonDefaultNodes);
+        data.edges.remove(nonDefaultEdges);
 
-    createEdge(options) {
-        var newEdge = Object.assign({
-            from: 0,
-            to: 0,
-            label: "",
-            name: "",
-            hidden: false
-        }, options);
-        return newEdge;
+        var noteData = {
+            nodes: [],
+            edges: []
+        };
+
+        levels.forEach(function (level) {
+            level.sections.forEach(function (section) {
+
+                var sectionNodes = data.nodes.get({
+                    filter: function (node) {
+                        return (node.label === section.name) && (node.name === section.name);
+                    }
+                });
+
+                section.notes.forEach(function (note) {
+
+                    var noteNode = new NodeModel({
+                        id: note.id,
+                        level: 2,
+                        label: note.name,
+                        name: note.name,
+                        secName: section.name,
+                        levelName: level.name,
+                        isNote: true
+                    });
+                    noteData.nodes.push(noteNode);
+
+                    sectionNodes.forEach(function (sectionNode) {
+
+                        var noteEdge = new EdgeModel({
+                            from: sectionNode.id,
+                            to: noteNode.id
+                        });
+                        noteData.edges.push(noteEdge);
+                    });
+                });
+            });
+        });
+
+        data.nodes.add(noteData.nodes);
+        data.edges.add(noteData.edges);
+
+        mindMap.setZoomInLimit();
     }
 
     onNodeChange(event, properties, senderId) {
@@ -643,7 +607,7 @@ class MindMap {
             level: (Math.sign(node.level) || 1) * (Math.abs(node.level) + 1)
         }));
 
-        var edge = mindMap.createEdge({
+        var edge = new EdgeModel({
             from: node.id,
             to: newDescendentNode.id
         });
@@ -814,30 +778,9 @@ class MindMap {
         }
     }
 
-    applyTheme(themeColors) {
+    applyTheme(uiStyles) {
 
         var mindMap = this;
-        mindMap.network.setOptions({
-            nodes: {
-                font: {
-                    color: themeColors.color,
-                    bold: {
-                        color: themeColors.activeColor
-                    }
-                },
-                color: {
-                    border: themeColors.borderColor,
-                    background: themeColors.backgroundColor,
-                    highlight: {
-                        border: themeColors.activeBorderColor,
-                        background: themeColors.activeBackgroundColor
-                    },
-                    hover: {
-                        border: themeColors.activeBorderColor,
-                        background: themeColors.activeBackgroundColor
-                    }
-                }
-            }
-        });
+        mindMap.network.setOptions(uiStyles);
     }
 }
