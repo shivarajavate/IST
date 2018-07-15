@@ -22,12 +22,12 @@
             <div class="footer-menu-content">
                 <ul>
                     <li ng-repeat="jotting in project.model.details.jottings track by $index">
-                        <textarea class="form-control" rows="1" autosize="true" auto-crud="true" on-create="project.model.addJotting('', $index)"
-                            on-delete="project.model.deleteJotting($index)" ng-model="project.model.details.jottings[$index]"></textarea>
+                        <textarea class="form-control" rows="1" autosize="true" ng-model="project.model.details.jottings[$index]" auto-crud="true"
+                            on-create="project.model.addFooterJotting('', $index)" on-delete="project.model.deleteFooterJotting($index)"></textarea>
                     </li>
                 </ul>
                 <div ng-if="project.model.details.jottings.length === 0">
-                    <button class="btn btn-primary btn-block" ng-click="project.model.addJotting('', -1)">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addFooterJotting('', -1)">
                         <i class="fa fa-plus icon"></i>
                         <label>add jottings</label>
                     </button>
@@ -55,12 +55,12 @@
             <div class="footer-menu-content">
                 <ol>
                     <li ng-repeat="note in project.model.details.notes track by $index">
-                        <textarea class="form-control" rows="1" autosize="true" auto-crud="true" on-create="project.model.addNote('', $index)" on-delete="project.model.deleteNote($index)"
-                            ng-model="project.model.details.notes[$index]"></textarea>
+                        <textarea class="form-control" rows="1" autosize="true" ng-model="project.model.details.notes[$index]" auto-crud="true" on-create="project.model.addFooterNote('', $index)"
+                            on-delete="project.model.deleteFooterNote($index)"></textarea>
                     </li>
                 </ol>
                 <div ng-if="project.model.details.notes.length === 0">
-                    <button class="btn btn-primary btn-block" ng-click="project.model.addNote('', -1)">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addFooterNote('', -1)">
                         <i class="fa fa-plus icon"></i>
                         <label>add notes</label>
                     </button>
@@ -87,12 +87,12 @@
             <div class="footer-menu-content">
                 <ol>
                     <li ng-repeat="question in project.model.details.questions track by $index">
-                        <textarea class="form-control" rows="1" autosize="true" auto-crud="true" on-create="project.model.addQuestion('', $index)"
-                            on-delete="project.model.deleteQuestion($index)" ng-model="project.model.details.questions[$index]"></textarea>
+                        <textarea class="form-control" rows="1" autosize="true" ng-model="project.model.details.questions[$index]" auto-crud="true"
+                            on-create="project.model.addFooterQuestion('', $index)" on-delete="project.model.deleteFooterQuestion($index)"></textarea>
                     </li>
                 </ol>
                 <div ng-if="project.model.details.questions.length === 0">
-                    <button class="btn btn-primary btn-block" ng-click="project.model.addQuestion('', -1)">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addFooterQuestion('', -1)">
                         <i class="fa fa-plus icon"></i>
                         <label>add questions</label>
                     </button>

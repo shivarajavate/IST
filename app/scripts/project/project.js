@@ -1,7 +1,7 @@
 
 class Project {
 
-    constructor(params = { model: {}, views: [], template: {}, uiSettings: {} }) {
+    constructor(params = { model: {}, template: {}, uiSettings: { views: [] } }) {
 
         var project = this;
 
@@ -13,7 +13,7 @@ class Project {
 
         project.views = new ProjectView();
 
-        params.views.forEach(function (view) {
+        params.uiSettings.views.forEach(function (view, index) {
             switch (view.name) {
                 case "reconWorkspace":
 
@@ -21,7 +21,7 @@ class Project {
                         data: {
                             viewParams: view,
                             template: project.template,
-                            uiSettings: project.uiSettings
+                            uiSettings: project.uiSettings.views[index]
                         },
                         callbacks: {
 
@@ -37,7 +37,7 @@ class Project {
                         data: {
                             viewParams: view,
                             template: project.template,
-                            uiSettings: project.uiSettings
+                            uiSettings: project.uiSettings.views[index]
                         },
                         callbacks: {
 
@@ -56,7 +56,7 @@ class Project {
                             viewParams: view,
                             nodes: defaultMindMapData.nodes,
                             edges: defaultMindMapData.edges,
-                            options: project.uiSettings.mindMapProperties
+                            uiSettings: project.uiSettings.views[index]
                         },
                         callbacks: {
                             add: project.addNodeAction.bind(project),
@@ -74,34 +74,32 @@ class Project {
 
         project.noteForm;
 
-        project.selectedWorkspaceIndex = -1;
-
         project.undoManager = new UndoManager();
 
-        project.open = true;
+        project.open = false;
 
         project.applyTheme();
     }
 
-    startSession(currSession) {
+    startSession() {
 
         var project = this;
 
-        project.selectedWorkspaceIndex = project.views["workspace"].findIndex(workspace => workspace.name === currSession);
-
-        project.views["workspace"][project.selectedWorkspaceIndex].set(project.model.details.levels);
+        project.views["workspace"].forEach(function (workspace) {
+            workspace.set(project.model.details.levels);
+        });
         project.views["mindMap"].set(project.model.details.levels);
 
         project.undoManager.clear();
 
-        project.applyTheme();
+        project.open = true;
     }
 
     abortSession() {
 
         var project = this;
 
-        project.selectedWorkspaceIndex = -1;
+        project.open = false;
     }
 
     openNoteForm(data) {
@@ -129,119 +127,135 @@ class Project {
         project.noteForm.init(data, callbacks);
     }
 
+    addDataModel(dataModel = { note: {}, node: {} }, position = -1, record = false) {
+
+        var project = this;
+
+        if (project.model.addNote(dataModel.note, position)) {
+
+            project.views["workspace"].forEach(function (workspace) {
+                position = workspace.add(dataModel.note, position);
+            });
+            project.views["mindMap"].add(dataModel.node);
+
+            if (record) {
+                project.undoManager.add({
+                    undo: project.deleteDataModel.bind(project, dataModel, false),
+                    redo: project.addDataModel.bind(project, dataModel, position, false)
+                });
+            }
+        }
+    }
+
+    updateDataModel(dataModel = { note: {}, node: {} }, updatedDataModel = { note: {}, node: {} }, record = false) {
+
+        var project = this;
+
+        if (project.model.updateNote(updatedDataModel.note)) {
+
+            project.views["workspace"].forEach(function (workspace) {
+                workspace.update(updatedDataModel.note);
+            });
+            project.views["mindMap"].update(dataModel.node, updatedDataModel.node);
+
+            if (record) {
+                project.undoManager.add({
+                    undo: project.updateDataModel.bind(project, updatedDataModel, dataModel, false),
+                    redo: project.updateDataModel.bind(project, dataModel, updatedDataModel, false)
+                });
+            }
+        }
+    }
+
+    deleteDataModel(dataModel = { note: {}, node: {} }, record = false) {
+
+        var project = this;
+
+        if (project.model.deleteNote(dataModel.note)) {
+
+            project.views["workspace"].forEach(function (workspace) {
+                workspace.delete(dataModel.note);
+            });
+            project.views["mindMap"].delete(dataModel.node);
+
+            if (record) {
+                project.undoManager.add({
+                    undo: project.addDataModel.bind(project, dataModel, position, false),
+                    redo: project.deleteDataModel.bind(project, dataModel, false)
+                });
+            }
+        }
+    }
+
     addNoteAction(note, noteIndex = -1, action = true) {
 
         var project = this;
-        var node = project.model.createNodeFromNote(note);
 
-        noteIndex = project.views["workspace"][project.selectedWorkspaceIndex].add(note, noteIndex);
-        project.views["mindMap"].add(node);
+        var viewDataModel = project.model.viewDataModelFromNote(note, project.template);
 
-        if (action) {
-            project.undoManager.add({
-                undo: project.deleteNoteAction.bind(project, note, false),
-                redo: project.addNoteAction.bind(project, note, noteIndex, false)
-            });
-        }
+        project.addDataModel(viewDataModel, noteIndex, action);
     }
 
     updateNoteAction(note, updatedNote, action = true) {
 
         var project = this;
-        var node = project.model.createNodeFromNote(note);
 
-        var updatedNode = project.views["mindMap"].update(node, updatedNote.name);
+        var viewDataModel = project.model.viewDataModelFromNote(note, project.template);
+        var updatedViewDataModel = project.model.viewDataModelFromNote(updatedNote, project.template);
 
-        project.views["workspace"][project.selectedWorkspaceIndex].update(updatedNote);
-
-        if (action) {
-            project.undoManager.add({
-                undo: project.updateNoteAction.bind(project, updatedNote, note, false),
-                redo: project.updateNoteAction.bind(project, note, updatedNote, false)
-            });
-        }
+        project.updateDataModel(viewDataModel, updatedViewDataModel, action);
     }
 
     deleteNoteAction(note, action = true) {
 
         var project = this;
-        var node = project.model.createNodeFromNote(note);
 
-        var noteIndex = project.views["workspace"][project.selectedWorkspaceIndex].delete(note);
-        project.views["mindMap"].delete(node);
+        var viewDataModel = project.model.viewDataModelFromNote(note, project.template);
 
-        if (action) {
-            project.undoManager.add({
-                undo: project.addNoteAction.bind(project, note, noteIndex, false),
-                redo: project.deleteNoteAction.bind(project, note, false)
-            });
-        }
+        project.deleteDataModel(viewDataModel, action);
     }
 
     unselectNoteAction() {
 
         var project = this;
-        project.views["workspace"][project.selectedWorkspaceIndex].unselect();
+
+        project.views["workspace"].forEach(function (workspace) {
+            workspace.unselect();
+        });
     }
 
     addNodeAction(node, noteIndex = -1, action = true) {
 
         var project = this;
-        var note = project.model.createNoteFromNode(node, project.template);
 
-        project.views["mindMap"].add(node);
-        if (node.isNote) {
-            noteIndex = project.views["workspace"][project.selectedWorkspaceIndex].add(note, noteIndex);
-        }
+        var viewDataModel = project.model.viewDataModelFromNode(node, project.template);
 
-        if (action) {
-            project.undoManager.add({
-                undo: project.deleteNodeAction.bind(project, node, false),
-                redo: project.addNodeAction.bind(project, node, noteIndex, false)
-            });
-        }
+        project.addDataModel(viewDataModel, noteIndex, action);
     }
 
-    updateNodeAction(node, updatedName, action = true) {
+    updateNodeAction(node, updatedNode, action = true) {
 
         var project = this;
-        var note = project.model.createNoteFromNode(node, project.template);
 
-        var prevNode = Object.assign({}, node);
+        var viewDataModel = project.model.viewDataModelFromNode(node, project.template);
+        var updatedViewDataModel = project.model.viewDataModelFromNode(updatedNode, project.template);
 
-        var updatedNode = project.views["mindMap"].update(node, updatedName);
-        var updatedNote = project.model.createNoteFromNode(updatedNode, project.template);
-
-        project.views["workspace"][project.selectedWorkspaceIndex].update(updatedNote);
-
-        if (action) {
-            project.undoManager.add({
-                undo: project.updateNodeAction.bind(project, updatedNode, prevNode.name, false),
-                redo: project.updateNodeAction.bind(project, prevNode, updatedName, false)
-            });
-        }
+        project.updateDataModel(viewDataModel, updatedViewDataModel, action);
     }
 
     deleteNodeAction(node, action = true) {
 
         var project = this;
-        var note = project.model.createNoteFromNode(node, project.template);
 
-        project.views["mindMap"].delete(node);
-        if (node.isNote) {
-            var noteIndex = project.views["workspace"][project.selectedWorkspaceIndex].delete(note);
-        }
+        var viewDataModel = project.model.viewDataModelFromNode(node, project.template);
 
-        if (action) {
-            project.undoManager.add({
-                undo: project.addNodeAction.bind(project, node, noteIndex, false),
-                redo: project.deleteNodeAction.bind(project, node, false)
-            });
-        }
+        project.deleteDataModel(viewDataModel, action);
     }
 
     unselectNodeAction() {
+
         var project = this;
+
         project.views["mindMap"].unselect();
     }
 
@@ -250,10 +264,10 @@ class Project {
 
         project.uiSettings.update();
 
-        project.views["workspace"].forEach(function (workspace) {
-            workspace.applyTheme(project.uiSettings.styles);
+        project.views["workspace"].forEach(function (workspace, index) {
+            workspace.applyTheme(project.uiSettings.views[index].styles);
         });
-        project.views["mindMap"].applyTheme(project.uiSettings.mindMapStyles);
+        project.views["mindMap"].applyTheme(project.uiSettings.views[2].options);
     }
 
     download() {

@@ -7,22 +7,84 @@ var uisettingSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        value: {
-            type: Object,
-            default: {
-                styles: {
-                    workspace: {},
-                    level: {},
-                    section: {},
-                    board: {}
+        views: {
+            type: Array,
+            default: [
+                {
+                    key: "RECON",
+                    name: "reconWorkspace",
+                    canvasName: "reconWorkspaceCanvas",
+                    styles: {
+                        workspace: {
+
+                        },
+                        level: {
+
+                        },
+                        section: {
+
+                        },
+                        board: {
+
+                        }
+                    },
+                    properties: {
+                        workspace: {
+
+                        },
+                        level: {
+
+                        },
+                        section: {
+
+                        },
+                        board: {
+
+                        }
+                    }
                 },
-                properties: {
-                    workspace: {},
-                    level: {},
-                    section: {},
-                    board: {}
+                {
+                    key: "SEARCH",
+                    name: "searchWorkspace",
+                    canvasName: "searchWorkspaceCanvas",
+                    styles: {
+                        workspace: {
+
+                        },
+                        level: {
+
+                        },
+                        section: {
+
+                        },
+                        board: {
+
+                        }
+                    },
+                    properties: {
+                        workspace: {
+
+                        },
+                        level: {
+
+                        },
+                        section: {
+
+                        },
+                        board: {
+
+                        }
+                    }
+                },
+                {
+                    key: "MINDMAP",
+                    name: "mindMap",
+                    canvasName: "mindMapNetworkCanvas",
+                    options: {
+
+                    }
                 }
-            }
+            ]
         }
     },
     {

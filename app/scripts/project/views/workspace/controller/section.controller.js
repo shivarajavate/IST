@@ -92,16 +92,14 @@ class SectionController {
 
         var controller = this;
 
-        // if (controller.model.duplicateExists(note.name)) {
         var endNoteIndex = controller.endNoteIndex();
         noteIndex = (noteIndex !== -1) ? noteIndex : (endNoteIndex + 1);
 
-        controller.model.add(note, noteIndex);
+        // controller.model.add(note, noteIndex);
 
         var startNoteIndex = controller.startNoteIndex();
 
         controller.displayNotesFrom((startNoteIndex + 1));
-        // }
 
         return noteIndex;
     }
@@ -113,7 +111,7 @@ class SectionController {
 
         var controller = this;
 
-        controller.model.update(note);
+        // controller.model.update(note);
 
         var noteBoardId = controller.view.boardView.boards.findIndex(board => board.note.id === note.id);
         controller.view.boardView.displayNoteAt(noteBoardId, note);
@@ -132,7 +130,7 @@ class SectionController {
 
         var noteIndex = controller.model.getIndexOf(note.id);
 
-        controller.model.delete(note);
+        // controller.model.delete(note);
 
         var startNoteIndex = controller.startNoteIndex();
 

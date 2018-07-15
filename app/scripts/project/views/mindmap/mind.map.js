@@ -143,7 +143,14 @@ class MindMap {
                                     }, 1000);
                                     break;
                                 case false:
-                                    mindMap.callbacks.update(selectedNode, $element.val());
+                                    var updatedNote = new NodeModel({
+                                        label: $element.val(),
+                                        name: $element.val(),
+                                        secName: selectedNode.secName,
+                                        levelName: selectedNode.levelName,
+                                        isNote: true
+                                    });
+                                    mindMap.callbacks.update(selectedNode, updatedNote);
                                     mindMap.$editNodePopup.modal('hide');
                                     break;
                             }
@@ -641,7 +648,7 @@ class MindMap {
         return descendentNode;
     }
 
-    update(node, name) {
+    update(node, updatedNode) {
 
         var mindMap = this;
 
@@ -649,11 +656,6 @@ class MindMap {
             nodes: mindMap.network.body.data.nodes.getDataSet(),
             edges: mindMap.network.body.data.edges.getDataSet()
         };
-
-        var updatedNode = Object.assign(node, {
-            name: name,
-            label: name
-        });
 
         data.nodes.update(updatedNode);
         return updatedNode;

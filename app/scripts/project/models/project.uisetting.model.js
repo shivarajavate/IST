@@ -1,92 +1,85 @@
 
 class ProjectUisettingModel {
 
-    constructor(data = { _id: -1, name: "", value: {} }) {
+    constructor(data = { _id: -1, name: "", views: [] }) {
 
         var model = this;
 
         model._id = data._id;
         model.name = data.name;
-        model.value = data.value;
-        model.styles = data.value.styles;
-        model.properties = data.value.properties;
-        model.getConfig = {
-            workspace: model.uiSettingsConfig("workspace"),
-            level: model.uiSettingsConfig("level"),
-            section: model.uiSettingsConfig("section"),
-            board: model.uiSettingsConfig("board")
-        };
 
-        model.mindMapProperties = {
-            locale: appConst.lang,
-            layout: {
-                randomSeed: 1,
-                hierarchical: {
-                    enabled: true,
-                    levelSeparation: 250,
-                    nodeSpacing: 50,
-                    blockShifting: false,
-                    edgeMinimization: false,
-                    direction: 'LR',
-                    sortMethod: 'directed'
-                }
-            },
-            nodes: {
-                font: {
-                    // align: "left",
-                    multi: 'html'
-                },
-                borderWidth: 0,
-                borderWidthSelected: 0,
-                widthConstraint: {
-                    minimum: 75,
-                    maximum: 75
-                }
-            },
-            edges: {
-                smooth: {
-                    enabled: true,
-                    type: "cubicBezier",
-                    forceDirection: 'horizontal',
-                    roundness: 0.5
-                }
-            },
-            physics: {
-                enabled: false
+        model.views = [];
+        data.views.forEach(function (view) {
+
+            function uiSettingsConfig(name) {
+
+                var currentUISettings = {
+                    styles: view.styles[name],
+                    properties: view.properties[name]
+                };
+
+                return function (manualConfig, styleConfigId) {
+                    var config = Object.assign({}, manualConfig, currentUISettings.styles[styleConfigId]);
+
+                    config.x = config.x + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
+                    config.y = config.y + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
+                    config.width = config.width - ((config.strokeWidth) || 0);
+                    config.height = config.height - ((config.strokeWidth) || 0);
+
+                    switch (config.verticalAlign) {
+                        case "top":
+                            config.y = config.y;
+                            break;
+                        case "center":
+                            config.y = config.y + (config.height / 2) - (config.fontSize / 2);
+                            break;
+                        case "bottom":
+                            config.y = config.y + config.height - config.fontSize;
+                            break;
+                    }
+                    return config;
+                };
             }
-        };
-    }
 
-    uiSettingsConfig(name) {
+            switch (view.name) {
+                case "reconWorkspace":
 
-        var model = this;
+                    var viewUisettings = view;
+                    viewUisettings.getConfig = {
+                        workspace: uiSettingsConfig("workspace"),
+                        level: uiSettingsConfig("level"),
+                        section: uiSettingsConfig("section"),
+                        board: uiSettingsConfig("board")
+                    };
 
-        var currentUISettings = {
-            styles: model.value.styles[name],
-            properties: model.value.properties[name]
-        };
+                    model.views.push(viewUisettings);
 
-        return function (manualConfig, styleConfigId) {
-            var config = Object.assign({}, manualConfig, currentUISettings.styles[styleConfigId]);
-
-            config.x = config.x + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-            config.y = config.y + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-            config.width = config.width - ((config.strokeWidth) || 0);
-            config.height = config.height - ((config.strokeWidth) || 0);
-
-            switch (config.verticalAlign) {
-                case "top":
-                    config.y = config.y;
                     break;
-                case "center":
-                    config.y = config.y + (config.height / 2) - (config.fontSize / 2);
+
+                case "searchWorkspace":
+
+                    var viewUisettings = view;
+                    viewUisettings.getConfig = {
+                        workspace: uiSettingsConfig("workspace"),
+                        level: uiSettingsConfig("level"),
+                        section: uiSettingsConfig("section"),
+                        board: uiSettingsConfig("board")
+                    };
+
+                    model.views.push(viewUisettings);
+
                     break;
-                case "bottom":
-                    config.y = config.y + config.height - config.fontSize;
+
+                case "mindMap":
+
+                    var viewUisettings = view;
+
+                    model.views.push(viewUisettings);
+
                     break;
             }
-            return config;
-        };
+        });
+
     }
 
     update() {
@@ -232,8 +225,9 @@ class ProjectUisettingModel {
                 }
             }
         };
-        
-        model.styles = $.extend(true, {}, model.styles, newStyles);
-        model.mindMapStyles = $.extend(true, {}, model.mindMapStyles, newMindMapStyles);
+
+        model.views[0].styles = $.extend(true, {}, model.views[0].styles, newStyles);
+        model.views[1].styles = $.extend(true, {}, model.views[1].styles, newStyles);
+        model.views[2].options = $.extend(true, {}, model.views[2].options, newMindMapStyles);
     }
 }

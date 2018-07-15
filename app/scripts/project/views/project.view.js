@@ -63,7 +63,7 @@ class ProjectView {
                 nodes: params.data.nodes,
                 edges: params.data.edges
             },
-            options: params.data.options,
+            options: params.data.uiSettings.options,
             callbacks: params.callbacks
         }
 

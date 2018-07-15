@@ -38,23 +38,6 @@ ist.service('ProjectService', [
 
             var params = {
                 model: project,
-                views: [
-                    {
-                        key: "RECON",
-                        name: "reconWorkspace",
-                        canvasName: "reconWorkspaceCanvas"
-                    },
-                    {
-                        key: "SEARCH",
-                        name: "searchWorkspace",
-                        canvasName: "searchWorkspaceCanvas"
-                    },
-                    {
-                        key: "MINDMAP",
-                        name: "mindMap",
-                        canvasName: "mindMapNetworkCanvas"
-                    }
-                ],
                 template: null,
                 uiSettings: null
             };

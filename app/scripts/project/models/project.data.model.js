@@ -26,21 +26,7 @@ class ProjectDataModel {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 
-    newNote(data = { name: "", secName: "", levelName: "" }, template = new ProjectTemplateModel()) {
-
-        var model = this;
-
-        var note = new NoteModel({
-            id: data.id || model.uniqueId(),
-            name: data.name,
-            secName: data.secName,
-            levelName: data.levelName
-        }, template);
-
-        return note;
-    }
-
-    createNoteFromNode(node, template = new ProjectTemplateModel()) {
+    viewDataModelFromNode(node, template = new ProjectTemplateModel()) {
 
         var model = this;
 
@@ -53,10 +39,15 @@ class ProjectDataModel {
             levelName: node.levelName
         }, template);
 
-        return note;
+        var viewDataModel = {
+            node: node,
+            note: note
+        };
+
+        return viewDataModel;
     }
 
-    createNodeFromNote(note) {
+    viewDataModelFromNote(note, template = new ProjectTemplateModel()) {
 
         var model = this;
 
@@ -71,7 +62,28 @@ class ProjectDataModel {
             isNote: true
         });
 
-        return node;
+        var viewDataModel = {
+            node: node,
+            note: note
+        };
+
+        var model = this;
+
+        return viewDataModel;
+    }
+
+    newNote(data = { name: "", secName: "", levelName: "" }, template = new ProjectTemplateModel()) {
+
+        var model = this;
+
+        var note = new NoteModel({
+            id: data.id || model.uniqueId(),
+            name: data.name,
+            secName: data.secName,
+            levelName: data.levelName
+        }, template);
+
+        return note;
     }
 
     defaultMindMapData(template = new ProjectTemplateModel()) {
@@ -114,14 +126,14 @@ class ProjectDataModel {
                     default: true
                 });
 
-                data.nodes.push(newNode);    
-        
+                data.nodes.push(newNode);
+
                 var newEdge = new EdgeModel({
                     id: model.uniqueId(),
                     from: mainNode.id,
                     to: newNode.id
                 });
-        
+
                 data.edges.push(newEdge);
             });
         });
@@ -144,7 +156,110 @@ class ProjectDataModel {
         return tags;
     }
 
-    addJotting(newJotting, position) {
+    addNote(noteToBeAdded, noteIndex = -1) {
+
+        var model = this;
+
+        var status = false;
+
+        var noteExists = false;
+
+        model.details.levels.forEach(function (level) {
+
+            if (level.name === noteToBeAdded.levelName) {
+
+                level.sections.forEach(function (section) {
+
+                    if (section.name === noteToBeAdded.secName) {
+
+                        var duplicateNote = section.notes.find(note => note.name === noteToBeAdded.name);
+
+                        noteExists = duplicateNote ? true : false;
+
+                        if (!noteExists) {
+                            switch (true) {
+                                case (noteIndex < 0):
+                                    section.notes.unshift(noteToBeAdded);
+                                    break;
+                                case ((noteIndex >= 0) && (noteIndex <= section.notes.length)):
+                                    section.notes.splice(noteIndex, 0, noteToBeAdded);
+                                    break;
+                                case (noteIndex > section.notes.length):
+                                    section.notes.push(noteToBeAdded);
+                                    break;
+                                default:
+                                    section.notes.push(noteToBeAdded);
+                                    break;
+                            }
+                            status = true;
+                        }
+                    }
+                });
+            }
+        });
+
+        return status;
+    }
+
+    updateNote(noteToBeUpdated) {
+
+        var model = this;
+
+        var status = false;
+
+        model.details.levels.forEach(function (level) {
+
+            if (level.name === noteToBeUpdated.levelName) {
+
+                level.sections.forEach(function (section) {
+
+                    if (section.name === noteToBeUpdated.secName) {
+
+                        section.notes.forEach(function (note, index, notes) {
+
+                            if (note.id === noteToBeUpdated.id) {
+                                notes[index] = noteToBeUpdated;
+                                status = true;
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        return status;
+    }
+
+    deleteNote(noteToBeDeleted) {
+
+        var model = this;
+
+        var status = false;
+
+        model.details.levels.forEach(function (level) {
+
+            if (level.name === noteToBeDeleted.levelName) {
+
+                level.sections.forEach(function (section) {
+
+                    if (section.name === noteToBeDeleted.secName) {
+
+                        section.notes.forEach(function (note, index, notes) {
+
+                            if (note.id === noteToBeDeleted.id) {
+                                notes.splice(index, 1);
+                                status = true;
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        return status;
+    }
+
+    addFooterJotting(newJotting, position) {
 
         var model = this;
 
@@ -152,7 +267,7 @@ class ProjectDataModel {
         model.details.jottings.splice(newJottingIndex, 0, newJotting);
     }
 
-    deleteJotting(index) {
+    deleteFooterJotting(index) {
 
         var model = this;
 
@@ -161,7 +276,7 @@ class ProjectDataModel {
         }
     }
 
-    addNote(newNote, position) {
+    addFooterNote(newNote, position) {
 
         var model = this;
 
@@ -169,7 +284,7 @@ class ProjectDataModel {
         model.details.notes.splice(newNoteIndex, 0, newNote);
     }
 
-    deleteNote(index) {
+    deleteFooterNote(index) {
 
         var model = this;
 
@@ -178,7 +293,7 @@ class ProjectDataModel {
         }
     }
 
-    addQuestion(newQuestion, position) {
+    addFooterQuestion(newQuestion, position) {
 
         var model = this;
 
@@ -186,7 +301,7 @@ class ProjectDataModel {
         model.details.questions.splice(newQuestionIndex, 0, newQuestion);
     }
 
-    deleteQuestion(index) {
+    deleteFooterQuestion(index) {
 
         var model = this;
 

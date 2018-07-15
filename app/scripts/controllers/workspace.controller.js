@@ -282,7 +282,7 @@ ist.controller('WorkspaceController', [
 
         $scope.project = new Project(params);
 
-        $scope.project.startSession($scope.selectedSession);
+        $scope.project.startSession();
         HeaderService.startTimer();
         HeaderService.startCountDown($scope.currDuration);
         $scope.timer = HeaderService.timer;
