@@ -1,7 +1,7 @@
 
 class Project {
 
-    constructor(params = { model: {}, views: {}, template: {}, uiSettings: {} }) {
+    constructor(params = { model: {}, views: [], template: {}, uiSettings: {} }) {
 
         var project = this;
 
@@ -11,18 +11,66 @@ class Project {
 
         project.uiSettings = new ProjectUisettingModel(params.uiSettings);
 
-        project.views = new Object();
+        project.views = new ProjectView();
 
-        for (var view in params.views) {
-            switch (view) {
-                case "workspace":
-                    project.views[view] = project.newWorkspaceView(params.views[view]);
+        params.views.forEach(function (view) {
+            switch (view.name) {
+                case "reconWorkspace":
+
+                    var viewParams = {
+                        data: {
+                            viewParams: view,
+                            template: project.template,
+                            uiSettings: project.uiSettings
+                        },
+                        callbacks: {
+
+                        }
+                    };
+
+                    project.views.addReconWorkspaceView(viewParams);
+
+                    break;
+                case "searchWorkspace":
+
+                    var viewParams = {
+                        data: {
+                            viewParams: view,
+                            template: project.template,
+                            uiSettings: project.uiSettings
+                        },
+                        callbacks: {
+
+                        }
+                    };
+
+                    project.views.addSearchWorkspaceView(viewParams);
+
                     break;
                 case "mindMap":
-                    project.views[view] = project.newMindMapView(params.views[view]);
+
+                    var defaultMindMapData = project.model.defaultMindMapData(project.template);
+
+                    var viewParams = {
+                        data: {
+                            viewParams: view,
+                            nodes: defaultMindMapData.nodes,
+                            edges: defaultMindMapData.edges,
+                            options: project.uiSettings.mindMapProperties
+                        },
+                        callbacks: {
+                            add: project.addNodeAction.bind(project),
+                            update: project.updateNodeAction.bind(project),
+                            delete: project.deleteNodeAction.bind(project),
+                            close: project.unselectNodeAction.bind(project)
+                        }
+                    };
+
+                    project.views.addMindMapView(viewParams);
+
                     break;
             }
-        }
+        });
 
         project.noteForm;
 
@@ -33,58 +81,6 @@ class Project {
         project.open = true;
 
         project.applyTheme();
-    }
-
-    newWorkspaceView(viewParams) {
-
-        var project = this;
-
-        var workspaceView = new Array();
-        var viewIndex = 0;
-
-        for (var viewParam in viewParams) {
-
-            var params = {
-                data: {
-                    canvasName: viewParams[viewParam],
-                    name: viewParam,
-                    template: project.template,
-                    uiSettings: project.uiSettings
-                },
-                callbacks: {
-
-                }
-            };
-
-            workspaceView[viewIndex] = new Workspace();
-            workspaceView[viewIndex].init(params);
-
-            ++viewIndex;
-        }
-
-        return workspaceView;
-    }
-
-    newMindMapView(viewParams) {
-
-        var project = this;
-
-        var params = {
-            data: Object.assign({}, {
-                options: project.uiSettings.mindMapProperties
-            }, project.model.defaultMindMapData(project.template)),
-            callbacks: {
-                add: project.addNodeAction.bind(project),
-                update: project.updateNodeAction.bind(project),
-                delete: project.deleteNodeAction.bind(project),
-                close: project.unselectNodeAction.bind(project)
-            }
-        };
-
-        var mindMapView = new MindMap();
-        mindMapView.init(params);
-
-        return mindMapView;
     }
 
     startSession(currSession) {

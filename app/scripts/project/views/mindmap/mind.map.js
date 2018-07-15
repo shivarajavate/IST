@@ -23,14 +23,14 @@ class MindMap {
 
         var mindMap = this;
 
-        var container = document.getElementById('mindMapNetwork');
+        var container = document.getElementById(params.canvasName);
 
         var data = {
             nodes: new vis.DataSet(),
             edges: new vis.DataSet()
         };
 
-        var options = params.data.options;
+        var options = params.options;
 
         mindMap.callbacks = params.callbacks;
 

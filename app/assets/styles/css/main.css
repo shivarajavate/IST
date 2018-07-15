@@ -510,7 +510,7 @@ body {
 .workspace section #conditionsTableModal .modal-dialog .modal-body .table-bordered > thead > tr > td {
   padding: 0px;
 }
-.workspace section #mindMap #mindMapNetwork {
+.workspace section #mindMap #mindMapNetworkCanvas {
   width: 100%;
   height: calc(100vh - 100px);
   background-color: var(--background-color);
