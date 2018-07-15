@@ -301,7 +301,7 @@ ist.controller('WorkspaceController', [
         view.className = name;
       }
       if ($scope.project) {
-        $scope.project.applyTheme();
+        $scope.project.views.applyTheme();
       }
     }
 

@@ -1,88 +1,209 @@
 
-class ProjectUisettingModel {
+class ProjectViewModel {
 
-    constructor(data = { _id: -1, name: "", views: [] }) {
+    constructor(views = []) {
 
         var model = this;
 
-        model._id = data._id;
-        model.name = data.name;
+        model["workspace"] = [];
+        model["mindMap"] = {};
 
-        model.views = [];
-        data.views.forEach(function (view) {
-
-            function uiSettingsConfig(name) {
-
-                var currentUISettings = {
-                    styles: view.styles[name],
-                    properties: view.properties[name]
-                };
-
-                return function (manualConfig, styleConfigId) {
-                    var config = Object.assign({}, manualConfig, currentUISettings.styles[styleConfigId]);
-
-                    config.x = config.x + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-                    config.y = config.y + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-                    config.width = config.width - ((config.strokeWidth) || 0);
-                    config.height = config.height - ((config.strokeWidth) || 0);
-
-                    switch (config.verticalAlign) {
-                        case "top":
-                            config.y = config.y;
-                            break;
-                        case "center":
-                            config.y = config.y + (config.height / 2) - (config.fontSize / 2);
-                            break;
-                        case "bottom":
-                            config.y = config.y + config.height - config.fontSize;
-                            break;
-                    }
-                    return config;
-                };
-            }
+        views.forEach(function (view) {
 
             switch (view.name) {
                 case "reconWorkspace":
 
-                    var viewUisettings = view;
-                    viewUisettings.getConfig = {
-                        workspace: uiSettingsConfig("workspace"),
-                        level: uiSettingsConfig("level"),
-                        section: uiSettingsConfig("section"),
-                        board: uiSettingsConfig("board")
-                    };
-
-                    model.views.push(viewUisettings);
+                    model.addReconWorkspaceView(view);
 
                     break;
-
                 case "searchWorkspace":
 
-                    var viewUisettings = view;
-                    viewUisettings.getConfig = {
-                        workspace: uiSettingsConfig("workspace"),
-                        level: uiSettingsConfig("level"),
-                        section: uiSettingsConfig("section"),
-                        board: uiSettingsConfig("board")
-                    };
-
-                    model.views.push(viewUisettings);
+                    model.addSearchWorkspaceView(view);
 
                     break;
-
                 case "mindMap":
 
-                    var viewUisettings = view;
-
-                    model.views.push(viewUisettings);
+                    model.addMindMapView(view);
 
                     break;
             }
         });
-
     }
 
-    update() {
+    addReconWorkspaceView(viewSettings) {
+
+        var model = this;
+
+        var viewModel = {
+            view: {},
+            model: {},
+            settings: {}
+        };
+
+        function uiSettingsConfig(name) {
+
+            var currentUISettings = {
+                styles: viewSettings.styles[name],
+                properties: viewSettings.properties[name]
+            };
+
+            return function (manualConfig, styleConfigId) {
+                var config = Object.assign({}, manualConfig, currentUISettings.styles[styleConfigId]);
+
+                config.x = config.x + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
+                config.y = config.y + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
+                config.width = config.width - ((config.strokeWidth) || 0);
+                config.height = config.height - ((config.strokeWidth) || 0);
+
+                switch (config.verticalAlign) {
+                    case "top":
+                        config.y = config.y;
+                        break;
+                    case "center":
+                        config.y = config.y + (config.height / 2) - (config.fontSize / 2);
+                        break;
+                    case "bottom":
+                        config.y = config.y + config.height - config.fontSize;
+                        break;
+                }
+                return config;
+            };
+        }
+
+        var wsParams = {
+            data: {
+                canvasName: viewSettings.canvasName,
+                name: viewSettings.key,
+                template: viewSettings.params.data.template,
+                uiSettings: {
+                    styles: viewSettings.styles,
+                    properties: viewSettings.properties,
+                    getConfig: {
+                        workspace: uiSettingsConfig("workspace"),
+                        level: uiSettingsConfig("level"),
+                        section: uiSettingsConfig("section"),
+                        board: uiSettingsConfig("board")
+                    }
+                }
+            },
+            callbacks: {
+
+            }
+        };
+
+        viewModel.view = new Workspace();
+        viewModel.view.init(wsParams);
+
+        viewModel.settings = viewSettings;
+
+        model["workspace"].push(viewModel);
+    }
+
+    addSearchWorkspaceView(viewSettings) {
+
+        var model = this;
+
+        var viewModel = {
+            view: {},
+            model: {},
+            settings: {}
+        };
+
+        function uiSettingsConfig(name) {
+
+            var currentUISettings = {
+                styles: viewSettings.styles[name],
+                properties: viewSettings.properties[name]
+            };
+
+            return function (manualConfig, styleConfigId) {
+                var config = Object.assign({}, manualConfig, currentUISettings.styles[styleConfigId]);
+
+                config.x = config.x + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
+                config.y = config.y + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
+                config.width = config.width - ((config.strokeWidth) || 0);
+                config.height = config.height - ((config.strokeWidth) || 0);
+
+                switch (config.verticalAlign) {
+                    case "top":
+                        config.y = config.y;
+                        break;
+                    case "center":
+                        config.y = config.y + (config.height / 2) - (config.fontSize / 2);
+                        break;
+                    case "bottom":
+                        config.y = config.y + config.height - config.fontSize;
+                        break;
+                }
+                return config;
+            };
+        }
+
+        var wsParams = {
+            data: {
+                canvasName: viewSettings.canvasName,
+                name: viewSettings.key,
+                template: viewSettings.params.data.template,
+                uiSettings: {
+                    styles: viewSettings.styles,
+                    properties: viewSettings.properties,
+                    getConfig: {
+                        workspace: uiSettingsConfig("workspace"),
+                        level: uiSettingsConfig("level"),
+                        section: uiSettingsConfig("section"),
+                        board: uiSettingsConfig("board")
+                    }
+                }
+            },
+            callbacks: {
+
+            }
+        };
+
+        viewModel.view = new Workspace();
+        viewModel.view.init(wsParams);
+
+        viewModel.settings = viewSettings;
+
+        model["workspace"].push(viewModel);
+    }
+
+    addMindMapView(view) {
+
+        var model = this;
+
+        var viewModel = {
+            view: {},
+            model: {},
+            settings: {}
+        };
+
+        var defaultMindMapData = view.params.data.model.defaultMindMapData(view.params.data.template);
+
+        var mindMapParams = {
+            canvasName: view.canvasName,
+            data: {
+                nodes: defaultMindMapData.nodes,
+                edges: defaultMindMapData.edges
+            },
+            options: view.options,
+            callbacks: view.params.callbacks
+        }
+
+        viewModel.view = new MindMap();
+        viewModel.view.init(mindMapParams);
+
+        viewModel.settings = {
+            styles: {
+
+            },
+            properties: view.options
+        };
+
+        model["mindMap"] = viewModel;
+    }
+
+    applyTheme() {
 
         var model = this;
 
@@ -226,8 +347,12 @@ class ProjectUisettingModel {
             }
         };
 
-        model.views[0].styles = $.extend(true, {}, model.views[0].styles, newStyles);
-        model.views[1].styles = $.extend(true, {}, model.views[1].styles, newStyles);
-        model.views[2].options = $.extend(true, {}, model.views[2].options, newMindMapStyles);
+        model["workspace"].forEach(function (viewModel) {
+            viewModel.settings.styles = $.extend(true, {}, viewModel.settings.styles, newStyles);
+            viewModel.view.applyTheme(viewModel.settings.styles);
+        });
+
+        model["mindMap"].settings.styles = $.extend(true, {}, model["mindMap"].settings.styles, newMindMapStyles);
+        model["mindMap"].view.applyTheme(model["mindMap"].settings.styles);
     }
 }

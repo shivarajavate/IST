@@ -9,68 +9,25 @@ class Project {
 
         project.template = new ProjectTemplateModel(params.template);
 
-        project.uiSettings = new ProjectUisettingModel(params.uiSettings);
+        var views = [];
 
-        project.views = new ProjectView();
-
-        params.uiSettings.views.forEach(function (view, index) {
-            switch (view.name) {
-                case "reconWorkspace":
-
-                    var viewParams = {
-                        data: {
-                            viewParams: view,
-                            template: project.template,
-                            uiSettings: project.uiSettings.views[index]
-                        },
-                        callbacks: {
-
-                        }
-                    };
-
-                    project.views.addReconWorkspaceView(viewParams);
-
-                    break;
-                case "searchWorkspace":
-
-                    var viewParams = {
-                        data: {
-                            viewParams: view,
-                            template: project.template,
-                            uiSettings: project.uiSettings.views[index]
-                        },
-                        callbacks: {
-
-                        }
-                    };
-
-                    project.views.addSearchWorkspaceView(viewParams);
-
-                    break;
-                case "mindMap":
-
-                    var defaultMindMapData = project.model.defaultMindMapData(project.template);
-
-                    var viewParams = {
-                        data: {
-                            viewParams: view,
-                            nodes: defaultMindMapData.nodes,
-                            edges: defaultMindMapData.edges,
-                            uiSettings: project.uiSettings.views[index]
-                        },
-                        callbacks: {
-                            add: project.addNodeAction.bind(project),
-                            update: project.updateNodeAction.bind(project),
-                            delete: project.deleteNodeAction.bind(project),
-                            close: project.unselectNodeAction.bind(project)
-                        }
-                    };
-
-                    project.views.addMindMapView(viewParams);
-
-                    break;
-            }
+        params.uiSettings.views.forEach(function (view) {
+            view.params = {
+                data: {
+                    model: project.model,
+                    template: project.template
+                },
+                callbacks: {
+                    add: project.addNodeAction.bind(project),
+                    update: project.updateNodeAction.bind(project),
+                    delete: project.deleteNodeAction.bind(project),
+                    close: project.unselectNodeAction.bind(project)
+                }
+            };
+            views.push(view);
         });
+
+        project.views = new ProjectViewModel(views);
 
         project.noteForm;
 
@@ -78,17 +35,17 @@ class Project {
 
         project.open = false;
 
-        project.applyTheme();
+        project.views.applyTheme();
     }
 
     startSession() {
 
         var project = this;
 
-        project.views["workspace"].forEach(function (workspace) {
-            workspace.set(project.model.details.levels);
+        project.views["workspace"].forEach(function (viewModel) {
+            viewModel.view.set(project.model.details.levels);
         });
-        project.views["mindMap"].set(project.model.details.levels);
+        project.views["mindMap"].view.set(project.model.details.levels);
 
         project.undoManager.clear();
 
@@ -133,10 +90,10 @@ class Project {
 
         if (project.model.addNote(dataModel.note, position)) {
 
-            project.views["workspace"].forEach(function (workspace) {
-                position = workspace.add(dataModel.note, position);
+            project.views["workspace"].forEach(function (viewModel) {
+                position = viewModel.view.add(dataModel.note, position);
             });
-            project.views["mindMap"].add(dataModel.node);
+            project.views["mindMap"].view.add(dataModel.node);
 
             if (record) {
                 project.undoManager.add({
@@ -153,10 +110,10 @@ class Project {
 
         if (project.model.updateNote(updatedDataModel.note)) {
 
-            project.views["workspace"].forEach(function (workspace) {
-                workspace.update(updatedDataModel.note);
+            project.views["workspace"].forEach(function (viewModel) {
+                viewModel.view.update(updatedDataModel.note);
             });
-            project.views["mindMap"].update(dataModel.node, updatedDataModel.node);
+            project.views["mindMap"].view.update(dataModel.node, updatedDataModel.node);
 
             if (record) {
                 project.undoManager.add({
@@ -173,10 +130,10 @@ class Project {
 
         if (project.model.deleteNote(dataModel.note)) {
 
-            project.views["workspace"].forEach(function (workspace) {
-                workspace.delete(dataModel.note);
+            project.views["workspace"].forEach(function (viewModel) {
+                viewModel.view.delete(dataModel.note);
             });
-            project.views["mindMap"].delete(dataModel.node);
+            project.views["mindMap"].view.delete(dataModel.node);
 
             if (record) {
                 project.undoManager.add({
@@ -219,8 +176,8 @@ class Project {
 
         var project = this;
 
-        project.views["workspace"].forEach(function (workspace) {
-            workspace.unselect();
+        project.views["workspace"].forEach(function (viewModel) {
+            viewModel.view.unselect();
         });
     }
 
@@ -256,18 +213,7 @@ class Project {
 
         var project = this;
 
-        project.views["mindMap"].unselect();
-    }
-
-    applyTheme() {
-        var project = this;
-
-        project.uiSettings.update();
-
-        project.views["workspace"].forEach(function (workspace, index) {
-            workspace.applyTheme(project.uiSettings.views[index].styles);
-        });
-        project.views["mindMap"].applyTheme(project.uiSettings.views[2].options);
+        project.views["mindMap"].view.unselect();
     }
 
     download() {
@@ -302,8 +248,8 @@ class Project {
                 data += project.name + "\r\n";
                 data += "Created on: ";
                 data += (new Date()).toLocaleString() + "\r\n";
-                project.views["workspace"].forEach(function (workspace) {
-                    data += workspace.getData(format);
+                project.views["workspace"].forEach(function (viewModel) {
+                    data += viewModel.view.getData(format);
                 });
 
                 data += "NOTES:\r\n";
@@ -358,14 +304,14 @@ class Project {
                 data += '<div class = "content-heading">Contents</div>';
                 data += "<table>";
                 data += "<tr>";
-                project.views["workspace"].forEach(function (workspace) {
-                    data += workspace.getTitle();
+                project.views["workspace"].forEach(function (viewModel) {
+                    data += viewModel.view.getTitle();
                 });
                 data += "</tr>";
                 data += "</table>";
                 data += "</div>";
-                project.views["workspace"].forEach(function (workspace) {
-                    data += workspace.getData(format);
+                project.views["workspace"].forEach(function (viewModel) {
+                    data += viewModel.view.getData(format);
                 });
                 data += "<hr>";
                 data += "NOTES:" + "<br>";
