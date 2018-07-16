@@ -47,6 +47,9 @@ var appConst = {
         project: {
             url: "/ist/api/project/"
         },
+        session: {
+            url: "/ist/api/session/"
+        },
         template: {
             url: "/ist/api/template/"
         },
@@ -78,6 +81,7 @@ var appConst = {
 if (!appConst.dbConnected) {
     appConst.request.resource.url = "/assets/data/resources.json";
     appConst.request.project.url = "/assets/data/projects.json";
+    appConst.request.session.url = "/assets/data/sessions.json";
     appConst.request.template.url = "/assets/data/templates.json";
     appConst.request.uisetting.url = "/assets/data/uisettings.json";
 }

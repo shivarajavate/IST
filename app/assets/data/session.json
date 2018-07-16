@@ -1,27 +1,14 @@
-
-var mongoose = require('mongoose');
-
-var projectSchema = mongoose.Schema(
+[
     {
-        name: {
-            type: String,
-            required: true
-        },
-        description: {
-            type: String,
-            default: ""
-        },
-        session: {
-            type: Number,
-            default: 0
-        },
-        tasks: {
-            type: Array,
-            default: []
-        },
-        details: {
-            type: Object,
-            default: {
+        "_id": 0,
+        "name": "session 1",
+        "project": {
+            "_id": 0,
+            "name": "new project 1",
+            "description": "sample new project 1",
+            "session": 0,
+            "tasks": [],
+            "details": {
                 "levels": [
                     {
                         "name": "User",
@@ -174,36 +161,11 @@ var projectSchema = mongoose.Schema(
                 "questions": [
                     "any questions ?"
                 ]
-            }
-        },
-        templateName: {
-            type: String,
-            required: true
-        },
-        uisettingName: {
-            type: String,
-            default: "default"
-        },
-        createdBy: {
-            type: String,
-            required: true
-        },
-        createdOn: {
-            type: Date,
-            default: Date.now
-        },
-        lastModifiedBy: {
-            type: String,
-            required: true
-        },
-        lastModifiedOn: {
-            type: Date,
-            default: Date.now
+            },
+            "templateName": "default",
+            "uisettingName": "default",
+            "createdBy": "default",
+            "lastModifiedBy": "default"
         }
-    },
-    {
-        minimize: false
     }
-);
-
-module.exports = mongoose.model('project', projectSchema);
+]

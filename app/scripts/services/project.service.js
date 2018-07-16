@@ -19,6 +19,21 @@ ist.service('ProjectService', [
             });
         }
 
+        function loadSessions() {
+
+            var request = {
+                method: 'GET',
+                url: appConst.request.session.url,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            return $http(request).then(function (response) {
+                return response.data;
+            });
+        }
+
         function loadTemplates() {
 
             var request = {
@@ -34,19 +49,13 @@ ist.service('ProjectService', [
             });
         }
 
-        function loadProject(project) {
-
-            var params = {
-                model: project,
-                template: null,
-                uiSettings: null
-            };
+        function loadProject(name) {
 
             var request = {
                 method: 'GET',
-                url: appConst.request.template.url,
+                url: appConst.request.project.url,
                 params: {
-                    name: params.model.templateName
+                    name: name
                 },
                 headers: {
                     'Content-Type': 'application/json'
@@ -54,31 +63,11 @@ ist.service('ProjectService', [
             };
 
             return $http(request).then(function (response) {
-                var template = response.data;
-
-                var request = {
-                    method: 'GET',
-                    url: appConst.request.uisetting.url,
-                    params: {
-                        name: params.model.uisettingName
-                    },
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                };
-
-                return $http(request).then(function (response) {
-                    var uiSettings = response.data;
-
-                    params.template = template;
-                    params.uiSettings = uiSettings;
-
-                    return params;
-                });
+                return response.data;
             });
         }
 
-        function addProject(project) {
+        function addProject(project, record = true) {
 
             // For clone
             delete project._id;
@@ -93,7 +82,10 @@ ist.service('ProjectService', [
             };
 
             return $http(request).then(function (response) {
-                console.log('new project added successfully');
+                if (record) {
+                    addSession(response.data);
+                }
+                return response.data;
             });
         }
 
@@ -112,25 +104,8 @@ ist.service('ProjectService', [
             };
 
             return $http(request).then(function (response) {
-                console.log("project updated successfully");
+                return response.data;
             });
-        }
-
-        function saveProject(project) {
-
-            var request = {
-                method: 'PUT',
-                url: appConst.request.project.url,
-                params: {
-                    _id: project._id
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: project
-            };
-
-            return $http(request);
         }
 
         function deleteProject(project) {
@@ -147,18 +122,110 @@ ist.service('ProjectService', [
             };
 
             return $http(request).then(function (response) {
-                console.log("project deleted successfully");
+               return response.data;
+            });
+        }
+
+        function loadTemplate(name) {
+
+            var request = {
+                method: 'GET',
+                url: appConst.request.template.url,
+                params: {
+                    name: name
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            return $http(request).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function loadUisetting(name) {
+
+            var request = {
+                method: 'GET',
+                url: appConst.request.uisetting.url,
+                params: {
+                    name: name
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            return $http(request).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function addSession(project) {
+
+            var newSession = {
+                name: "session " + (project.session),
+                project: project
+            };
+
+            var request = {
+                method: 'POST',
+                url: appConst.request.session.url,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: newSession
+            };
+
+            return $http(request).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function loadProjectSession(project) {
+
+            var params = {
+                model: null,
+                template: null,
+                uiSettings: null
+            };
+
+            return loadProject(project.name)
+                .then(function (model) {
+
+                    params.model = model;
+                    return loadTemplate(project.templateName)
+                })
+                .then(function (template) {
+
+                    params.template = template;
+                    return loadUisetting(project.uisettingName);
+                })
+                .then(function (uiSettings) {
+
+                    params.uiSettings = uiSettings;
+                    return params;
+                });
+        }
+
+        function saveProjectSession(project) {
+
+            return updateProject(project).then(function (updatedProject) {
+                return addSession(updatedProject);
             });
         }
 
         return {
             loadProjects: loadProjects,
+            loadSessions: loadSessions,
             loadTemplates: loadTemplates,
             loadProject: loadProject,
             addProject: addProject,
             updateProject: updateProject,
-            saveProject: saveProject,
-            deleteProject: deleteProject
+            deleteProject: deleteProject,
+            loadProjectSession: loadProjectSession,
+            saveProjectSession: saveProjectSession,
         };
 
     }

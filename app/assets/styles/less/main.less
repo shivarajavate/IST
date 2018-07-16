@@ -411,143 +411,152 @@ body {
             }
         }
     }
-    section {
+    section.session-view {
+        display: flex;
         font-size: var(--medium-font-size);
-        &.mind-map {
-            float: left;
-            width: 40%;
+        >aside {
+            width: 0;
             height: calc(~"100vh - 100px");
         }
-        &.konva-canvas {
-            float: right;
-            width: 60%;
-            height: calc(~"100vh - 100px");
-        }
-        #note {
-            .modal-dialog {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                label, input[type="text"], input[type="number"], select, textarea, button {
-                    &.form-control, &.form-control:focus {
-                        margin: 0;
-                        border-radius: 0;
-                        border: none;
-                        box-shadow: none;
-                        outline: none !important;
-                    }
-                }
-                label, input[type="text"], input[type="number"], select {
-                    &.form-control, &.form-control:focus {
-                        text-align: left;
-                        background-color: var(--background-color);
-                    }
-                }
-                input[type="text"], input[type="number"], select {
-                    &.form-control, &.form-control:focus {
-                        border-bottom: 1px solid var(--active-border-color);
-                    }
-                }
-                label {
-                    margin: 0;
-                    font-weight: lighter;
-                }
-                textarea {
-                    &.form-control, &.form-control:focus {
-                        max-height: 200px;
-                    }
-                }
-                button {
-                    &.form-control, &.form-control:focus {
-                        display: block;
-                        text-align: left;
-                    }
-                }
-                .suggest {
-                    >.dropdown-menu {
-                        margin-top: 15px;
-                        padding: 0;
-                        max-height: 200px;
-                        overflow-y: auto;
-                    }
-                }
-                #info, #widgets {
-                    height: 300px;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    background-color: var(--background-color);
-                    .list-group {
-                        padding: 0;
-                        margin: 0;
-                        height: -webkit-fill-available;
-                        overflow-y: auto;
-                    }
-                }
-                .widget-container {
-                    height: -webkit-fill-available;
-                    overflow-y: auto;
-                }
-            }
-        }
-        #conditionsTableModal {
-            .modal-dialog {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                .modal-body {
-                    max-height: 380px;
-                    overflow-y: scroll;
-                    padding: 15px 0px;
-                    .table-bordered>thead>tr {
-                        &.active {
-                            color: black;
-                            font-weight: bold;
-                        }
-                        &>td {
-                            padding: 0px;
-                        }
-                    }
-                }
-            }
-        }
-        #mindMap {
-            #mindMapNetworkCanvas {
-                width: 100%;
+        >article {
+            display: flex;
+            width: 100%;
+            section.mind-map {
+                width: 40%;
                 height: calc(~"100vh - 100px");
-                background-color: var(--background-color);
-                border: 1px solid var(--border-color);
-            }
-            #mindMapNetworkPreview {
-                position: absolute;
-                top: 70%;
-                bottom: 0;
-                left: 70%;
-                right: 0;
-                width: 30%;
-                height: 30%;
-                background-color: var(--background-color);
-                border: 1px solid var(--border-color);
-            }
-            #addToNodePopup, #editNodePopup, #editEdgePopup {
-                .modal-dialog {
-                    position: absolute;
-                    width: auto;
-                    margin: 10px;
-                    .modal-content {
-                        .modal-header, .modal-body, .modal-footer {
-                            padding: 0;
-                            margin: 0;
-                            label {
-                                &.form-control, &.form-control:focus {
+                #mindMap {
+                    #mindMapNetworkCanvas {
+                        width: 100%;
+                        height: calc(~"100vh - 100px");
+                        background-color: var(--background-color);
+                        border: 1px solid var(--border-color);
+                    }
+                    #mindMapNetworkPreview {
+                        position: absolute;
+                        top: 70%;
+                        bottom: 0;
+                        left: 70%;
+                        right: 0;
+                        width: 30%;
+                        height: 30%;
+                        background-color: var(--background-color);
+                        border: 1px solid var(--border-color);
+                    }
+                    #addToNodePopup, #editNodePopup, #editEdgePopup {
+                        .modal-dialog {
+                            position: absolute;
+                            width: auto;
+                            margin: 10px;
+                            .modal-content {
+                                .modal-header, .modal-body, .modal-footer {
+                                    padding: 0;
                                     margin: 0;
-                                    font-weight: lighter;
-                                    text-align: left;
-                                    background-color: var(--background-color);
-                                    border: none;
-                                    box-shadow: none;
-                                    outline: none !important;
+                                    label {
+                                        &.form-control, &.form-control:focus {
+                                            margin: 0;
+                                            font-weight: lighter;
+                                            text-align: left;
+                                            background-color: var(--background-color);
+                                            border: none;
+                                            box-shadow: none;
+                                            outline: none !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            section.konva-canvas {
+                width: 60%;
+                height: calc(~"100vh - 100px");
+            }
+            section.note-form {
+                #note {
+                    .modal-dialog {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        label, input[type="text"], input[type="number"], select, textarea, button {
+                            &.form-control, &.form-control:focus {
+                                margin: 0;
+                                border-radius: 0;
+                                border: none;
+                                box-shadow: none;
+                                outline: none !important;
+                            }
+                        }
+                        label, input[type="text"], input[type="number"], select {
+                            &.form-control, &.form-control:focus {
+                                text-align: left;
+                                background-color: var(--background-color);
+                            }
+                        }
+                        input[type="text"], input[type="number"], select {
+                            &.form-control, &.form-control:focus {
+                                border-bottom: 1px solid var(--active-border-color);
+                            }
+                        }
+                        label {
+                            margin: 0;
+                            font-weight: lighter;
+                        }
+                        textarea {
+                            &.form-control, &.form-control:focus {
+                                max-height: 200px;
+                            }
+                        }
+                        button {
+                            &.form-control, &.form-control:focus {
+                                display: block;
+                                text-align: left;
+                            }
+                        }
+                        .suggest {
+                            >.dropdown-menu {
+                                margin-top: 15px;
+                                padding: 0;
+                                max-height: 200px;
+                                overflow-y: auto;
+                            }
+                        }
+                        #info, #widgets {
+                            height: 300px;
+                            max-height: 300px;
+                            overflow-y: auto;
+                            background-color: var(--background-color);
+                            .list-group {
+                                padding: 0;
+                                margin: 0;
+                                height: -webkit-fill-available;
+                                overflow-y: auto;
+                            }
+                        }
+                        .widget-container {
+                            height: -webkit-fill-available;
+                            overflow-y: auto;
+                        }
+                    }
+                }
+                #conditionsTableModal {
+                    .modal-dialog {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        .modal-body {
+                            max-height: 380px;
+                            overflow-y: scroll;
+                            padding: 15px 0px;
+                            .table-bordered>thead>tr {
+                                &.active {
+                                    color: black;
+                                    font-weight: bold;
+                                }
+                                &>td {
+                                    padding: 0px;
                                 }
                             }
                         }
@@ -560,12 +569,12 @@ body {
         max-height: 30px !important;
         height: 30px;
         font-size: var(--medium-font-size);
-        .jottings-dropup, .notes-dropup, .questions-dropup {
+        .tasks-dropup, .jottings-dropup, .notes-dropup, .questions-dropup {
             padding: 0;
             margin: 0;
             border-right: 1px solid var(--border-right-color);
         }
-        .jottings-dropup-header, .notes-dropup-header, .questions-dropup-header, .jottings-dropdown-header, .notes-dropdown-header, .questions-dropdown-header {
+        .tasks-dropup-header, .jottings-dropup-header, .notes-dropup-header, .questions-dropup-header, .tasks-dropdown-header, .jottings-dropdown-header, .notes-dropdown-header, .questions-dropdown-header {
             height: 30px;
             padding: 0 10px;
             line-height: 30px;

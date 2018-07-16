@@ -9,6 +9,7 @@ var path = require('path');
 var projectRouter = require('./server/routers/project.js');
 var templateRouter = require('./server/routers/template.js');
 var uisettingRouter = require('./server/routers/uisetting.js');
+var sessionRouter = require('./server/routers/session.js');
 var resourceRouter = require('./server/routers/resource.js');
 
 app.use(bodyParser.json());
@@ -25,6 +26,7 @@ app.get('/', function (req, res) {
 app.use('/ist/api', projectRouter);
 app.use('/ist/api', templateRouter);
 app.use('/ist/api', uisettingRouter);
+app.use('/ist/api', sessionRouter);
 app.use('/ist/api', resourceRouter);
 
 app.listen(8000, function (req, res) {

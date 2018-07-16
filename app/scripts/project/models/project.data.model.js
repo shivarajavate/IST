@@ -1,16 +1,27 @@
 
 class ProjectDataModel {
 
-    constructor(data = { _id: -1, name: "", description: "", details: { levels: [], jottings: [], notes: [], questions: [] }, templateName: "", uisettingName: "" }) {
+    constructor(data = { _id: -1, name: "", description: "", details: { levels: [], jottings: [], notes: [], questions: [] }, sessions: [], templateName: "", uisettingName: "" }) {
 
         var model = this;
 
         model._id = data._id;
         model.name = data.name;
         model.description = data.description;
+        model.session = data.session;
+        model.tasks = data.tasks;
         model.details = data.details;
         model.templateName = data.templateName;
         model.uisettingName = data.uisettingName;
+        model.createdBy = data.createdBy;
+        model.lastModifiedBy = data.lastModifiedBy;
+    }
+
+    upgradeSession() {
+
+        var model = this;
+
+        ++(model.session);
     }
 
     uniqueId() {
@@ -257,6 +268,28 @@ class ProjectDataModel {
         });
 
         return status;
+    }
+
+    addTask(newTaskName, position) {
+
+        var model = this;
+
+        var newTask = {
+            name: newTaskName,
+            session: model.session,
+            completed: false
+        }
+        var newTaskIndex = (position + 1);
+        model.tasks.splice(newTaskIndex, 0, newTask);
+    }
+
+    deleteTask(index) {
+
+        var model = this;
+
+        if (index >= 0) {
+            return model.tasks.splice(index, 1);
+        }
     }
 
     addFooterJotting(newJotting, position) {

@@ -79,7 +79,7 @@ ist.controller('WorkspaceController', [
 
       $scope.loadProjectMenu();
 
-      $interval(saveProjectWorkspace, 5000);
+      $interval(autosave, 5000);
     }
 
     $scope.resetProjectMenuHeader = function () {
@@ -176,6 +176,8 @@ ist.controller('WorkspaceController', [
           $scope.newProject = Object.assign({}, {
             name: '',
             description: '',
+            session: 0,
+            tasks: [],
             details: undefined,
             templateName: undefined,
             createdBy: $scope.userName,
@@ -274,9 +276,9 @@ ist.controller('WorkspaceController', [
       });
     }
 
-    $scope.loadWorkspace = function (currProject, currSession) {
+    $scope.startSession = function (currProject, currSession) {
 
-      ProjectService.loadProject(currProject).then(function (params) {
+      ProjectService.loadProjectSession(currProject).then(function (params) {
 
         $scope.selectedSession = currSession;
 
@@ -289,9 +291,19 @@ ist.controller('WorkspaceController', [
       });
     }
 
-    function saveProjectWorkspace() {
+    $scope.endSession = function () {
+
       if ($scope.project && $scope.project.open) {
-        ProjectService.saveProject($scope.project.model);
+
+        ProjectService.saveProjectSession($scope.project.model);
+        $scope.project.endSession();
+      }
+    }
+
+    function autosave() {
+
+      if ($scope.project && $scope.project.open) {
+        ProjectService.updateProject($scope.project.model);
       }
     }
 
@@ -306,8 +318,11 @@ ist.controller('WorkspaceController', [
     }
 
     $scope.logout = function () {
+
       var userName = $cookies.remove('UserName');
-      saveProjectWorkspace();
+
+      $scope.endSession();
+
       // remove modal-backdrop manually on location path change
       $('.modal-backdrop').remove();
       $state.go(appConst.states.login);

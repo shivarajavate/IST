@@ -49,10 +49,12 @@ class Project {
 
         project.undoManager.clear();
 
+        project.model.upgradeSession();
+
         project.open = true;
     }
 
-    abortSession() {
+    endSession() {
 
         var project = this;
 
@@ -137,7 +139,7 @@ class Project {
 
             if (record) {
                 project.undoManager.add({
-                    undo: project.addDataModel.bind(project, dataModel, position, false),
+                    undo: project.addDataModel.bind(project, dataModel, -1, false),
                     redo: project.deleteDataModel.bind(project, dataModel, false)
                 });
             }

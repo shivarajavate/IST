@@ -3,11 +3,13 @@ var mongoose = require('mongoose');
 
 var resourceModel = require('./server/models/resource.js');
 var projectModel = require('./server/models/project.js');
+var sessionModel = require('./server/models/session.js');
 var templateModel = require('./server/models/template.js');
 var uisettingModel = require('./server/models/uisetting.js');
 
 var resources = require('./app/assets/data/resources.json');
 var projects = require('./app/assets/data/projects.json');
+var sessions = require('./app/assets/data/sessions.json');
 var templates = require('./app/assets/data/templates.json');
 var uisettings = require('./app/assets/data/uisettings.json');
 
@@ -49,18 +51,41 @@ db.once("open", function (callback) {
         })
         .then(function () {
 
-            // projects.forEach(function (project) {
+            projects.forEach(function (project) {
 
-            //     delete project._id;
-            //     projectModel(project).save()
-            //         .then(function () {
-            //             console.log('Success: project added successfully');
-            //         })
-            //         .catch(function (error) {
-            //             console.log("Error: occured while adding new project");
-            //             console.log(error);
-            //         });
-            // });
+                // delete project._id;
+                // projectModel(project).save()
+                //     .then(function () {
+                //         console.log('Success: project added successfully');
+                //     })
+                //     .catch(function (error) {
+                //         console.log("Error: occured while adding new project");
+                //         console.log(error);
+                //     });
+            });
+        });
+
+    db.createCollection("sessions")
+        .then(function () {
+            return db.dropCollection("sessions");
+        })
+        .then(function () {
+            return db.createCollection("sessions");
+        })
+        .then(function () {
+
+            sessions.forEach(function (session) {
+
+                // delete session._id;
+                // sessionModel(session).save()
+                //     .then(function () {
+                //         console.log('Success: session added successfully');
+                //     })
+                //     .catch(function (error) {
+                //         console.log("Error: occured while adding new session");
+                //         console.log(error);
+                //     });
+            });
         });
 
     db.createCollection("templates")
