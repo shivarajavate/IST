@@ -26,8 +26,8 @@ ist.directive('autoCrud', function () {
                 // Detecting shift/ctrl/alt key press
                 if (!event.shiftKey && !event.ctrlKey && !event.altKey) {
 
-                    var $next = $element.parent().next().find("textarea").eq(0);
-                    var $prev = $element.parent().prev().find("textarea").eq(0);
+                    var $next = $element.parents(attrs.parentSelector).next().find("textarea").eq(0);
+                    var $prev = $element.parents(attrs.parentSelector).prev().find("textarea").eq(0);
 
                     var code = event.keyCode || event.which;
                     switch (code) {
@@ -35,7 +35,7 @@ ist.directive('autoCrud', function () {
 
                             event.preventDefault();
                             $scope.$apply(attrs.onCreate);
-                            $next = $element.parent().next().find("textarea").eq(0);
+                            $next = $element.parents(attrs.parentSelector).next().find("textarea").eq(0);
                             $next.focus();
                             break;
 

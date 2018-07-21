@@ -25,9 +25,23 @@
 
             </div>
 
-            <div ng-switch="project.views['noteForm'].view.wsName">
-                <div class="modal-body" ng-switch-when="RECON">
-                    <div id="info">
+            <div class="modal-body">
+
+                <ul class="nav nav-tabs">
+
+                    <li class="nav-item active">
+                        <a id="infoTab" class="nav-link" data-toggle="tab" data-target="#info">Info</a>
+                    </li>
+
+                    <li class="nav-item" ng-show="project.views['noteForm'].view.wsName === 'SEARCH'" ng-click="project.views['noteForm'].view.loadWidgets()">
+                        <a id="widgetsTab" class="nav-link" data-toggle="tab" data-target="#widgets">Widgets</a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content">
+
+                    <div id="info" class="tab-pane fade in active">
                         <div class="panel panel-primary">
                             <div class="panel-body">
 
@@ -57,7 +71,7 @@
                                                     <i ng-if="element.id == 'widgetConditions'" class="fa fa-table icon" ng-attr-title="open conditions table" ng-click="project.views['noteForm'].view.openConditionsTable(element.id)"></i>
                                                     <i class="fa fa-caret-down icon right-corner"></i>
                                                 </button>
-                                                <textarea id="{{ element.id }}" autosize="true" rows="3" class="form-control" ng-model="project.views['noteForm'].view.note.lines[lineIndex].elements[elementIndex].value"
+                                                <textarea id="{{ element.id }}" class="form-control" autosize="true" rows="3" ng-model="project.views['noteForm'].view.note.lines[lineIndex].elements[elementIndex].value"
                                                     placeholder="{{ element.placeholder }}"></textarea>
                                             </div>
                                         </div>
@@ -91,178 +105,101 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-body" ng-switch-when="SEARCH">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item active">
-                            <a id="infoTab" class="nav-link" data-toggle="tab" data-target="#info">Info</a>
-                        </li>
-                        <li class="nav-item" ng-click="project.views['noteForm'].view.loadWidgets()">
-                            <a id="widgetsTab" class="nav-link" data-toggle="tab" data-target="#widgets">Widgets</a>
-                        </li>
-                    </ul>
 
-                    <div class="tab-content">
+                    <div id="widgets" class="tab-pane fade">
+                        <div class="panel panel-primary" ng-if="project.views['noteForm'].view.widgets.length > 0">
+                            <div class="panel-body">
 
-                        <div id="info" class="tab-pane fade in active">
-                            <div class="panel panel-primary">
-                                <div class="panel-body">
+                                <div class="row margin-collapsable">
 
-                                    <div class="row margin-collapsable" ng-repeat="line in project.views['noteForm'].view.template.lines track by $index" ng-init="lineIndex = $index">
-                                        <div class="{{ element.class || 'col-sm-12' }}" ng-repeat="element in line.elements track by $index" ng-init="elementIndex = $index">
-                                            <div ng-switch="element.type">
-                                                <div ng-switch-when="LABEL">
-                                                    <label class="form-control" ng-bind="project.views['noteForm'].view.note.lines[lineIndex].elements[elementIndex].value"></label>
-                                                </div>
-                                                <div ng-switch-when="VALUE-CHARSTRING">
-                                                    <input type="text" class="form-control" ng-model="project.views['noteForm'].view.note.lines[lineIndex].elements[elementIndex].value"
-                                                        placeholder="{{ element.placeholder }}">
-                                                </div>
-                                                <div ng-switch-when="VALUE-NUMSTRING">
-                                                    <input type="number" class="form-control" ng-model="project.views['noteForm'].view.note.lines[lineIndex].elements[elementIndex].value"
-                                                        placeholder="{{ element.placeholder }}">
-                                                </div>
-                                                <div ng-switch-when="VALUE-LIST">
-                                                    <select class="form-control" ng-model="project.views['noteForm'].view.note.lines[lineIndex].elements[elementIndex].value"
-                                                        placeholder="{{ element.placeholder }}">
-                                                        <option ng-repeat="value in element.value" value="{{ value }}">{{ value }}</option>
-                                                    </select>
-                                                </div>
-                                                <div ng-switch-when="VALUE-ACCORDION" accordion="true">
-                                                    <button class="form-control btn btn-primary" ng-click="project.views['noteForm'].view.openAccordion(element.id)">
-                                                        <label ng-bind="element.label"></label>
-                                                        <i ng-if="element.id == 'widgetConditions'" class="fa fa-table icon" ng-attr-title="open conditions table" ng-click="project.views['noteForm'].view.openConditionsTable(element.id)"></i>
-                                                        <i class="fa fa-caret-down icon right-corner"></i>
-                                                    </button>
-                                                    <textarea id="{{ element.id }}" class="form-control" autosize="true" rows="3" ng-model="project.views['noteForm'].view.note.lines[lineIndex].elements[elementIndex].value"
-                                                        placeholder="{{ element.placeholder }}"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-6 widget-container" arrow-key-scroll="1">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" ng-attr-tabindex="{{$index + 1}}" ng-click="project.views['noteForm'].view.setSelectedWidget(widget.id)"
+                                                ng-dblclick="project.views['noteForm'].view.bindSelectedWidget(widget)" ng-repeat="widget in project.views['noteForm'].view.widgets">
+                                                <label ng-attr-title="{{ widget.data.name }} ({{widget.info.type}})">{{ widget.data.name }} ({{widget.info.type}})</label>
+                                            </li>
+                                        </ul>
                                     </div>
 
-                                    <div class="row margin-collapsable">
-                                        <div class="col-sm-12" accordion="true">
-                                            <button class="form-control btn btn-primary">
-                                                <i class="fa fa-info-circle icon"></i>
-                                                <label>notes</label>
-                                                <i class="fa fa-caret-down icon right-corner"></i>
-                                            </button>
-                                            <textarea id="iNotes" class="form-control" autosize="true" rows="3" ng-model="project.views['noteForm'].view.note.iNotes"
-                                                placeholder="enter extra information"></textarea>
+                                    <div class="col-md-6 widget-container">
+
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12">
+                                                <label class="form-control">Description:</label>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.description"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="row margin-collapsable">
-                                        <div class="col-sm-12" accordion="true">
-                                            <button class="form-control btn btn-primary">
-                                                <i class="fa fa-link icon"></i>
-                                                <label>links</label>
-                                                <i class="fa fa-caret-down icon right-corner"></i>
-                                            </button>
-                                            <textarea id="links" class="form-control" autosize="true" rows="3" suggest="true" suggestions="project.views['noteForm'].view.tags"
-                                                ng-model="project.views['noteForm'].view.note.links" placeholder="enter links (if any)"></textarea>
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12">
+                                                <label class="form-control">Category:</label>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.category"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="widgets" class="tab-pane fade">
-                            <div class="panel panel-primary" ng-if="project.views['noteForm'].view.widgets.length > 0">
-                                <div class="panel-body">
-
-                                    <div class="row margin-collapsable">
-
-                                        <div class="col-md-6 widget-container" arrow-key-scroll="1">
-                                            <ul class="list-group">
-                                                <li class="list-group-item" ng-attr-tabindex="{{$index + 1}}" ng-click="project.views['noteForm'].view.setSelectedWidget(widget.id)"
-                                                    ng-dblclick="project.views['noteForm'].view.bindSelectedWidget(widget)" ng-repeat="widget in project.views['noteForm'].view.widgets">
-                                                    <label ng-attr-title="{{ widget.data.name }} ({{widget.info.type}})">{{ widget.data.name }} ({{widget.info.type}})</label>
-                                                </li>
-                                            </ul>
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12" accordion="true">
+                                                <button class="form-control btn btn-primary">
+                                                    <label>Conditions (BC)</label>
+                                                    <i class="fa fa-caret-down icon right-corner"></i>
+                                                </button>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.conditions"></textarea>
+                                            </div>
                                         </div>
-
-                                        <div class="col-md-6 widget-container">
-
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12">
-                                                    <label class="form-control">Description:</label>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.description"></textarea>
-                                                </div>
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12" accordion="true">
+                                                <button class="form-control btn btn-primary">
+                                                    <label>Criteria (W2S)</label>
+                                                    <i class="fa fa-caret-down icon right-corner"></i>
+                                                </button>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.criteria"></textarea>
                                             </div>
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12">
-                                                    <label class="form-control">Category:</label>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.category"></textarea>
-                                                </div>
+                                        </div>
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12" accordion="true">
+                                                <button class="form-control btn btn-primary">
+                                                    <label>Issues (W2F)</label>
+                                                    <i class="fa fa-caret-down icon right-corner"></i>
+                                                </button>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.issues"></textarea>
                                             </div>
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12" accordion="true">
-                                                    <button class="form-control btn btn-primary">
-                                                        <label>Conditions (BC)</label>
-                                                        <i class="fa fa-caret-down icon right-corner"></i>
-                                                    </button>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.conditions"></textarea>
-                                                </div>
+                                        </div>
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12" accordion="true">
+                                                <button class="form-control btn btn-primary">
+                                                    <label>Heuristics (PI)</label>
+                                                    <i class="fa fa-caret-down icon right-corner"></i>
+                                                </button>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.heuristics"></textarea>
                                             </div>
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12" accordion="true">
-                                                    <button class="form-control btn btn-primary">
-                                                        <label>Criteria (W2S)</label>
-                                                        <i class="fa fa-caret-down icon right-corner"></i>
-                                                    </button>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.criteria"></textarea>
-                                                </div>
+                                        </div>
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12" accordion="true">
+                                                <button class="form-control btn btn-primary">
+                                                    <label>Actions (PI)</label>
+                                                    <i class="fa fa-caret-down icon right-corner"></i>
+                                                </button>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.actions"></textarea>
                                             </div>
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12" accordion="true">
-                                                    <button class="form-control btn btn-primary">
-                                                        <label>Issues (W2F)</label>
-                                                        <i class="fa fa-caret-down icon right-corner"></i>
-                                                    </button>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.issues"></textarea>
-                                                </div>
+                                        </div>
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12" accordion="true">
+                                                <button class="form-control btn btn-primary">
+                                                    <label>Data (PI)</label>
+                                                    <i class="fa fa-caret-down icon right-corner"></i>
+                                                </button>
+                                                <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.data"></textarea>
                                             </div>
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12" accordion="true">
-                                                    <button class="form-control btn btn-primary">
-                                                        <label>Heuristics (PI)</label>
-                                                        <i class="fa fa-caret-down icon right-corner"></i>
-                                                    </button>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.heuristics"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12" accordion="true">
-                                                    <button class="form-control btn btn-primary">
-                                                        <label>Actions (PI)</label>
-                                                        <i class="fa fa-caret-down icon right-corner"></i>
-                                                    </button>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.actions"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row margin-collapsable">
-                                                <div class="col-sm-12" accordion="true">
-                                                    <button class="form-control btn btn-primary">
-                                                        <label>Data (PI)</label>
-                                                        <i class="fa fa-caret-down icon right-corner"></i>
-                                                    </button>
-                                                    <textarea class="form-control" autosize="true" rows="1" readonly="true" placeholder="N/A" ng-model="project.views['noteForm'].view.selectedWidget.data.data"></textarea>
-                                                </div>
-                                            </div>
-
                                         </div>
 
                                     </div>
 
                                 </div>
+
                             </div>
                         </div>
-
                     </div>
+
                 </div>
+
             </div>
 
             <div class="modal-footer">

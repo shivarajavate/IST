@@ -42,7 +42,7 @@ class Project {
                 project.sessionDuration = duration;
                 sessionTimer.countdown(duration);
             },
-            countdown: function countdown(minutes) {
+            countdown: function (minutes) {
                 var sessionTimer = this;
                 var seconds = 60;
                 var mins = minutes;
@@ -54,7 +54,7 @@ class Project {
                         setTimeout(tick, 1000);
                     } else {
                         if (mins > 1) {
-                            setTimeout(function () { countdown(mins - 1); }, 1000);
+                            setTimeout(function () { sessionTimer.countdown(mins - 1); }, 1000);
                         }
                     }
                 }
