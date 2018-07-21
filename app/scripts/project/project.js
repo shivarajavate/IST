@@ -28,35 +28,66 @@ class Project {
         });
 
         project.views = new ProjectViewModel(views);
-
-        project.noteForm;
+        project.viewNames = Object.keys(project.views);
 
         project.undoManager = new UndoManager();
 
+        project.selectedViewName = "";
+
+        project.sessionTimer = {
+            time: "0:00",
+            defaultTime: "0:00",
+            start: function (duration) {
+                var sessionTimer = this;
+                project.sessionDuration = duration;
+                sessionTimer.countdown(duration);
+            },
+            countdown: function countdown(minutes) {
+                var sessionTimer = this;
+                var seconds = 60;
+                var mins = minutes;
+                function tick() {
+                    var currMinutes = mins - 1;
+                    seconds--;
+                    if (seconds > 0) {
+                        sessionTimer.time = currMinutes + ":" + seconds;
+                        setTimeout(tick, 1000);
+                    } else {
+                        if (mins > 1) {
+                            setTimeout(function () { countdown(mins - 1); }, 1000);
+                        }
+                    }
+                }
+                tick();
+            }
+        };
         project.open = false;
 
         project.views.applyTheme();
     }
 
-    startSession() {
+    startSession(duration) {
 
         var project = this;
-
-        project.views["workspace"].forEach(function (viewModel) {
-            viewModel.view.set(project.model.details.levels);
-        });
+        project.views["reconWorkspace"].view.set(project.model.details.levels);
+        project.views["searchWorkspace"].view.set(project.model.details.levels);
         project.views["mindMap"].view.set(project.model.details.levels);
 
         project.undoManager.clear();
 
-        project.model.upgradeSession();
+        project.model.session = (project.model.noOfSessions + 1);
 
+        project.sessionTimer.start(duration);
         project.open = true;
     }
 
     endSession() {
 
         var project = this;
+
+        project.undoManager.clear();
+
+        project.model.noOfSessions = (project.model.noOfSessions + 1);
 
         project.open = false;
     }
@@ -82,8 +113,7 @@ class Project {
         data.template = project.template.noteTemplate(data.secName, data.levelName, data.wsName);
         data.tags = project.model.suggestTags(data.wsName);
 
-        project.noteForm = new NoteForm();
-        project.noteForm.init(data, callbacks);
+        project.views["noteForm"].view.init(data, callbacks);
     }
 
     addDataModel(dataModel = { note: {}, node: {} }, position = -1, record = false) {
@@ -92,9 +122,8 @@ class Project {
 
         if (project.model.addNote(dataModel.note, position)) {
 
-            project.views["workspace"].forEach(function (viewModel) {
-                position = viewModel.view.add(dataModel.note, position);
-            });
+            position = project.views["reconWorkspace"].view.add(dataModel.note, position);
+            position = project.views["searchWorkspace"].view.add(dataModel.note, position);
             project.views["mindMap"].view.add(dataModel.node);
 
             if (record) {
@@ -112,9 +141,8 @@ class Project {
 
         if (project.model.updateNote(updatedDataModel.note)) {
 
-            project.views["workspace"].forEach(function (viewModel) {
-                viewModel.view.update(updatedDataModel.note);
-            });
+            project.views["reconWorkspace"].view.update(updatedDataModel.note);
+            project.views["searchWorkspace"].view.update(updatedDataModel.note);
             project.views["mindMap"].view.update(dataModel.node, updatedDataModel.node);
 
             if (record) {
@@ -132,9 +160,8 @@ class Project {
 
         if (project.model.deleteNote(dataModel.note)) {
 
-            project.views["workspace"].forEach(function (viewModel) {
-                viewModel.view.delete(dataModel.note);
-            });
+            project.views["reconWorkspace"].view.delete(dataModel.note);
+            project.views["searchWorkspace"].view.delete(dataModel.note);
             project.views["mindMap"].view.delete(dataModel.node);
 
             if (record) {
@@ -178,9 +205,8 @@ class Project {
 
         var project = this;
 
-        project.views["workspace"].forEach(function (viewModel) {
-            viewModel.view.unselect();
-        });
+        project.views["reconWorkspace"].view.unselect();
+        project.views["searchWorkspace"].view.unselect();
     }
 
     addNodeAction(node, noteIndex = -1, action = true) {
@@ -250,9 +276,8 @@ class Project {
                 data += project.name + "\r\n";
                 data += "Created on: ";
                 data += (new Date()).toLocaleString() + "\r\n";
-                project.views["workspace"].forEach(function (viewModel) {
-                    data += viewModel.view.getData(format);
-                });
+                data += project.views["reconWorkspace"].view.getData(format);
+                data += project.views["searchWorkspace"].view.getData(format);
 
                 data += "NOTES:\r\n";
                 project.model.details.notes.forEach(function (note, i) {

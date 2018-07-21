@@ -1,206 +1,57 @@
 
 class ProjectViewModel {
 
-    constructor(views = []) {
+    constructor(viewConfigs = []) {
 
         var model = this;
 
-        model["workspace"] = [];
+        model["reconWorkspace"] = {};
+        model["searchWorkspace"] = {};
         model["mindMap"] = {};
+        model["noteForm"] = {};
 
-        views.forEach(function (view) {
+        viewConfigs.forEach(function (viewConfig) {
 
-            switch (view.name) {
-                case "reconWorkspace":
-
-                    model.addReconWorkspaceView(view);
-
-                    break;
-                case "searchWorkspace":
-
-                    model.addSearchWorkspaceView(view);
-
-                    break;
+            switch (viewConfig.name) {
                 case "mindMap":
 
-                    model.addMindMapView(view);
+                    var viewmodel = new MindMapViewmodel();
+                    viewmodel.init(viewConfig);
+                    model["mindMap"] = viewmodel;
+                    break;
 
+                case "reconWorkspace":
+
+                    var viewmodel = new WorkspaceViewmodel();
+                    viewmodel.init(viewConfig);
+                    model["reconWorkspace"] = viewmodel;
+                    break;
+
+                case "searchWorkspace":
+
+                    var viewmodel = new WorkspaceViewmodel();
+                    viewmodel.init(viewConfig);
+                    model["searchWorkspace"] = viewmodel;
+                    break;
+
+                case "noteForm":
+
+                    var viewmodel = new NoteFormViewmodel();
+                    viewmodel.init(viewConfig);
+                    model["noteForm"] = viewmodel;
                     break;
             }
         });
     }
 
-    addReconWorkspaceView(viewSettings) {
+    toggleView(viewModelName) {
 
         var model = this;
 
-        var viewModel = {
-            view: {},
-            model: {},
-            settings: {}
-        };
+        if (Object.keys(model).find(modelKey => modelKey === viewModelName)) {
 
-        function uiSettingsConfig(name) {
-
-            var currentUISettings = {
-                styles: viewSettings.styles[name],
-                properties: viewSettings.properties[name]
-            };
-
-            return function (manualConfig, styleConfigId) {
-                var config = Object.assign({}, manualConfig, currentUISettings.styles[styleConfigId]);
-
-                config.x = config.x + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-                config.y = config.y + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-                config.width = config.width - ((config.strokeWidth) || 0);
-                config.height = config.height - ((config.strokeWidth) || 0);
-
-                switch (config.verticalAlign) {
-                    case "top":
-                        config.y = config.y;
-                        break;
-                    case "center":
-                        config.y = config.y + (config.height / 2) - (config.fontSize / 2);
-                        break;
-                    case "bottom":
-                        config.y = config.y + config.height - config.fontSize;
-                        break;
-                }
-                return config;
-            };
+            model[viewModelName].open = (model[viewModelName].open) ? false : true;
         }
-
-        var wsParams = {
-            data: {
-                canvasName: viewSettings.canvasName,
-                name: viewSettings.key,
-                template: viewSettings.params.data.template,
-                uiSettings: {
-                    styles: viewSettings.styles,
-                    properties: viewSettings.properties,
-                    getConfig: {
-                        workspace: uiSettingsConfig("workspace"),
-                        level: uiSettingsConfig("level"),
-                        section: uiSettingsConfig("section"),
-                        board: uiSettingsConfig("board")
-                    }
-                }
-            },
-            callbacks: {
-
-            }
-        };
-
-        viewModel.view = new Workspace();
-        viewModel.view.init(wsParams);
-
-        viewModel.settings = viewSettings;
-
-        model["workspace"].push(viewModel);
-    }
-
-    addSearchWorkspaceView(viewSettings) {
-
-        var model = this;
-
-        var viewModel = {
-            view: {},
-            model: {},
-            settings: {}
-        };
-
-        function uiSettingsConfig(name) {
-
-            var currentUISettings = {
-                styles: viewSettings.styles[name],
-                properties: viewSettings.properties[name]
-            };
-
-            return function (manualConfig, styleConfigId) {
-                var config = Object.assign({}, manualConfig, currentUISettings.styles[styleConfigId]);
-
-                config.x = config.x + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-                config.y = config.y + (config.strokeWidth ? ((config.strokeWidth) / 2) : 0);
-                config.width = config.width - ((config.strokeWidth) || 0);
-                config.height = config.height - ((config.strokeWidth) || 0);
-
-                switch (config.verticalAlign) {
-                    case "top":
-                        config.y = config.y;
-                        break;
-                    case "center":
-                        config.y = config.y + (config.height / 2) - (config.fontSize / 2);
-                        break;
-                    case "bottom":
-                        config.y = config.y + config.height - config.fontSize;
-                        break;
-                }
-                return config;
-            };
-        }
-
-        var wsParams = {
-            data: {
-                canvasName: viewSettings.canvasName,
-                name: viewSettings.key,
-                template: viewSettings.params.data.template,
-                uiSettings: {
-                    styles: viewSettings.styles,
-                    properties: viewSettings.properties,
-                    getConfig: {
-                        workspace: uiSettingsConfig("workspace"),
-                        level: uiSettingsConfig("level"),
-                        section: uiSettingsConfig("section"),
-                        board: uiSettingsConfig("board")
-                    }
-                }
-            },
-            callbacks: {
-
-            }
-        };
-
-        viewModel.view = new Workspace();
-        viewModel.view.init(wsParams);
-
-        viewModel.settings = viewSettings;
-
-        model["workspace"].push(viewModel);
-    }
-
-    addMindMapView(view) {
-
-        var model = this;
-
-        var viewModel = {
-            view: {},
-            model: {},
-            settings: {}
-        };
-
-        var defaultMindMapData = view.params.data.model.defaultMindMapData(view.params.data.template);
-
-        var mindMapParams = {
-            canvasName: view.canvasName,
-            data: {
-                nodes: defaultMindMapData.nodes,
-                edges: defaultMindMapData.edges
-            },
-            options: view.options,
-            callbacks: view.params.callbacks
-        }
-
-        viewModel.view = new MindMap();
-        viewModel.view.init(mindMapParams);
-
-        viewModel.settings = {
-            styles: {
-
-            },
-            properties: view.options
-        };
-
-        model["mindMap"] = viewModel;
     }
 
     applyTheme() {
@@ -347,10 +198,11 @@ class ProjectViewModel {
             }
         };
 
-        model["workspace"].forEach(function (viewModel) {
-            viewModel.settings.styles = $.extend(true, {}, viewModel.settings.styles, newStyles);
-            viewModel.view.applyTheme(viewModel.settings.styles);
-        });
+        model["reconWorkspace"].settings.styles = $.extend(true, {}, model["reconWorkspace"].settings.styles, newStyles);
+        model["reconWorkspace"].view.applyTheme(model["reconWorkspace"].settings.styles);
+
+        model["searchWorkspace"].settings.styles = $.extend(true, {}, model["searchWorkspace"].settings.styles, newStyles);
+        model["searchWorkspace"].view.applyTheme(model["searchWorkspace"].settings.styles);
 
         model["mindMap"].settings.styles = $.extend(true, {}, model["mindMap"].settings.styles, newMindMapStyles);
         model["mindMap"].view.applyTheme(model["mindMap"].settings.styles);

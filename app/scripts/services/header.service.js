@@ -57,20 +57,6 @@ ist.service('HeaderService', [
                     $('#hamburger>input[type="checkbox"]').prop('checked', false).change();
                 });
 
-                $(".tasks-dropup-header").click(function () {
-                    $(".tasks-dropup .footer-menu").slideDown("slow", function () {
-                        $(".tasks-dropup .footer-menu").find('textarea').each(function () {
-                            var event = document.createEvent('Event');
-                            event.initEvent('autosize:update', true, false);
-                            this.dispatchEvent(event);
-                        });
-                    });
-                });
-
-                $(".notes-dropdown-header").click(function () {
-                    $(".notes-dropup .footer-menu").slideUp("slow");
-                });
-
                 $(".jottings-dropup-header").click(function () {
                     $(".jottings-dropup .footer-menu").slideDown("slow", function () {
                         $(".jottings-dropup .footer-menu").find('textarea').each(function () {

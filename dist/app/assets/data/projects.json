@@ -3,6 +3,7 @@
         "_id": 0,
         "name": "new project 1",
         "description": "sample new project 1",
+        "noOfSessions": 0,
         "session": 0,
         "tasks": [],
         "details": {
@@ -168,7 +169,8 @@
         "_id": 1,
         "name": "project 2",
         "description": "sample project 2",
-        "session": 2,
+        "noOfSessions": 2,
+        "session": 3,
         "tasks": [
             {
                 "name": "task 1",

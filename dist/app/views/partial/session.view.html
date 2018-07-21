@@ -1,0 +1,232 @@
+<section class="workspace-section">
+
+    <aside class="session-plan-area">
+
+        <ul class="session-plan-area-menu nav nav-tabs nav-tabs-honly">
+            <!-- <li class="nav-item">
+                <a id="prevSessionTasksTab" class="nav-link" data-toggle="tab" data-target="#prevSessionTasks">
+                    <label>
+                        previous session tasks
+                    </label>
+                </a>
+            </li> -->
+            <li class="nav-item active">
+                <a id="currSessionTasksTab" class="nav-link" data-toggle="tab" data-target="#currSessionTasks">
+                    <label>
+                        session tasks
+                    </label>
+                </a>
+            </li>
+        </ul>
+
+        <div class="session-plan-area-layout tab-content">
+
+            <!-- <div id="prevSessionTasks" class="tab-pane fade">
+                <div class="task-container" ng-repeat="task in project.model.tasks track by $index" ng-show="((task.session < project.model.session) && (!task.completed))">
+                    <div class="row strict">
+                        <div class="col-md-1">
+                            <label class="form-control transparent">{{ $index + 1 }}</label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea class="form-control transparent" rows="1" autosize="true" ng-model="project.model.tasks[$index].name"></textarea>
+                        </div>
+                        <div class="col-md-1 task-completed">
+                            <input type="checkbox" class="form-control transparent" ng-model="project.model.tasks[$index].completed">
+                            <i class="fa fa-circle-o-notch icon form-control transparent" ng-show="!(project.model.tasks[$index].completed)"></i>
+                            <i class="fa fa-check icon form-control transparent" ng-show="project.model.tasks[$index].completed"></i>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-control transparent" ng-show="project.model.tasks[$index].completed">{{timer.sessionTime}}</label>
+                        </div>
+                    </div>
+
+                    <select class="form-control" ng-model="project.selectedViewName">
+                        <option value="" disabled selected hidden>choose session</option>
+                        <option value="mindMap">MINDMAP</option>
+                        <option value="reconWorkspace">RECONNAISSANCE</option>
+                        <option value="searchWorkspace">SEARCH</option>
+                    </select>
+                </div>
+                <div ng-show="!((project.model.tasks | filter: { session: '!(project.model.session)', completed: 'false' }).length > 0)">
+                    <label class="form-control">
+                        <i class="fa fa-check icon"></i>
+                        <label>no tasks found</label>
+                    </label>
+                </div>
+            </div> -->
+
+            <div id="currSessionTasks" class="tab-pane fade in active">
+                <div class="task-container" ng-repeat="task in project.model.tasks track by $index" ng-show="(task.session === project.model.session)">
+                    <div class="row strict">
+                        <div class="col-md-1">
+                            <label class="form-control transparent">{{ $index + 1 }}</label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea class="form-control transparent" rows="1" autosize="true" ng-model="project.model.tasks[$index].name" suggest="true"
+                                suggestions="project.viewNames" selected-suggestion on-select="project.model.updateTask(selectedSuggestion, $index)"
+                                auto-crud="true" on-create="project.model.addTask('', $index)" on-delete="project.model.deleteTask($index)"
+                                ng-dblclick="project.views.toggleView(project.model.tasks[$index].views[0])"></textarea>
+                        </div>
+                        <div class="col-md-1 task-completed">
+                            <input type="checkbox" class="form-control transparent" ng-model="project.model.tasks[$index].completed" ng-change="project.model.finishTask(project.sessionTimer.time, project.model.tasks[$index].completed, $index)">
+                            <i class="fa fa-circle-o-notch icon form-control transparent" ng-show="!(project.model.tasks[$index].completed)"></i>
+                            <i class="fa fa-check icon form-control transparent" ng-show="project.model.tasks[$index].completed"></i>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-control transparent" ng-show="project.model.tasks[$index].completed" ng-bind="project.model.tasks[$index].endTime"></label>
+                        </div>
+                    </div>
+
+                    <!-- <select class="form-control" ng-model="project.selectedViewName">
+                            <option value="" disabled selected hidden>choose session</option>
+                            <option value="mindMap">MINDMAP</option>
+                            <option value="reconWorkspace">RECONNAISSANCE</option>
+                            <option value="searchWorkspace">SEARCH</option>
+                        </select> -->
+                </div>
+                <div ng-show="!((project.model.tasks | filter: { session: project.model.session }).length > 0)">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addTask('', -1)">
+                        <i class="fa fa-plus icon"></i>
+                        <label>add tasks</label>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+    <article class="session-work-area">
+        <header class="session-work-area-menu">
+            <nav>
+                <div>
+                    <div ng-show="project.open" class="workspace-toggle">
+                        <div class="btn-group">
+                            <label class="btn btn-primary" ng-repeat="(name, view) in project.views" ng-class="{ active : view.open }" ng-click="project.views.toggleView(name)">
+                                {{name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <i class="fa fa-undo icon" ng-class="{ disabled : !project.undoManager.hasUndo() }" ng-click="project.undoManager.undo()"
+                        ng-attr-title="undo"></i>
+                </div>
+                <div>
+                    <i class="fa fa-repeat icon" ng-class="{ disabled : !project.undoManager.hasRedo() }" ng-click="project.undoManager.redo()"
+                        ng-attr-title="redo"></i>
+                </div>
+            </nav>
+        </header>
+        <section class="session-work-area-layout">
+            <section class="mind-map-tool" ng-style="{'visibility': project.views['mindMap'].open ? 'visible' : 'hidden'}" ui-view="mind-map"></section>
+            <section class="recon-workspace-tool" ng-style="{'visibility': project.views['reconWorkspace'].open ? 'visible' : 'hidden'}"
+                ui-view="recon-workspace"></section>
+            <section class="search-workspace-tool" ng-style="{'visibility': project.views['searchWorkspace'].open ? 'visible' : 'hidden'}"
+                ui-view="search-workspace"></section>
+            <section class="note-form-tool" ng-style="{'visibility': (project.views['noteForm'].open) ? 'visible' : 'hidden'}" ui-view="note-form"></section>
+        </section>
+    </article>
+
+</section>
+
+<footer class="workspace-footer">
+
+    <div class="jottings-dropup dropup col-md-4">
+
+        <div class="jottings-dropup-header">
+            <span>Jottings</span>
+            <i class="fa fa-caret-up icon right-corner"></i>
+        </div>
+
+        <div class="footer-menu dropdown-menu col-md-12">
+
+            <div class="jottings-dropdown-header">
+                <span>Jottings</span>
+                <i class="fa fa-caret-down icon right-corner"></i>
+            </div>
+
+            <div class="footer-menu-content">
+                <ul>
+                    <li ng-repeat="jotting in project.model.details.jottings track by $index">
+                        <textarea class="form-control strict transparent" rows="1" autosize="true" ng-model="project.model.details.jottings[$index]"
+                            auto-crud="true" on-create="project.model.addFooterJotting('', $index)" on-delete="project.model.deleteFooterJotting($index)"></textarea>
+                    </li>
+                </ul>
+                <div ng-if="project.model.details.jottings.length === 0">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addFooterJotting('', -1)">
+                        <i class="fa fa-plus icon"></i>
+                        <label>add jottings</label>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="notes-dropup dropup col-md-4">
+
+        <div class="notes-dropup-header">
+            <span>Notes</span>
+            <i class="fa fa-caret-up icon right-corner"></i>
+        </div>
+
+        <div class="footer-menu dropdown-menu col-md-12">
+
+            <div class="notes-dropdown-header">
+                <span>Notes</span>
+                <i class="fa fa-caret-down icon right-corner"></i>
+            </div>
+
+            <div class="footer-menu-content">
+                <ol>
+                    <li ng-repeat="note in project.model.details.notes track by $index">
+                        <textarea class="form-control strict transparent" rows="1" autosize="true" ng-model="project.model.details.notes[$index]"
+                            auto-crud="true" on-create="project.model.addFooterNote('', $index)" on-delete="project.model.deleteFooterNote($index)"></textarea>
+                    </li>
+                </ol>
+                <div ng-if="project.model.details.notes.length === 0">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addFooterNote('', -1)">
+                        <i class="fa fa-plus icon"></i>
+                        <label>add notes</label>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="questions-dropup dropup col-md-4">
+
+        <div class="questions-dropup-header">
+            <span>Questions</span>
+            <i class="fa fa-caret-up icon right-corner"></i>
+        </div>
+
+        <div class="footer-menu dropdown-menu col-md-12">
+
+            <div class="questions-dropdown-header">
+                <span>Questions</span>
+                <i class="fa fa-caret-down icon right-corner"></i>
+            </div>
+
+            <div class="footer-menu-content">
+                <ol>
+                    <li ng-repeat="question in project.model.details.questions track by $index">
+                        <textarea class="form-control strict transparent" rows="1" autosize="true" ng-model="project.model.details.questions[$index]"
+                            auto-crud="true" on-create="project.model.addFooterQuestion('', $index)" on-delete="project.model.deleteFooterQuestion($index)"></textarea>
+                    </li>
+                </ol>
+                <div ng-if="project.model.details.questions.length === 0">
+                    <button class="btn btn-primary btn-block" ng-click="project.model.addFooterQuestion('', -1)">
+                        <i class="fa fa-plus icon"></i>
+                        <label>add questions</label>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</footer>

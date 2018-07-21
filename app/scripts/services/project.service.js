@@ -49,7 +49,7 @@ ist.service('ProjectService', [
             });
         }
 
-        function loadProject(name) {
+        function getProject(name) {
 
             var request = {
                 method: 'GET',
@@ -82,14 +82,23 @@ ist.service('ProjectService', [
             };
 
             return $http(request).then(function (response) {
-                if (record) {
-                    addSession(response.data);
+
+                var addedProject = response.data;
+
+                switch (record) {
+                    case true:
+                        return addSession(addedProject).then(function (session) {
+                            return session.project;
+                        });
+                        break;
+                    case false:
+                        return addedProject;
+                        break;
                 }
-                return response.data;
             });
         }
 
-        function updateProject(project) {
+        function updateProject(project, record = false) {
 
             var request = {
                 method: 'PUT',
@@ -104,7 +113,19 @@ ist.service('ProjectService', [
             };
 
             return $http(request).then(function (response) {
-                return response.data;
+
+                var updatedProject = response.data;
+
+                switch (record) {
+                    case true:
+                        return addSession(updatedProject).then(function (session) {
+                            return session.project;
+                        });
+                        break;
+                    case false:
+                        return updatedProject;
+                        break;
+                }
             });
         }
 
@@ -122,11 +143,37 @@ ist.service('ProjectService', [
             };
 
             return $http(request).then(function (response) {
-               return response.data;
+                return response.data;
             });
         }
 
-        function loadTemplate(name) {
+        function loadProject(project) {
+
+            var params = {
+                model: null,
+                template: null,
+                uiSettings: null
+            };
+
+            return getProject(project.name)
+                .then(function (model) {
+
+                    params.model = model;
+                    return getTemplate(project.templateName)
+                })
+                .then(function (template) {
+
+                    params.template = template;
+                    return getUisetting(project.uisettingName);
+                })
+                .then(function (uiSettings) {
+
+                    params.uiSettings = uiSettings;
+                    return params;
+                });
+        }
+
+        function getTemplate(name) {
 
             var request = {
                 method: 'GET',
@@ -144,7 +191,7 @@ ist.service('ProjectService', [
             });
         }
 
-        function loadUisetting(name) {
+        function getUisetting(name) {
 
             var request = {
                 method: 'GET',
@@ -165,7 +212,7 @@ ist.service('ProjectService', [
         function addSession(project) {
 
             var newSession = {
-                name: "session " + (project.session),
+                name: project.session.toString(),
                 project: project
             };
 
@@ -183,49 +230,15 @@ ist.service('ProjectService', [
             });
         }
 
-        function loadProjectSession(project) {
-
-            var params = {
-                model: null,
-                template: null,
-                uiSettings: null
-            };
-
-            return loadProject(project.name)
-                .then(function (model) {
-
-                    params.model = model;
-                    return loadTemplate(project.templateName)
-                })
-                .then(function (template) {
-
-                    params.template = template;
-                    return loadUisetting(project.uisettingName);
-                })
-                .then(function (uiSettings) {
-
-                    params.uiSettings = uiSettings;
-                    return params;
-                });
-        }
-
-        function saveProjectSession(project) {
-
-            return updateProject(project).then(function (updatedProject) {
-                return addSession(updatedProject);
-            });
-        }
-
         return {
             loadProjects: loadProjects,
             loadSessions: loadSessions,
             loadTemplates: loadTemplates,
-            loadProject: loadProject,
+            getProject: getProject,
             addProject: addProject,
             updateProject: updateProject,
             deleteProject: deleteProject,
-            loadProjectSession: loadProjectSession,
-            saveProjectSession: saveProjectSession,
+            loadProject: loadProject
         };
 
     }

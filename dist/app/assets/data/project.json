@@ -3,6 +3,7 @@
         "_id": 0,
         "name": "new project 1",
         "description": "sample new project 1",
+        "noOfSessions": 0,
         "session": 0,
         "tasks": [],
         "details": {

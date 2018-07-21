@@ -264,8 +264,7 @@ body {
   font-family: var(--font-family);
   background: #e9ecef;
 }
-.login header,
-.workspace header {
+.login header {
   max-height: 70px !important;
   height: 70px;
   padding: 5px 15px;
@@ -273,27 +272,22 @@ body {
   background-color: var(--background-color);
   border-bottom: 1px solid var(--border-bottom-color);
 }
-.login header nav,
-.workspace header nav {
+.login header nav {
   display: grid;
+  grid-template-columns: minmax(150px, auto) 60px;
   grid-auto-rows: auto;
   grid-gap: 1em;
   align-items: center;
   text-align: center;
 }
-.login header nav .title,
-.workspace header nav .title {
+.login header nav .title {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow-x: hidden;
 }
-.login header nav .logo,
-.workspace header nav .logo {
+.login header nav .logo {
   width: 45px;
   height: 45px;
-}
-.login header nav {
-  grid-template-columns: minmax(150px, auto) 60px;
 }
 .login section {
   height: calc(100vh - 70px);
@@ -308,10 +302,43 @@ body {
   background: #fff;
   box-shadow: 0 0 20px #333;
 }
-.workspace header nav {
-  grid-template-columns: 25px 50px minmax(150px, auto) 40px 40px 40px 40px 40px 60px;
+.workspace {
+  --workspace-height: calc(100vh);
+  --workspace-header-height: 60px;
+  --workspace-section-height: calc(100vh - 90px);
+  --workspace-section-session-plan-area-width: 30%;
+  --workspace-section-session-plan-area-menu-height: 40px;
+  --workspace-section-session-plan-area-layout-height: calc(100vh - 130px);
+  --workspace-section-session-work-area-width: 70%;
+  --workspace-section-session-work-area-menu-height: 40px;
+  --workspace-section-session-work-area-layout-height: calc(100vh - 130px);
+  --workspace-footer-height: 30px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: var(--workspace-height);
+  display: flex;
+  flex-direction: column;
 }
-.workspace header nav #hamburger input[type="checkbox"] {
+.workspace header.workspace-header {
+  padding: 5px 15px;
+  margin: 0;
+  width: 100%;
+  height: var(--workspace-header-height);
+  max-height: var(--workspace-header-height);
+  display: block;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-bottom-color);
+}
+.workspace header.workspace-header nav {
+  display: grid;
+  grid-template-columns: 25px 50px minmax(150px, auto) 40px 40px 40px 60px;
+  grid-auto-rows: auto;
+  grid-gap: 1em;
+  align-items: center;
+  text-align: center;
+}
+.workspace header.workspace-header nav #hamburger input[type="checkbox"] {
   position: absolute;
   display: block;
   margin: 0;
@@ -321,17 +348,17 @@ body {
   opacity: 0;
   z-index: 2;
 }
-.workspace header nav #hamburger input[type="checkbox"]:checked ~ span {
+.workspace header.workspace-header nav #hamburger input[type="checkbox"]:checked ~ span {
   transform: rotate(45deg) translate(1px, -2px);
 }
-.workspace header nav #hamburger input[type="checkbox"]:checked ~ span:nth-last-child(2) {
+.workspace header.workspace-header nav #hamburger input[type="checkbox"]:checked ~ span:nth-last-child(2) {
   opacity: 0;
   transform: rotate(0deg) scale(0, 0);
 }
-.workspace header nav #hamburger input[type="checkbox"]:checked ~ span:nth-last-child(1) {
+.workspace header.workspace-header nav #hamburger input[type="checkbox"]:checked ~ span:nth-last-child(1) {
   transform: rotate(-45deg) translate(0, -1px);
 }
-.workspace header nav #hamburger > span {
+.workspace header.workspace-header nav #hamburger > span {
   display: block;
   width: 25px;
   height: 3px;
@@ -343,37 +370,37 @@ body {
   transform-origin: 3px 0px;
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
-.workspace header nav #hamburger > span:first-child {
+.workspace header.workspace-header nav #hamburger > span:first-child {
   transform-origin: 0% 0%;
 }
-.workspace header nav #hamburger > span:nth-last-child(2) {
+.workspace header.workspace-header nav #hamburger > span:nth-last-child(2) {
   transform-origin: 0% 100%;
 }
-.workspace header nav #hamburgerMenu {
+.workspace header.workspace-header nav #hamburgerMenu {
   text-align: left;
 }
-.workspace header nav #hamburgerMenu .modal-dialog {
-  top: 70px;
+.workspace header.workspace-header nav #hamburgerMenu .modal-dialog {
+  top: var(--workspace-header-height);
   padding: 0;
   margin: 0;
   width: 150px;
   transform: translate(0, 0);
 }
-.workspace header nav #hamburgerMenu.modal.left.fade .modal-dialog {
+.workspace header.workspace-header nav #hamburgerMenu.modal.left.fade .modal-dialog {
   left: -200px;
   transition: opacity 0.5s linear, left 0.5s ease-out;
 }
-.workspace header nav #hamburgerMenu.modal.left.fade.in .modal-dialog {
+.workspace header.workspace-header nav #hamburgerMenu.modal.left.fade.in .modal-dialog {
   left: 0;
 }
-.workspace header nav #hamburgerMenu .modal-heading,
-.workspace header nav #hamburgerMenu .modal-body,
-.workspace header nav #hamburgerMenu .modal-footer {
+.workspace header.workspace-header nav #hamburgerMenu .modal-heading,
+.workspace header.workspace-header nav #hamburgerMenu .modal-body,
+.workspace header.workspace-header nav #hamburgerMenu .modal-footer {
   padding: 0;
   margin: 0;
   background-color: var(--background-color);
 }
-.workspace header nav #hamburgerMenu .menu {
+.workspace header.workspace-header nav #hamburgerMenu .menu {
   position: absolute;
   top: 0;
   left: 100%;
@@ -382,46 +409,153 @@ body {
   min-width: 120px;
   max-width: 480px;
 }
-.workspace header nav #hamburgerMenu .menu.project {
+.workspace header.workspace-header nav #hamburgerMenu .menu.project {
   width: 120px;
   font-size: var(--small-font-size);
 }
-.workspace header nav #hamburgerMenu .menu.new,
-.workspace header nav #hamburgerMenu .menu.list,
-.workspace header nav #hamburgerMenu .menu.clone,
-.workspace header nav #hamburgerMenu .menu.modify,
-.workspace header nav #hamburgerMenu .menu.delete {
+.workspace header.workspace-header nav #hamburgerMenu .menu.new,
+.workspace header.workspace-header nav #hamburgerMenu .menu.list,
+.workspace header.workspace-header nav #hamburgerMenu .menu.clone,
+.workspace header.workspace-header nav #hamburgerMenu .menu.modify,
+.workspace header.workspace-header nav #hamburgerMenu .menu.delete {
   width: 200px;
 }
-.workspace header nav #hamburgerMenu .menu.session {
+.workspace header.workspace-header nav #hamburgerMenu .menu.session {
   width: 200px;
 }
-.workspace header nav .workspace-toggle label {
-  width: 175px;
+.workspace header.workspace-header nav .title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
-.workspace section.session-view {
+.workspace header.workspace-header nav .logo {
+  width: 45px;
+  height: 45px;
+}
+.workspace section.workspace-section {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: var(--workspace-section-height);
+  max-height: var(--workspace-section-height);
   display: flex;
+  flex-direction: row;
   font-size: var(--medium-font-size);
 }
-.workspace section.session-view > aside {
-  width: 0;
-  height: calc(100vh - 100px);
+.workspace section.workspace-section > aside.session-plan-area {
+  width: var(--workspace-section-session-plan-area-width);
+  height: var(--workspace-section-height);
+  background-color: var(--background-color);
+  border: 1px solid var(--border-bottom-color);
 }
-.workspace section.session-view > article {
+.workspace section.workspace-section > aside.session-plan-area ul.session-plan-area-menu {
+  width: 100%;
+  height: var(--workspace-section-session-plan-area-menu-height);
+}
+.workspace section.workspace-section > aside.session-plan-area ul.session-plan-area-menu li > a {
+  width: 100%;
+  height: var(--workspace-section-session-plan-area-menu-height);
+}
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout {
+  width: 100%;
+  height: var(--workspace-section-session-plan-area-layout-height);
+}
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed input[type="checkbox"],
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.strict,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.strict,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.strict:focus,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.strict:focus {
+  padding: 0;
+}
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.transparent,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.transparent,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.transparent:focus,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed input[type="checkbox"].form-control.transparent:focus {
+  margin: 0;
+  font-weight: lighter;
+  text-align: left;
+  background-color: var(--background-color);
+  border: none;
+  box-shadow: none;
+  outline: none !important;
+}
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed i.icon,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed i.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed i.icon.form-control.strict,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed i.icon.form-control.strict,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed i.icon.form-control.strict:focus,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed i.icon.form-control.strict:focus {
+  padding: 0;
+}
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed i.icon.form-control.transparent,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed i.icon.form-control.transparent,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed i.icon.form-control.transparent:focus,
+.workspace section.workspace-section > aside.session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed i.icon.form-control.transparent:focus {
+  margin: 0;
+  font-weight: lighter;
+  text-align: left;
+  background-color: var(--background-color);
+  border: none;
+  box-shadow: none;
+  outline: none !important;
+}
+.workspace section.workspace-section > article.session-work-area {
+  width: var(--workspace-section-session-work-area-width);
+  height: var(--workspace-section-height);
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-bottom-color);
 }
-.workspace section.session-view > article section.mind-map {
+.workspace section.workspace-section > article.session-work-area header.session-work-area-menu {
+  width: 100%;
+  height: var(--workspace-section-session-work-area-menu-height);
+  display: block;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-bottom-color);
+}
+.workspace section.workspace-section > article.session-work-area header.session-work-area-menu nav {
+  display: grid;
+  grid-template-columns: minmax(150px, auto) 40px 40px;
+  grid-auto-rows: auto;
+  grid-gap: 1em;
+  align-items: center;
+  text-align: center;
+}
+.workspace section.workspace-section > article.session-work-area header.session-work-area-menu nav .workspace-toggle label {
+  width: 175px;
+}
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout {
+  width: 100%;
+  height: var(--workspace-section-session-work-area-layout-height);
+  display: flex;
+  flex-direction: row;
+}
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool {
   width: 40%;
-  height: calc(100vh - 100px);
+  height: var(--workspace-section-session-work-area-layout-height);
 }
-.workspace section.session-view > article section.mind-map #mindMap #mindMapNetworkCanvas {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #mindMapNetworkCanvas {
   width: 100%;
-  height: calc(100vh - 100px);
+  height: var(--workspace-section-session-work-area-layout-height);
   background-color: var(--background-color);
   border: 1px solid var(--border-color);
 }
-.workspace section.session-view > article section.mind-map #mindMap #mindMapNetworkPreview {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #mindMapNetworkPreview {
   position: absolute;
   top: 70%;
   bottom: 0;
@@ -432,174 +566,163 @@ body {
   background-color: var(--background-color);
   border: 1px solid var(--border-color);
 }
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #addToNodePopup .modal-dialog,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editNodePopup .modal-dialog,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editEdgePopup .modal-dialog {
   position: absolute;
   width: auto;
   margin: 10px;
 }
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-header,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-header,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-header,
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-body,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-body,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-body,
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-footer,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-footer,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-footer {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #addToNodePopup .modal-dialog .modal-content .modal-header,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editNodePopup .modal-dialog .modal-content .modal-header,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editEdgePopup .modal-dialog .modal-content .modal-header,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #addToNodePopup .modal-dialog .modal-content .modal-body,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editNodePopup .modal-dialog .modal-content .modal-body,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editEdgePopup .modal-dialog .modal-content .modal-body,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #addToNodePopup .modal-dialog .modal-content .modal-footer,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editNodePopup .modal-dialog .modal-content .modal-footer,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.mind-map-tool #mindMap #editEdgePopup .modal-dialog .modal-content .modal-footer {
   padding: 0;
   margin: 0;
 }
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-header label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-header label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-header label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-body label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-body label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-body label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-footer label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-footer label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-footer label.form-control,
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-header label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-header label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-header label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-body label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-body label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-body label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #addToNodePopup .modal-dialog .modal-content .modal-footer label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #editNodePopup .modal-dialog .modal-content .modal-footer label.form-control:focus,
-.workspace section.session-view > article section.mind-map #mindMap #editEdgePopup .modal-dialog .modal-content .modal-footer label.form-control:focus {
-  margin: 0;
-  font-weight: lighter;
-  text-align: left;
-  background-color: var(--background-color);
-  border: none;
-  box-shadow: none;
-  outline: none !important;
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.recon-workspace-tool {
+  width: 30%;
+  height: var(--workspace-section-session-work-area-layout-height);
 }
-.workspace section.session-view > article section.konva-canvas {
-  width: 60%;
-  height: calc(100vh - 100px);
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.recon-workspace-tool #searchWorkspaceCanvas {
+  width: 100%;
+  height: var(--workspace-section-session-work-area-layout-height);
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.search-workspace-tool {
+  width: 30%;
+  height: var(--workspace-section-session-work-area-layout-height);
+}
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.search-workspace-tool #searchWorkspaceCanvas {
+  width: 100%;
+  height: var(--workspace-section-session-work-area-layout-height);
+}
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog label.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="text"].form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="number"].form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog select.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog textarea.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog button.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog label.form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="text"].form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="number"].form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog select.form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog textarea.form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog button.form-control:focus {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog label.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="text"].form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="number"].form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog select.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog textarea.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog button.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog label.form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="text"].form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="number"].form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog select.form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog textarea.form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog button.form-control:focus {
   margin: 0;
   border-radius: 0;
   border: none;
   box-shadow: none;
   outline: none !important;
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog label.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="text"].form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="number"].form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog select.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog label.form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="text"].form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="number"].form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog select.form-control:focus {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog label.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="text"].form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="number"].form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog select.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog label.form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="text"].form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="number"].form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog select.form-control:focus {
   text-align: left;
   background-color: var(--background-color);
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="text"].form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="number"].form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog select.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="text"].form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog input[type="number"].form-control:focus,
-.workspace section.session-view > article section.note-form #note .modal-dialog select.form-control:focus {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="text"].form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="number"].form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog select.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="text"].form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog input[type="number"].form-control:focus,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog select.form-control:focus {
   border-bottom: 1px solid var(--active-border-color);
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog label {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog label {
   margin: 0;
   font-weight: lighter;
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog textarea.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog textarea.form-control:focus {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog textarea.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog textarea.form-control:focus {
   max-height: 200px;
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog button.form-control,
-.workspace section.session-view > article section.note-form #note .modal-dialog button.form-control:focus {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog button.form-control,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog button.form-control:focus {
   display: block;
   text-align: left;
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog .suggest > .dropdown-menu {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog .suggest > .dropdown-menu {
   margin-top: 15px;
   padding: 0;
   max-height: 200px;
   overflow-y: auto;
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog #info,
-.workspace section.session-view > article section.note-form #note .modal-dialog #widgets {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #info,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #widgets {
   height: 300px;
   max-height: 300px;
   overflow-y: auto;
   background-color: var(--background-color);
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog #info .list-group,
-.workspace section.session-view > article section.note-form #note .modal-dialog #widgets .list-group {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #info .list-group,
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #widgets .list-group {
   padding: 0;
   margin: 0;
   height: -webkit-fill-available;
   overflow-y: auto;
 }
-.workspace section.session-view > article section.note-form #note .modal-dialog .widget-container {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog .widget-container {
   height: -webkit-fill-available;
   overflow-y: auto;
 }
-.workspace section.session-view > article section.note-form #conditionsTableModal .modal-dialog {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.workspace section.session-view > article section.note-form #conditionsTableModal .modal-dialog .modal-body {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog .modal-body {
   max-height: 380px;
   overflow-y: scroll;
   padding: 15px 0px;
 }
-.workspace section.session-view > article section.note-form #conditionsTableModal .modal-dialog .modal-body .table-bordered > thead > tr.active {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog .modal-body .table-bordered > thead > tr.active {
   color: black;
   font-weight: bold;
 }
-.workspace section.session-view > article section.note-form #conditionsTableModal .modal-dialog .modal-body .table-bordered > thead > tr > td {
+.workspace section.workspace-section > article.session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog .modal-body .table-bordered > thead > tr > td {
   padding: 0px;
 }
-.workspace footer {
-  max-height: 30px !important;
-  height: 30px;
+.workspace footer.workspace-footer {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: var(--workspace-footer-height);
+  max-height: var(--workspace-footer-height);
   font-size: var(--medium-font-size);
 }
-.workspace footer .tasks-dropup,
-.workspace footer .jottings-dropup,
-.workspace footer .notes-dropup,
-.workspace footer .questions-dropup {
+.workspace footer.workspace-footer .tasks-dropup,
+.workspace footer.workspace-footer .jottings-dropup,
+.workspace footer.workspace-footer .notes-dropup,
+.workspace footer.workspace-footer .questions-dropup {
   padding: 0;
   margin: 0;
   border-right: 1px solid var(--border-right-color);
 }
-.workspace footer .tasks-dropup-header,
-.workspace footer .jottings-dropup-header,
-.workspace footer .notes-dropup-header,
-.workspace footer .questions-dropup-header,
-.workspace footer .tasks-dropdown-header,
-.workspace footer .jottings-dropdown-header,
-.workspace footer .notes-dropdown-header,
-.workspace footer .questions-dropdown-header {
+.workspace footer.workspace-footer .tasks-dropup-header,
+.workspace footer.workspace-footer .jottings-dropup-header,
+.workspace footer.workspace-footer .notes-dropup-header,
+.workspace footer.workspace-footer .questions-dropup-header,
+.workspace footer.workspace-footer .tasks-dropdown-header,
+.workspace footer.workspace-footer .jottings-dropdown-header,
+.workspace footer.workspace-footer .notes-dropdown-header,
+.workspace footer.workspace-footer .questions-dropdown-header {
   height: 30px;
   padding: 0 10px;
   line-height: 30px;
@@ -607,55 +730,50 @@ body {
   color: var(--footer-header-color);
   cursor: pointer;
 }
-.workspace footer .footer-menu {
+.workspace footer.workspace-footer .footer-menu {
   background-color: var(--footer-menu-background-color);
   padding: 0;
   margin: 0;
   height: 300px;
 }
-.workspace footer .footer-menu-content {
+.workspace footer.workspace-footer .footer-menu-content {
   overflow-y: scroll;
   height: calc(100% - 30px);
 }
-.workspace footer .footer-menu-content ul {
+.workspace footer.workspace-footer .footer-menu-content ul {
   padding: 0;
   margin: 0;
   -webkit-padding-start: 0;
 }
-.workspace footer .footer-menu-content ol {
+.workspace footer.workspace-footer .footer-menu-content ol {
   padding: 0;
   margin: 0;
   -webkit-padding-start: 25px;
 }
-.workspace footer .footer-menu-content ul > li,
-.workspace footer .footer-menu-content ol > li {
+.workspace footer.workspace-footer .footer-menu-content ul > li,
+.workspace footer.workspace-footer .footer-menu-content ol > li {
   padding: 0 5px;
   margin: 5px 0;
 }
-.workspace footer .footer-menu-content ul > li textarea.form-control,
-.workspace footer .footer-menu-content ol > li textarea.form-control,
-.workspace footer .footer-menu-content ul > li textarea.form-control:focus,
-.workspace footer .footer-menu-content ol > li textarea.form-control:focus {
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
-  outline: none !important;
-  background-color: var(--footer-menu-background-color);
-}
-.workspace footer .footer-menu-content > div {
+.workspace footer.workspace-footer .footer-menu-content > div {
   padding: 10px;
 }
-.workspace footer .footer-menu-content span {
+.workspace footer.workspace-footer .footer-menu-content span {
   word-break: break-all;
 }
-.workspace footer .is-checked-true {
+.workspace footer.workspace-footer .is-checked-true {
   text-decoration: line-through;
   color: grey;
 }
 /* @END SECTION: Main */
 /* @START SECTION: Common */
+/* tabs */
+.nav-tabs {
+  width: 100%;
+}
+.nav-tabs > li {
+  width: 50%;
+}
 /* ul li */
 .nav > .nav-item,
 .list-group > .list-group-item {
@@ -676,6 +794,12 @@ body {
 .row > a {
   color: black;
   transition: 0.5s;
+}
+.nav > .nav-item > a > label,
+.row > a > label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 .nav > .nav-item > a:hover,
 .row > a:hover {
@@ -762,6 +886,38 @@ a label,
 button label {
   cursor: pointer;
 }
+/* label */
+label.form-control.strict,
+label.form-control.strict:focus {
+  padding: 0;
+}
+label.form-control.transparent,
+label.form-control.transparent:focus {
+  margin: 0;
+  font-weight: lighter;
+  text-align: left;
+  background-color: var(--background-color);
+  border: none;
+  box-shadow: none;
+  outline: none !important;
+}
+/* textarea */
+textarea {
+  resize: none;
+}
+textarea.form-control.strict,
+textarea.form-control.strict:focus {
+  padding: 0;
+}
+textarea.form-control.transparent,
+textarea.form-control.transparent:focus {
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  outline: none !important;
+  background: transparent;
+}
 /* button */
 .btn.btn-primary {
   display: inline-flex;
@@ -841,10 +997,6 @@ button label {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover-color);
-}
-/* text-area */
-textarea {
-  resize: none;
 }
 /* panel */
 .panel.panel-primary {

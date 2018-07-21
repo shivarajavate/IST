@@ -11,7 +11,7 @@ ist.config([
             url: "^/login",
             views: {
                 "": {
-                    templateUrl: './views/login.html',
+                    templateUrl: './views/login.page.html',
                     controller: 'LoginController'
                 }
             }
@@ -19,17 +19,20 @@ ist.config([
             url: "^/workspace",
             views: {
                 "": {
-                    templateUrl: './views/workspace.html',
+                    templateUrl: './views/main.page.html',
                     controller: 'WorkspaceController'
                 },
-                "project-view@workspace": {
-                    templateUrl: "./views/partial/project.view.html"
+                "session-view@workspace": {
+                    templateUrl: "./views/partial/session.view.html"
                 },
                 "mind-map@workspace": {
                     templateUrl: "./views/partial/mind.map.html"
                 },
-                "workspace-view@workspace": {
-                    templateUrl: "./views/partial/workspace.view.html"
+                "recon-workspace@workspace": {
+                    templateUrl: "./views/partial/recon.workspace.html"
+                },
+                "search-workspace@workspace": {
+                    templateUrl: "./views/partial/search.workspace.html"
                 },
                 "note-form@workspace": {
                     templateUrl: "./views/partial/note.form.html"

@@ -8,6 +8,7 @@ class ProjectDataModel {
         model._id = data._id;
         model.name = data.name;
         model.description = data.description;
+        model.noOfSessions = data.noOfSessions;
         model.session = data.session;
         model.tasks = data.tasks;
         model.details = data.details;
@@ -15,13 +16,6 @@ class ProjectDataModel {
         model.uisettingName = data.uisettingName;
         model.createdBy = data.createdBy;
         model.lastModifiedBy = data.lastModifiedBy;
-    }
-
-    upgradeSession() {
-
-        var model = this;
-
-        ++(model.session);
     }
 
     uniqueId() {
@@ -277,10 +271,27 @@ class ProjectDataModel {
         var newTask = {
             name: newTaskName,
             session: model.session,
-            completed: false
-        }
+            completed: false,
+            views: [],
+            endTime: "0:00"
+        };
+
         var newTaskIndex = (position + 1);
         model.tasks.splice(newTaskIndex, 0, newTask);
+    }
+
+    updateTask(viewName, index) {
+
+        var model = this;
+
+        model.tasks[index].views.push(viewName);
+    }
+
+    finishTask(endTime, completed, index) {
+
+        var model = this;
+
+        model.tasks[index].endTime = (completed) ? endTime : "0:00";
     }
 
     deleteTask(index) {

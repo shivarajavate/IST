@@ -1,0 +1,294 @@
+<div id="workspace" class="workspace">
+
+  <header class="workspace-header">
+    <nav>
+      <div>
+        <div id="hamburger" ng-click="showMenu('menu')">
+          <input type="checkbox" data-toggle="modal" data-target="#hamburgerMenu" />
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div id="hamburgerMenu" tabindex="-1" class="modal left fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" ng-click="openMenu('project')">
+                      <i class="fa fa-pencil-square icon"></i>
+                      <label>project</label>
+                    </a>
+                    <div class="project menu panel panel-primary" ng-show="menu.project.show">
+                      <div class="panel-body">
+                        <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link" ng-click="openMenu('new')">
+                              <label>new</label>
+                            </a>
+                            <div class="new menu panel panel-primary" ng-show="menu.project.new.show">
+                              <div class="panel-body">
+                                <div class="row margin-collapsable">
+                                  <input type="text" class="form-control" ng-model="newProject.name" placeholder="enter project name">
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <select class="form-control" ng-model="newProject.templateName" ng-options="templateName for templateName in templateNames">
+                                    <option disabled selected hidden value="">choose template</option>
+                                  </select>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <textarea class="form-control" rows="5" ng-model="newProject.description" placeholder="enter project description"></textarea>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <div class="col-sm-12">
+                                    <button class="btn btn-primary btn-block" ng-click="addProject('add', newProject)">create</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="panel-footer" ng-show="projectMenuError.status">
+                                <div class="row">
+                                  {{projectMenuError.message}}
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" ng-class="{ disabled: !disableLinks }" ng-click="showMenu('menu', 'project', 'list')">
+                              <label>list</label>
+                            </a>
+                            <div class="list menu panel panel-primary" ng-show="menu.project.list.show">
+                              <div class="panel-body">
+                                <div class="row margin-collapsable">
+                                  <select class="form-control" ng-model="selectedProject" ng-options="project.name for project in projects">
+                                    <option disabled selected hidden value="">choose project</option>
+                                  </select>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <input type="text" class="form-control" ng-model="selectedProject.name" placeholder="project name">
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <input type="text" class="form-control" disabled ng-model="selectedProject.templateName" placeholder="template name">
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <textarea class="form-control" rows="5" ng-model="selectedProject.description" placeholder="project description"></textarea>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <div class="col-sm-12">
+                                    <button class="btn btn-primary btn-block" data-dismiss="modal">ok</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" ng-class="{ disabled: !disableLinks }" ng-click="openMenu('clone')">
+                              <label>clone</label>
+                            </a>
+                            <div class="clone menu panel panel-primary" ng-show="menu.project.clone.show">
+                              <div class="panel-body">
+                                <div class="row margin-collapsable">
+                                  <select class="form-control" ng-model="selectedProject" ng-options="project.name for project in projects" ng-change="setNewProject('clone', selectedProject)">
+                                    <option disabled selected hidden value="">choose project</option>
+                                  </select>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <input type="text" class="form-control" ng-model="newProject.name" placeholder="project name">
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <input type="text" class="form-control" disabled ng-model="newProject.templateName" placeholder="template name">
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <textarea class="form-control" rows="5" ng-model="newProject.description" placeholder="project description"></textarea>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <div class="col-sm-12">
+                                    <button class="btn btn-primary btn-block" ng-click="addProject('clone', newProject)">clone</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="panel-footer" ng-show="projectMenuError.status">
+                                <div class="row">
+                                  {{projectMenuError.message}}
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" ng-class="{ disabled: !disableLinks }" ng-click="openMenu('modify')">
+                              <label>modify</label>
+                            </a>
+                            <div class="modify menu panel panel-primary" ng-show="menu.project.modify.show">
+                              <div class="panel-body">
+                                <div class="row margin-collapsable">
+                                  <select class="form-control" ng-model="selectedProject" ng-options="project.name for project in projects" ng-change="setNewProject('modify', selectedProject)">
+                                    <option disabled selected hidden value="">project name</option>
+                                  </select>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <input type="text" class="form-control" ng-model="newProject.name" placeholder="project name">
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <input type="text" class="form-control" disabled ng-model="newProject.templateName" placeholder="template name">
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <textarea class="form-control" rows="5" ng-model="newProject.description" placeholder="project description"></textarea>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <div class="col-sm-12">
+                                    <button class="btn btn-primary btn-block" ng-click="addProject('modify', newProject)">modify</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="panel-footer" ng-show="projectMenuError.status">
+                                <div class="row">
+                                  {{projectMenuError.message}}
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" ng-class="{ disabled: !disableLinks }" ng-click="openMenu('delete')">
+                              <label>delete</label>
+                            </a>
+                            <div class="delete menu panel panel-primary" ng-show="menu.project.delete.show">
+                              <div class="panel-body">
+                                <div class="row margin-collapsable">
+                                  <select class="form-control" ng-model="selectedProject" ng-options="project.name for project in projects" ng-change="resetProjectMenuError()">
+                                    <option disabled selected hidden value="">project name</option>
+                                  </select>
+                                </div>
+                                <div class="row margin-collapsable">
+                                  <textarea class="form-control" rows="5" disabled ng-model="selectedProject.description" placeholder="project description"></textarea>
+                                </div>
+                                <div class="row margin-collapsable" ng-show="deletebutton">
+                                  <div class="col-sm-12">
+                                    <button class="btn btn-primary btn-block" ng-click="delete()">delete</button>
+                                  </div>
+                                </div>
+                                <div class="row margin-collapsable" ng-show="projectMenuError.confirm">
+                                  <div class="col-sm-6 space-separable">
+                                    <button class="btn btn-primary btn-block" ng-click="deleteProject(selectedProject)">sure?</button>
+                                  </div>
+                                  <div class="col-sm-6 space-separable">
+                                    <button class="btn btn-primary btn-block" ng-click="resetProjectMenu()">nah!</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="panel-footer" ng-show="projectMenuError.status">
+                                <div class="row">
+                                  {{projectMenuError.message}}
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" ng-class="{ disabled: !disableLinks }" ng-click="showMenu('menu', 'session')">
+                      <i class="fa fa-file-text icon"></i>
+                      <label>session</label>
+                    </a>
+                    <div class="session menu panel panel-primary" ng-show="menu.session.show">
+                      <div class="panel-body">
+                        <div class="row margin-collapsable">
+                          <select class="form-control" ng-model="currProject" ng-options="project.name for project in projects" placeholder="choose project">
+                            <option value="" disabled selected hidden>choose project</option>
+                          </select>
+                        </div>
+                        <div class="row margin-collapsable">
+                          <select class="form-control" ng-model="currDuration">
+                            <option value="" disabled selected hidden>choose duration</option>
+                            <option value="45">45 min</option>
+                            <option value="60">60 min</option>
+                            <option value="90">90 min</option>
+                          </select>
+                        </div>
+                        <div class="row margin-collapsable">
+                          <button class="btn btn-primary btn-block" ng-click="startSession(currProject, currSession)" data-dismiss="modal">
+                            <i class="fa fa-play icon"></i>
+                            <label>start</label>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a ng-class="{ disabled: !project.open }" ng-click="project.download()">
+                      <i class="fa fa-floppy-o icon"></i>
+                      <label>download</label>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./sprints/sprint.two.xls" type="application/vnd.ms-excel">
+                      <i class="fa fa-list-alt icon"></i>
+                      <label>sprint plan</label>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" ng-click="openMenu('theme')">
+                      <i class="fa fa-magic icon"></i>
+                      <label>theme</label>
+                    </a>
+                    <div class="theme menu panel panel-primary" ng-show="menu.theme.show">
+                      <div class="panel-body">
+                        <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link" ng-click="applyTheme('default')" data-dismiss="modal">
+                              <label>default</label>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" ng-click="applyTheme('blue')" data-dismiss="modal">
+                              <label>blue</label>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" ng-click="applyTheme('green')" data-dismiss="modal">
+                              <label>green</label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" ng-click="logout()" data-dismiss="modal">
+                      <i class="fa fa-sign-out icon"></i>
+                      <label>logout</label>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span>{{userName}}</span>
+      </div>
+      <div class="title">
+        <label>IST WORKSPACE</label>
+        <label ng-show="project.open">[ {{project.model.name}} ]</label>
+      </div>
+      <div>
+        <i id="sessionTimer" class="fa fa-hourglass-start icon disabled" ng-attr-title="{{timer.sessionTime}}"></i>
+      </div>
+      <div>
+        <i class="fa fa-database icon disabled"></i>
+        <i class="fa fa-user icon super-script disabled"></i>
+      </div>
+      <div>
+        <i class="fa fa-database icon disabled"></i>
+        <i class="fa fa-globe icon super-script disabled"></i>
+      </div>
+      <div>
+        <img class="logo" src="./assets/images/stag_logo_transparent.png" alt="logo">
+      </div>
+    </nav>
+  </header>
+
+  <div ui-view="session-view" ng-style="{'visibility': project.open ? 'visible' : 'hidden'}"></div>
+
+</div>

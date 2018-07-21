@@ -4,6 +4,48 @@
     "version": 1.0,
     "views": [
       {
+        "key": "MINDMAP",
+        "name": "mindMap",
+        "canvasName": "mindMapNetworkCanvas",
+        "options": {
+          "locale": "en",
+          "layout": {
+            "randomSeed": 1,
+            "hierarchical": {
+              "enabled": true,
+              "levelSeparation": 250,
+              "nodeSpacing": 50,
+              "blockShifting": false,
+              "edgeMinimization": false,
+              "direction": "LR",
+              "sortMethod": "directed"
+            }
+          },
+          "nodes": {
+            "font": {
+              "multi": "html"
+            },
+            "borderWidth": 0,
+            "borderWidthSelected": 0,
+            "widthConstraint": {
+              "minimum": 75,
+              "maximum": 75
+            }
+          },
+          "edges": {
+            "smooth": {
+              "enabled": true,
+              "type": "cubicBezier",
+              "forceDirection": "horizontal",
+              "roundness": 0.5
+            }
+          },
+          "physics": {
+            "enabled": false
+          }
+        }
+      },
+      {
         "key": "RECON",
         "name": "reconWorkspace",
         "canvasName": "reconWorkspaceCanvas",
@@ -744,46 +786,9 @@
         }
       },
       {
-        "key": "MINDMAP",
-        "name": "mindMap",
-        "canvasName": "mindMapNetworkCanvas",
-        "options": {
-          "locale": "en",
-          "layout": {
-            "randomSeed": 1,
-            "hierarchical": {
-              "enabled": true,
-              "levelSeparation": 250,
-              "nodeSpacing": 50,
-              "blockShifting": false,
-              "edgeMinimization": false,
-              "direction": "LR",
-              "sortMethod": "directed"
-            }
-          },
-          "nodes": {
-            "font": {
-              "multi": "html"
-            },
-            "borderWidth": 0,
-            "borderWidthSelected": 0,
-            "widthConstraint": {
-              "minimum": 75,
-              "maximum": 75
-            }
-          },
-          "edges": {
-            "smooth": {
-              "enabled": true,
-              "type": "cubicBezier",
-              "forceDirection": "horizontal",
-              "roundness": 0.5
-            }
-          },
-          "physics": {
-            "enabled": false
-          }
-        }
+        "key": "NOTEFORM",
+        "name": "noteForm",
+        "canvasName": "noteForm"
       }
     ]
   }

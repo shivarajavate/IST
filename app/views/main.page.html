@@ -1,6 +1,6 @@
 <div id="workspace" class="workspace">
 
-  <header>
+  <header class="workspace-header">
     <nav>
       <div>
         <div id="hamburger" ng-click="showMenu('menu')">
@@ -198,13 +198,6 @@
                           </select>
                         </div>
                         <div class="row margin-collapsable">
-                          <select class="form-control" ng-model="currSession">
-                            <option value="" disabled selected hidden>choose session</option>
-                            <option value="RECON">RECONNAISSANCE</option>
-                            <option value="SEARCH">SEARCH</option>
-                          </select>
-                        </div>
-                        <div class="row margin-collapsable">
                           <select class="form-control" ng-model="currDuration">
                             <option value="" disabled selected hidden>choose duration</option>
                             <option value="45">45 min</option>
@@ -278,24 +271,6 @@
       <div class="title">
         <label>IST WORKSPACE</label>
         <label ng-show="project.open">[ {{project.model.name}} ]</label>
-        <div ng-show="project.open" class="workspace-toggle">
-          <div class="btn-group">
-            <label class="btn btn-primary" ng-class="{ active : selectedSession === 'RECON' }">
-              <input type="radio" class="hide" value="RECON" ng-model="selectedSession" ng-change='project.startSession(selectedSession)'> RECONNAISSANCE
-            </label>
-            <label class="btn btn-primary" ng-class="{ active : selectedSession === 'SEARCH' }">
-              <input type="radio" class="hide" value="SEARCH" ng-model="selectedSession" ng-change='project.startSession(selectedSession)'> SEARCH
-            </label>
-          </div>
-        </div>
-      </div>
-      <div>
-        <i class="fa fa-undo icon" ng-style="{'visibility': project.open ? 'visible' : 'hidden'}" ng-class="{ disabled : !project.undoManager.hasUndo() }"
-          ng-click="project.undoManager.undo()" ng-attr-title="undo"></i>
-      </div>
-      <div>
-        <i class="fa fa-repeat icon" ng-style="{'visibility': project.open ? 'visible' : 'hidden'}" ng-class="{ disabled : !project.undoManager.hasRedo() }"
-          ng-click="project.undoManager.redo()" ng-attr-title="redo"></i>
       </div>
       <div>
         <i id="sessionTimer" class="fa fa-hourglass-start icon disabled" ng-attr-title="{{timer.sessionTime}}"></i>
@@ -314,6 +289,6 @@
     </nav>
   </header>
 
-  <div ui-view="project-view" ng-style="{'visibility': project.open ? 'visible' : 'hidden'}"></div>
+  <div ui-view="session-view" ng-style="{'visibility': project.open ? 'visible' : 'hidden'}"></div>
 
 </div>

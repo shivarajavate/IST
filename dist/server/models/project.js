@@ -11,6 +11,10 @@ var projectSchema = mongoose.Schema(
             type: String,
             default: ""
         },
+        noOfSessions: {
+            type: Number,
+            default: 0
+        },
         session: {
             type: Number,
             default: 0
