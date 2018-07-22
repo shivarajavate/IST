@@ -2,16 +2,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" ng-click="project.noteForm.conditionsTable.closeConditionsTable()" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" ng-click="project.views['noteForm'].view.conditionsTable.closeConditionsTable()" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Condition table</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row strict">
                     <div class="col-sm-11">
                         <table class="table table-bordered">
                             <thead>
-                                <tr ng-class="{'active':$index == project.noteForm.conditionsTable.selectedIndex}" ng-repeat="bc in project.noteForm.conditionsTable.bcList">
-                                    <td ng-click="project.noteForm.conditionsTable.selectCondition($index)">
+                                <tr ng-class="{ 'active': $index == project.views['noteForm'].view.conditionsTable.selectedIndex }" ng-repeat="bc in project.views['noteForm'].view.conditionsTable.bcList">
+                                    <td ng-click="project.views['noteForm'].view.conditionsTable.selectCondition($index)">
                                         <button type="button" class="btn btn-primary">{{$index + 1}}</button>
                                     </td>
                                     <td>
@@ -29,19 +29,19 @@
                         </table>
                     </div>
                     <div class="col-sm-1">
-                        <button type="button" class="btn btn-primary" ng-show="(project.noteForm.conditionsTable.selectedIndex === -1)" ng-click="project.noteForm.conditionsTable.addCondition()">
+                        <button type="button" class="btn btn-primary" ng-show="(project.views['noteForm'].view.conditionsTable.selectedIndex === -1)" ng-click="project.views['noteForm'].view.conditionsTable.addCondition()">
                             <i class="fa fa-plus-square icon"></i>
                         </button>
-                        <button type="button" class="btn btn-primary" ng-show="(project.noteForm.conditionsTable.selectedIndex !== -1)" ng-click="project.noteForm.conditionsTable.removeCondition()">
+                        <button type="button" class="btn btn-primary" ng-show="(project.views['noteForm'].view.conditionsTable.selectedIndex !== -1)" ng-click="project.views['noteForm'].view.conditionsTable.removeCondition()">
                             <i class="fa fa-minus-square icon"></i>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="row">
-                    <span class="pull-left">{{project.noteForm.conditionsTable.errorMessage}}</span>
-                    <button type="button" class="btn btn-primary" ng-click="project.noteForm.conditionsTable.saveConditions()">Save table</button>
+                <div class="row strict">
+                    <span class="pull-left">{{project.views['noteForm'].view.conditionsTable.errorMessage}}</span>
+                    <button type="button" class="btn btn-primary" ng-click="project.views['noteForm'].view.conditionsTable.saveConditions()">Save table</button>
                 </div>
             </div>
         </div>

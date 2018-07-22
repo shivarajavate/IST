@@ -460,6 +460,7 @@ body {
             div.session-plan-area-layout {
                 width: 100%;
                 height: var(--workspace-section-session-plan-area-layout-height);
+                overflow-y: scroll;
                 #prevSessionTasks, #currSessionTasks {
                     div.task-container {
                         div.task-completed {
@@ -637,20 +638,24 @@ body {
                                 }
                             }
                             #info, #widgets {
-                                height: 300px;
                                 max-height: 300px;
-                                overflow-y: auto;
                                 background-color: var(--background-color);
-                                .list-group {
-                                    padding: 0;
-                                    margin: 0;
-                                    height: -webkit-fill-available;
-                                    overflow-y: auto;
+                                .panel.panel-primary {
+                                    .panel-body {
+                                        max-height: 300px;
+                                        overflow-y: scroll;
+                                        .widget-container {
+                                            height: -webkit-fill-available;
+                                            overflow-y: scroll;
+                                            .list-group {
+                                                padding: 0;
+                                                margin: 0;
+                                                height: -webkit-fill-available;
+                                                overflow-y: scroll;
+                                            }
+                                        }
+                                    }
                                 }
-                            }
-                            .widget-container {
-                                height: -webkit-fill-available;
-                                overflow-y: auto;
                             }
                         }
                     }
@@ -663,8 +668,9 @@ body {
                             .modal-body {
                                 max-height: 380px;
                                 overflow-y: scroll;
-                                padding: 15px 0px;
                                 .table-bordered>thead>tr {
+                                    padding: 0;
+                                    margin: 0;
                                     &.active {
                                         color: black;
                                         font-weight: bold;

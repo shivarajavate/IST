@@ -24,73 +24,77 @@
             <div class="session-plan-area-layout tab-content">
 
                 <!-- <div id="prevSessionTasks" class="tab-pane fade">
-                            <div class="task-container" ng-repeat="task in project.model.tasks track by $index" ng-show="((task.session < project.model.session) && (!task.completed))">
-                                <div class="row strict">
-                                    <div class="col-md-1">
-                                        <label class="form-control transparent">{{ $index + 1 }}</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control transparent" rows="1" autosize="true" ng-model="project.model.tasks[$index].name"></textarea>
-                                    </div>
-                                    <div class="col-md-1 task-completed">
-                                        <input type="checkbox" class="form-control transparent" ng-model="project.model.tasks[$index].completed">
-                                        <i class="fa fa-circle-o-notch icon form-control transparent" ng-show="!(project.model.tasks[$index].completed)"></i>
-                                        <i class="fa fa-check icon form-control transparent" ng-show="project.model.tasks[$index].completed"></i>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-control transparent" ng-show="project.model.tasks[$index].completed">{{timer.sessionTime}}</label>
-                                    </div>
+                    <div class="row margin-collapsable">
+                        <div class="task-container col-md-12" ng-repeat="task in project.model.tasks track by $index" ng-show="((task.session < project.model.session) && (!task.completed))">
+                            <div class="row strict">
+                                <div class="col-md-1">
+                                    <label class="form-control transparent">{{ $index + 1 }}</label>
                                 </div>
-            
-                                <select class="form-control" ng-model="project.selectedViewName">
-                                    <option value="" disabled selected hidden>choose session</option>
-                                    <option value="mindMap">MINDMAP</option>
-                                    <option value="reconWorkspace">RECONNAISSANCE</option>
-                                    <option value="searchWorkspace">SEARCH</option>
-                                </select>
+                                <div class="col-md-8">
+                                    <textarea class="form-control transparent" rows="1" autosize="true" ng-model="project.model.tasks[$index].name"></textarea>
+                                </div>
+                                <div class="col-md-1 task-completed">
+                                    <input type="checkbox" class="form-control transparent" ng-model="project.model.tasks[$index].completed">
+                                    <i class="fa fa-circle-o-notch icon form-control transparent" ng-show="!(project.model.tasks[$index].completed)"></i>
+                                    <i class="fa fa-check icon form-control transparent" ng-show="project.model.tasks[$index].completed"></i>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-control transparent" ng-show="project.model.tasks[$index].completed">{{timer.sessionTime}}</label>
+                                </div>
                             </div>
-                            <div ng-show="!((project.model.tasks | filter: { session: '!(project.model.session)', completed: 'false' }).length > 0)">
-                                <label class="form-control">
-                                    <i class="fa fa-check icon"></i>
-                                    <label>no tasks found</label>
-                                </label>
-                            </div>
-                        </div> -->
+
+                            <select class="form-control" ng-model="project.selectedViewName">
+                                <option value="" disabled selected hidden>choose session</option>
+                                <option value="mindMap">MINDMAP</option>
+                                <option value="reconWorkspace">RECONNAISSANCE</option>
+                                <option value="searchWorkspace">SEARCH</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12" ng-show="!((project.model.tasks | filter: { session: '!(project.model.session)', completed: 'false' }).length > 0)">
+                            <label class="form-control">
+                                <i class="fa fa-check icon"></i>
+                                <label>no tasks found</label>
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
 
                 <div id="currSessionTasks" class="tab-pane fade in active">
-                    <div class="task-container" ng-repeat="task in project.model.tasks track by $index" ng-show="(task.session === project.model.session)">
-                        <div class="row strict">
-                            <div class="col-md-1">
-                                <label class="form-control transparent">{{ $index + 1 }}</label>
+                    <div class="row margin-collapsable">
+                        <div class="task-container col-md-12" ng-repeat="task in project.model.tasks track by $index" ng-show="(task.session === project.model.session)">
+                            <div class="row strict">
+                                <div class="col-md-1">
+                                    <label class="form-control transparent">{{ $index + 1 }}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea class="form-control transparent" rows="1" autosize="true" ng-model="project.model.tasks[$index].name" suggest="true"
+                                        suggestions="project.viewNames" selected-suggestion on-select="project.model.updateTask(selectedSuggestion, $index)"
+                                        auto-crud="true" parent-selector="div.task-container" on-create="project.model.addTask('', $index)"
+                                        on-delete="project.model.deleteTask($index)" ng-dblclick="project.views.toggleView(project.model.tasks[$index].views[0])"></textarea>
+                                </div>
+                                <div class="col-md-1 task-completed">
+                                    <input type="checkbox" class="form-control transparent" ng-model="project.model.tasks[$index].completed" ng-change="project.model.finishTask(project.sessionTimer.time, project.model.tasks[$index].completed, $index)">
+                                    <i class="fa fa-circle-o-notch icon form-control transparent" ng-show="!(project.model.tasks[$index].completed)"></i>
+                                    <i class="fa fa-check icon form-control transparent" ng-show="project.model.tasks[$index].completed"></i>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-control transparent" ng-show="project.model.tasks[$index].completed" ng-bind="project.model.tasks[$index].endTime"></label>
+                                </div>
                             </div>
-                            <div class="col-md-8">
-                                <textarea class="form-control transparent" rows="1" autosize="true" ng-model="project.model.tasks[$index].name" suggest="true"
-                                    suggestions="project.viewNames" selected-suggestion on-select="project.model.updateTask(selectedSuggestion, $index)"
-                                    auto-crud="true" parent-selector="div.task-container" on-create="project.model.addTask('', $index)"
-                                    on-delete="project.model.deleteTask($index)" ng-dblclick="project.views.toggleView(project.model.tasks[$index].views[0])"></textarea>
-                            </div>
-                            <div class="col-md-1 task-completed">
-                                <input type="checkbox" class="form-control transparent" ng-model="project.model.tasks[$index].completed" ng-change="project.model.finishTask(project.sessionTimer.time, project.model.tasks[$index].completed, $index)">
-                                <i class="fa fa-circle-o-notch icon form-control transparent" ng-show="!(project.model.tasks[$index].completed)"></i>
-                                <i class="fa fa-check icon form-control transparent" ng-show="project.model.tasks[$index].completed"></i>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="form-control transparent" ng-show="project.model.tasks[$index].completed" ng-bind="project.model.tasks[$index].endTime"></label>
-                            </div>
-                        </div>
 
-                        <!-- <select class="form-control" ng-model="project.selectedViewName">
+                            <!-- <select class="form-control" ng-model="project.selectedViewName">
                                         <option value="" disabled selected hidden>choose session</option>
                                         <option value="mindMap">MINDMAP</option>
                                         <option value="reconWorkspace">RECONNAISSANCE</option>
                                         <option value="searchWorkspace">SEARCH</option>
                                     </select> -->
-                    </div>
-                    <div ng-show="!((project.model.tasks | filter: { session: project.model.session }).length > 0)">
-                        <button class="btn btn-primary btn-block" ng-click="project.model.addTask('', -1)">
-                            <i class="fa fa-plus icon"></i>
-                            <label>add tasks</label>
-                        </button>
+                        </div>
+                        <div class="col-md-12" ng-show="!((project.model.tasks | filter: { session: project.model.session }).length > 0)">
+                            <button class="btn btn-primary btn-block" ng-click="project.model.addTask('', -1)">
+                                <i class="fa fa-plus icon"></i>
+                                <label>add tasks</label>
+                            </button>
+                        </div>
                     </div>
                 </div>
 

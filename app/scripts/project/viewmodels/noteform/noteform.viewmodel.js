@@ -16,7 +16,15 @@ class NoteFormViewmodel {
 
         var viewModel = this;
 
+        var noteFormParams = {
+            data: {
+                template: viewConfig.params.data.template
+            },
+            callbacks: viewConfig.params.callbacks
+        };
+
         viewModel.view = new NoteForm();
+        viewModel.view.init(noteFormParams);
 
         viewModel.active = false;
     }

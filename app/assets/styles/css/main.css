@@ -457,6 +457,7 @@ body {
 .workspace section.workspace-section .session-plan-area div.session-plan-area-layout {
   width: 100%;
   height: var(--workspace-section-session-plan-area-layout-height);
+  overflow-y: scroll;
 }
 .workspace section.workspace-section .session-plan-area div.session-plan-area-layout #prevSessionTasks div.task-container div.task-completed input[type="checkbox"],
 .workspace section.workspace-section .session-plan-area div.session-plan-area-layout #currSessionTasks div.task-container div.task-completed input[type="checkbox"] {
@@ -658,21 +659,25 @@ body {
 }
 .workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #info,
 .workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #widgets {
-  height: 300px;
   max-height: 300px;
-  overflow-y: auto;
   background-color: var(--background-color);
 }
-.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #info .list-group,
-.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #widgets .list-group {
+.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #info .panel.panel-primary .panel-body,
+.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #widgets .panel.panel-primary .panel-body {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #info .panel.panel-primary .panel-body .widget-container,
+.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #widgets .panel.panel-primary .panel-body .widget-container {
+  height: -webkit-fill-available;
+  overflow-y: scroll;
+}
+.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #info .panel.panel-primary .panel-body .widget-container .list-group,
+.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog #widgets .panel.panel-primary .panel-body .widget-container .list-group {
   padding: 0;
   margin: 0;
   height: -webkit-fill-available;
-  overflow-y: auto;
-}
-.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #note .modal-dialog .widget-container {
-  height: -webkit-fill-available;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 .workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog {
   position: absolute;
@@ -683,7 +688,10 @@ body {
 .workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog .modal-body {
   max-height: 380px;
   overflow-y: scroll;
-  padding: 15px 0px;
+}
+.workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog .modal-body .table-bordered > thead > tr {
+  padding: 0;
+  margin: 0;
 }
 .workspace section.workspace-section .session-work-area section.session-work-area-layout section.note-form-tool #conditionsTableModal .modal-dialog .modal-body .table-bordered > thead > tr.active {
   color: black;

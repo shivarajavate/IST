@@ -16,7 +16,7 @@
 
                     <div class="col-md-2">
                         <label class="form-control">
-                            <i class="fa fa-trash-o icon right-corner" title="delete note" ng-show="project.views['noteForm'].view.noteExists" ng-click="project.views['noteForm'].view.deleteNote()"
+                            <i class="fa fa-trash-o icon right-corner" title="delete note" ng-show="project.views['noteForm'].view.noteExists" ng-click="project.views['noteForm'].view.deleteNoteForm()"
                                 data-dismiss="modal"></i>
                         </label>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="panel panel-primary">
                             <div class="panel-body">
 
-                                <div class="row margin-collapsable" ng-repeat="line in project.views['noteForm'].view.template.lines track by $index" ng-init="lineIndex = $index">
+                                <div class="row margin-collapsable" ng-show="project.views['noteForm'].view.wsName === line.type" ng-repeat="line in project.views['noteForm'].view.noteTemplate.lines track by $index" ng-init="lineIndex = $index">
                                     <div class="{{ element.class || 'col-sm-12' }}" ng-repeat="element in line.elements track by $index" ng-init="elementIndex = $index">
                                         <div ng-switch="element.type">
                                             <div ng-switch-when="LABEL">
@@ -110,15 +110,22 @@
                         <div class="panel panel-primary" ng-if="project.views['noteForm'].view.widgets.length > 0">
                             <div class="panel-body">
 
-                                <div class="row margin-collapsable">
+                                <div class="row strict">
 
                                     <div class="col-md-6 widget-container" arrow-key-scroll="1">
-                                        <ul class="list-group">
-                                            <li class="list-group-item" ng-attr-tabindex="{{$index + 1}}" ng-click="project.views['noteForm'].view.setSelectedWidget(widget.id)"
-                                                ng-dblclick="project.views['noteForm'].view.bindSelectedWidget(widget)" ng-repeat="widget in project.views['noteForm'].view.widgets">
-                                                <label ng-attr-title="{{ widget.data.name }} ({{widget.info.type}})">{{ widget.data.name }} ({{widget.info.type}})</label>
-                                            </li>
-                                        </ul>
+                                        
+                                        <div class="row margin-collapsable">
+                                            <div class="col-sm-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item" ng-attr-tabindex="{{$index + 1}}" ng-click="project.views['noteForm'].view.setSelectedWidget(widget.id)"
+                                                        ng-dblclick="project.views['noteForm'].view.bindSelectedWidget(widget)"
+                                                        ng-repeat="widget in project.views['noteForm'].view.widgets">
+                                                        <label ng-attr-title="{{ widget.data.name }} ({{widget.info.type}})">{{ widget.data.name }} ({{widget.info.type}})</label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
 
                                     <div class="col-md-6 widget-container">
@@ -203,9 +210,13 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="project.views['noteForm'].view.submitNote()" data-dismiss="modal">
-                    <label ng-if="!project.views['noteForm'].view.noteExists">add</label>
-                    <label ng-if="project.views['noteForm'].view.noteExists">update</label>
+                <button class="btn btn-primary" ng-show="!(project.views['noteForm'].view.noteExists)" ng-click="project.views['noteForm'].view.addNoteForm()"
+                    data-dismiss="modal">
+                    <label>add</label>
+                </button>
+                <button class="btn btn-primary" ng-show="project.views['noteForm'].view.noteExists" ng-click="project.views['noteForm'].view.updateNoteForm()"
+                    data-dismiss="modal">
+                    <label>update</label>
                 </button>
             </div>
         </div>

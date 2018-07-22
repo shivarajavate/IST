@@ -19,7 +19,18 @@ class NoteForm {
         this.conditionsTable;
     }
 
-    init(data, callbacks) {
+    init(params) {
+
+        var noteForm = this;
+
+        noteForm.template = params.data.template;
+
+        noteForm.callbacks = params.callbacks;
+
+        $("#note").on("hidden.bs.modal", noteForm.closeNoteForm.bind(noteForm));
+    }
+
+    show(data) {
 
         var noteForm = this;
 
@@ -27,7 +38,7 @@ class NoteForm {
         noteForm.levelName = data.levelName || null;
         noteForm.secName = data.secName || null;
         noteForm.noteExists = data.noteExists || false;
-        noteForm.template = data.template || [];
+        noteForm.noteTemplate = noteForm.template.noteTemplate(data.secName, data.levelName) || [];
         noteForm.oldNote = $.extend(true, {}, data.note);
         noteForm.note = $.extend(true, {}, data.note);
         noteForm.tags = data.tags || [];
@@ -43,10 +54,6 @@ class NoteForm {
         };
         noteForm.scenariosText = "";
 
-        noteForm.deleteNote = noteForm.deleteNoteForm.bind(noteForm, callbacks.delete);
-        noteForm.submitNote = noteForm.submitNoteForm.bind(noteForm, callbacks.submit);
-
-        $("#note").on("hidden.bs.modal", noteForm.closeNoteForm.bind(noteForm, callbacks.close));
         $('#note').modal('show');
     }
 
@@ -70,6 +77,7 @@ class NoteForm {
             document.getElementById("widgetScenarios").value = noteForm.scenariosText + document.getElementById("widgetScenarios").value;
         }
     }
+
     generatePostiveScenarios(scenariosText) {
         var noteForm = this;
         noteForm.scenariosText += "positive scenarios:\n";
@@ -113,7 +121,6 @@ class NoteForm {
         });
     }
 
-
     openAccordion(id) {
         var noteForm = this;
         switch (id) {
@@ -133,7 +140,7 @@ class NoteForm {
                 noteForm.generateTestScenarios();
                 break;
         }
-    };
+    }
 
     openConditionsTable(accordionID) {
         this.conditionsTable = new ConditionsTable();
@@ -157,7 +164,7 @@ class NoteForm {
                 noteForm.widgets = widgets.filter(widget => widget.info.type === widgetType);
             }
         });
-    };
+    }
 
     setSelectedWidget(id) {
         var noteForm = this;
@@ -171,7 +178,7 @@ class NoteForm {
         } else {
             noteForm.selectedWidget = null;
         }
-    };
+    }
 
     bindSelectedWidget(widget) {
 
@@ -202,21 +209,34 @@ class NoteForm {
 
         var infoTab = document.getElementById('infoTab');
         infoTab.click();
-    };
-
-
-    submitNoteForm(submitCallback) {
-        this.noteExists ? submitCallback(this.oldNote, this.note) : submitCallback(this.note);
     }
 
-    deleteNoteForm(deleteCallback) {
-        deleteCallback(this.note);
+    addNoteForm() {
+        
+        var noteForm = this;
+
+        noteForm.callbacks.add(this.note);
     }
 
-    closeNoteForm(cancelCallback) {
-        cancelCallback();
-        $('#note').modal('hide');
+    updateNoteForm() {
+
+        var noteForm = this;
+
+        noteForm.callbacks.update(this.oldNote, this.note);
     }
 
+    deleteNoteForm() {
+
+        var noteForm = this;
+
+        noteForm.callbacks.delete(this.note);
+    }
+
+    closeNoteForm() {
+        
+        var noteForm = this;
+
+        noteForm.callbacks.close();
+    }
 
 }

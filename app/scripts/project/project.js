@@ -9,25 +9,79 @@ class Project {
 
         project.template = new ProjectTemplateModel(params.template);
 
-        var views = [];
+        var viewConfigs = [];
 
-        params.uiSettings.views.forEach(function (view) {
-            view.params = {
-                data: {
-                    model: project.model,
-                    template: project.template
-                },
-                callbacks: {
-                    add: project.addNodeAction.bind(project),
-                    update: project.updateNodeAction.bind(project),
-                    delete: project.deleteNodeAction.bind(project),
-                    close: project.unselectNodeAction.bind(project)
-                }
-            };
-            views.push(view);
+        params.uiSettings.views.forEach(function (viewConfig) {
+
+            switch (viewConfig.name) {
+                case "mindMap":
+
+                    viewConfig.params = {
+                        data: {
+                            model: project.model,
+                            template: project.template
+                        },
+                        callbacks: {
+                            add: project.addNodeAction.bind(project),
+                            update: project.updateNodeAction.bind(project),
+                            delete: project.deleteNodeAction.bind(project),
+                            close: project.unselectNodeAction.bind(project)
+                        }
+                    };
+                    break;
+
+                case "reconWorkspace":
+
+                    viewConfig.params = {
+                        data: {
+                            model: project.model,
+                            template: project.template
+                        },
+                        callbacks: {
+                            add: project.addNodeAction.bind(project),
+                            update: project.updateNodeAction.bind(project),
+                            delete: project.deleteNodeAction.bind(project),
+                            close: project.unselectNodeAction.bind(project)
+                        }
+                    };
+                    break;
+
+                case "searchWorkspace":
+
+                    viewConfig.params = {
+                        data: {
+                            model: project.model,
+                            template: project.template
+                        },
+                        callbacks: {
+                            add: project.addNodeAction.bind(project),
+                            update: project.updateNodeAction.bind(project),
+                            delete: project.deleteNodeAction.bind(project),
+                            close: project.unselectNodeAction.bind(project)
+                        }
+                    };
+                    break;
+
+                case "noteForm":
+
+                    viewConfig.params = {
+                        data: {
+                            model: project.model,
+                            template: project.template
+                        },
+                        callbacks: {
+                            add: project.addNoteAction.bind(project),
+                            update: project.updateNoteAction.bind(project),
+                            delete: project.deleteNoteAction.bind(project),
+                            close: project.unselectNoteAction.bind(project)
+                        }
+                    };
+                    break;
+            }
+            viewConfigs.push(viewConfig);
         });
 
-        project.views = new ProjectViewModel(views);
+        project.views = new ProjectViewModel(viewConfigs);
         project.viewNames = Object.keys(project.views);
 
         project.undoManager = new UndoManager();
@@ -96,24 +150,15 @@ class Project {
 
         var project = this;
 
-        var callbacks = {
-            add: project.addNoteAction.bind(project),
-            delete: project.deleteNoteAction.bind(project),
-            update: project.updateNoteAction.bind(project),
-            submit: ((data.noteExists) ? project.updateNoteAction.bind(project) : project.addNoteAction.bind(project)),
-            close: project.unselectNoteAction.bind(project)
-        };
-
         data.note = (data.noteExists) ? data.note : project.model.newNote({
             name: "new",
             secName: data.secName,
             levelName: data.levelName
         }, project.template);
 
-        data.template = project.template.noteTemplate(data.secName, data.levelName, data.wsName);
         data.tags = project.model.suggestTags(data.wsName);
 
-        project.views["noteForm"].view.init(data, callbacks);
+        project.views["noteForm"].view.show(data);
     }
 
     addDataModel(dataModel = { note: {}, node: {} }, position = -1, record = false) {
